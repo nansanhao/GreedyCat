@@ -11,6 +11,10 @@
   collectionMaps:用户收藏的地图			->MAP
   ```
 
+  **mainMap:                               ->MAP**
+
+  usrMaps   -->   userMaps
+
   ​
 
 - 地图表:MAP
@@ -25,6 +29,11 @@
   description:地图简介
   coordinates:地图上的坐标				->COORDINATE
   ```
+  **date： 创建时间**
+
+  collections   --> collecteds  // 意指收藏次数？
+
+
 
 - 坐标表:COORDINATE
 
@@ -43,4 +52,6 @@
   content
   ```
 
-  ​
+  **date： 创建时间**
+
+  **userId：评论者ID                 --->USER**
