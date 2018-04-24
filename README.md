@@ -8,7 +8,7 @@
 
 domain name: https://614651643.weishimao.xyz
 
-global url = 'https://614651643.weishimao.xyz/v1'
+global url = 'https://614651643.weishimao.xyz'
 
 ---
 
