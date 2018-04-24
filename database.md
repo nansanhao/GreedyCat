@@ -31,6 +31,16 @@
   ```
   **date： 创建时间**
 
+  **category：地图分类**
+
+  **city：所在城市**
+
+  **locality：所在地区**
+
+  **isPublic:是否公开**
+
+  ****
+
   collections   --> collecteds  // 意指收藏次数？
 
 
@@ -44,6 +54,7 @@
   description:坐标简介
   name:坐标名称
   ```
+  **address：店铺具体地址（可能为空字符串）**
 
 - 评论表:COMMENT
 
@@ -54,4 +65,4 @@
 
   **date： 创建时间**
 
-  **userId：评论者ID                 --->USER**
+  **userId：评论者ID                 --->USER ** 
