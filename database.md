@@ -50,5 +50,3 @@
   createTime： 创建时间
   userId：评论者ID                 --->USER
   ```
-
- 
