@@ -6,10 +6,6 @@
 
 #API
 
-domain name: https://614651643.weishimao.xyz
-
-global url = 'https://614651643.weishimao.xyz'
-
 ---
 
 ##查询地图列表(按关键字、分类)
