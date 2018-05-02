@@ -1,0 +1,13 @@
+<!--pages/newMap/newMap.wxml-->
+<text>pages/newMap/newMap.wxml</text>
+
+<form bindsubmit='formSubmit'>
+    <view class='title'>地图名</view>
+    <input placeholder='单行输入'></input>
+    <view class='title'>城市选择</view>
+    <picker mode = "region"></picker>
+    <view class='title'>地区名</view>
+    <input placeholder='单行输入'></input>
+
+
+</form>
