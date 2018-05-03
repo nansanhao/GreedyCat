@@ -1,0 +1,16 @@
+<!--pages/mapDetail/mapDetail.wxml-->
+<view class="page-body">
+    <view>
+      <map latitude="{{latitude}}" longitude="{{longitude}}" markers="{{markers}}">
+      </map>
+    </view>
+    <view class='section'>
+        <view class='icon-wrap'>
+            <view wx:for="{{icons}}" wx:for-item="icon" class='icon' >
+                <image  src="{{icon.imageUrl}} " class="icon-image"></image>
+                <text class='icon-num'>{{icon.num}}</text>
+            </view>
+            
+        </view>
+    </view>
+</view>

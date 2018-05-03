@@ -1,0 +1,56 @@
+<!--pages/newMap/newMap.wxml-->
+<form bindsubmit='formSubmit'>
+    
+    <view class="section">
+      <view class="ui-cells-title">地图名</view>
+      <view class="ui-cells ">
+        <view class="ui-cell ui-cell-input">
+          <input name="mapName" class="ui-input" maxlength="10" placeholder="最大输入长度为10" />
+        </view>
+      </view>
+    </view>
+    <view class="section">
+        <view class="ui-cells-title">城市地区</view>
+        <view class="ui-cells ">
+            <view class="ui-cell ui-cell-input">
+                <view class="ui-cell__hd">
+                    <view class="ui-label">当前选择</view>
+                </view>
+                <view class="ui-cell-body">
+                    <picker name="location" mode = "region" bindchange="bindPickerChange" >
+                        <view class="ui-input">{{location}}</view>
+                    </picker>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class='section'>
+        <view class="ui-cells-title">分类（多选）</view>
+        <view class='tags'>
+            <view wx:for="{{tags}}" wx:for-item="tag" class="tag {{tag.isChoosed?'tag-isChoosed':''}}" bindtap="toggleTagState" id="{{index}}">
+                {{tag.tagName}}
+            </view>
+        </view>
+        
+    </view>
+    <view class='section'>
+        <view class="ui-cells-title">简介</view>
+        <view class="textarea-wrp">
+        <textarea name="description" placeholder='多行输入' auto-focus="true" style="height: 300rpx" />
+      </view>
+    </view>
+    <view class='section'>
+        <view class="ui-cells switch-wrap">
+            <view class="ui-cell ui-cell-switch">
+                <view class="ui-cell-body">是否公开</view>
+                <view class="ui-cell-ft">
+                    <switch name="isPublic"/>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class='section ui-btn-area'>
+        <button type="primary" formType="submit" class='ui-btn'>开始记录/保存</button>
+    </view>
+
+</form>
