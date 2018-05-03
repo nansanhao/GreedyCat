@@ -1,39 +1,39 @@
-<!--index.wxml-->
-<view class="container">
-    <!-- 用户登录测试 -->
-    <view class="userinfo" bindtap="login">
-        <image
-            class="userinfo-avatar"
-            src="{{logged ? userInfo.avatarUrl : './user-unlogin.png'}}"
-            background-size="cover"
-        ></image>
-        <view>
-            <text class="userinfo-nickname">{{logged ? userInfo.nickName : '点击测试登录接口'}}</text>
-            <text class="userinfo-nickname" wx:if="{{logged}}">{{userInfo.lastLoginTime}}</text>
-        </view>
+<view class="header">
+  <view class="slogan slogan-big">slogan</view>
+  <view class="slogan slogan-small">slogan</view>
+  <view class="search-bar-box">
+    <view class="city-box">
+      <view class="city-arrow"></view>
+      <view class="city-text">{{city}}</view>
     </view>
-
-
-    <!-- 上传图片测试 -->
-    <view class="uploader">
-        <view class="uploader-text" bindtap="doUpload">
-            <text>上传图片</text>
-        </view>
-        <view class="uploader-container" wx:if="{{imgUrl}}">
-            <image
-                class="uploader-image"
-                src="{{imgUrl}}"
-                mode="aspectFit"
-                bindtap="previewImg"
-            ></image>
-        </view>
+    <view class="search-bar">
+      <search-bar></search-bar>
     </view>
-
-
-    <!-- 上传图片测试 -->
-    <view class="uploader">
-        <navigator url="../addCgi/addCgi" open-type="navigate" class="uploader-text">
-            <text>快速增加 CGI</text>
-        </navigator>
-    </view>
+  </view>
+</view>
+<view class="category-box">
+  <navigator wx:for="{{categories}}" class="category-single" wx:key="name" url='{{item.url}}' open-type='navigate' hover-class='none'>
+    <image class="category-image" src="{{item.imageSrc}}" />
+    <view class="category-text">{{item.name}}</view>
+  </navigator>
+</view>
+<swiper indicator-dots="true" autoplay="true" circular='true'>
+  <swiper-item wx:for="{{imageUrls}}" wx:key="*this">
+    <image src="{{item}}" style="width:750rpx" />
+  </swiper-item>
+</swiper>
+<view class="tab">
+  <view class="navbar">
+    <block wx:for="{{tabs}}" wx:key="*this">
+      <view data-index="{{index}}" class="navbar-item {{activeIndex == index ? 'navbar-item-on' : ''}}" bindtap="tabClick">
+        <view class="navbar-title">{{item}}</view>
+      </view>
+    </block>
+    <view class="navbar-slider" style="transform: translateX({{sliderOffset}}px);"></view>
+  </view>
+  <view class="tab-content">
+    <view class="" hidden="{{activeIndex != 0}}">大方的说法</view>
+    <view class="" hidden="{{activeIndex != 1}}">选项二的内容</view>
+    <view class="" hidden="{{activeIndex != 2}}">选项三的内容</view>
+  </view>
 </view>

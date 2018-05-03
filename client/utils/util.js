@@ -40,3 +40,4 @@ var showModel = (title, content) => {
 }
 
 module.exports = { formatTime, showBusy, showSuccess, showModel }
+

@@ -1,124 +1,150 @@
 /**index.wxss**/
-page {
-    background: #F6F6F6;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+
+/*------------------------------header----------------------------------------------*/
+
+.header {
+  background-color: #eb6159;
 }
 
-.userinfo, .uploader, .tunnel {
-    margin-top: 40rpx;
-    height: 140rpx;
-    width: 100%;
-    background: #FFF;
-    border: 1px solid rgba(0, 0, 0, .1);
-    border-left: none;
-    border-right: none;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    transition: all 300ms ease;
+.slogan {
+  text-align: center;
+  color: #fff;
+  padding-top: 8px;
 }
 
-.userinfo-avatar {
-    width: 100rpx;
-    height: 100rpx;
-    margin: 20rpx;
-    border-radius: 50%;
+.slogan-small {
+  font-size: 22px;
 }
 
-.userinfo-nickname {
-    font-size: 32rpx;
-    color: #007AFF;
+.slogan-big {
+  font-size: 25px;
 }
 
-.uploader, .tunnel {
-    height: auto;
-    padding: 0 0 0 40rpx;
-    flex-direction: column;
-    align-items: flex-start;
-    box-sizing: border-box;
+.search-bar-box {
+  display: flex;
 }
 
-.uploader-text, .tunnel-text {
-    width: 100%;
-    line-height: 52px;
-    font-size: 34rpx;
-    color: #007AFF;
+.search-bar {
+  flex: 1;
 }
 
-.uploader-container {
-    width: 100%;
-    height: 400rpx;
-    padding: 20rpx 20rpx 20rpx 0;
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    box-sizing: border-box;
-    border-top: 1px solid rgba(0, 0, 0, .1);
+.city-box {
+  padding: 10px 0 10px 8px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 50px;
 }
 
-.uploader-image {
-    width: 100%;
-    height: 360rpx;
+.city-arrow {
+  padding-right: 13px;
+  position: relative;
 }
 
-.tunnel {
-    padding: 0 0 0 40rpx;
+.city-arrow:after {
+  content: " ";
+  display: inline-block;
+  height: 6px;
+  width: 6px;
+  border-width: 0 2px 2px 0;
+  border-color: #fff;
+  border-style: solid;
+  transform: matrix(0.71, 0.71, -.71, 0.71, 0, 0);
+  position: absolute;
+  top: 50%;
+  margin-top: -4px;
+  right: 2px;
 }
 
-.tunnel-text {
-    position: relative;
-    color: #222;
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    justify-content: space-between;
-    box-sizing: border-box;
-    border-top: 1px solid rgba(0, 0, 0, .1);
+.city-text {
+  box-sizing: border-box;
+  padding-left: 4px;
+  flex: 1;
+  color: #fff;
 }
 
-.tunnel-text:first-child {
-    border-top: none;
+/*----------------------------------category------------------------------------------*/
+
+.category-box {
+  display: flex;
 }
 
-.tunnel-switch {
-    position: absolute;
-    right: 20rpx;
-    top: -2rpx;
+.category-single {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0;
 }
 
-.disable {
-    color: #888;
+.category-image {
+  border-radius: 50%;
+  width: 120rpx;
+  height: 120rpx;
 }
 
-.service {
-    position: fixed;
-    right: 40rpx;
-    bottom: 40rpx;
-    width: 140rpx;
-    height: 140rpx;
-    border-radius: 50%;
-    background: linear-gradient(#007AFF, #0063ce);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, .3);
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    transition: all 300ms ease;
+.category-text {
+  margin-top: 20rpx;
+  font-size: 14px;
+  text-align: center;
+  color:#888;
 }
 
-.service-button {
-    position: absolute;
-    top: 40rpx;
+/*---------------------------------tab-------------------------------------*/
+
+.tab {
+  margin-top:5px; 
+  position: relative;
+  height: 100%;
 }
 
-.service:active {
-    box-shadow: none;
+.tab-content {
+  box-sizing: border-box;
+  height: 100%;
+  padding-top: 50px;
+  overflow: auto;
 }
 
-.request-text {
-    padding: 20rpx 0;
-    font-size: 24rpx;
-    line-height: 36rpx;
-    word-break: break-all;
+.navbar {
+  display: flex;
+  position: absolute;
+  z-index: 500;
+  top: 0;
+  width: 100%;
+  border-bottom: 1rpx solid #ccc;
+  background-color:#fff; 
+}
+
+.navbar-item {
+  position: relative;
+  display: block;
+  flex: 1;
+  padding: 13px 0;
+  text-align: center;
+  font-size: 0;
+}
+
+.navbar-item-on {
+  color: #EB6159;
+}
+
+.navbar-slider {
+  position: absolute;
+  left: 35rpx;
+  content: " ";
+  bottom: 0;
+  width: 180rpx;
+  height: 3px;
+  background-color: #EB6159;
+  transition: transform .3s;
+}
+
+.navbar-title {
+  display: inline-block;
+  font-size: 15px;
+  max-width: 8em;
+  width: auto;
+  overflow: hidden;
+  white-space: nowrap;
 }

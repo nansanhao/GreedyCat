@@ -5,6 +5,10 @@ Page({
    * 页面的初始数据
    */
   data: {
+      icons:[
+          { name: "likes", num: 5255, imageUrl:"../../icons/icon.png"},
+          { name: "dislikes", num: 125, imageUrl: "../../icons/icon.png" },
+          { name: "collection", num: 35, imageUrl: "../../icons/icon.png" }],
       latitude: 23.099994,
       longitude: 113.324520,
       markers: [{

@@ -1,16 +1,17 @@
 {
     "pages": [
+        "pages/index/index",
         "pages/mapDetail/mapDetail",
         "pages/newMap/newMap",
-        "pages/index/index",
-        "pages/addCgi/addCgi"
+    
+        "pages/categories/categories"
     ],
     "window": {
         "backgroundColor": "#F6F6F6",
         "backgroundTextStyle": "light",
         "navigationBarBackgroundColor": "#EB6159",
         "navigationBarTitleText": "为食猫",
-        "navigationBarTextStyle": "write"
+        "navigationBarTextStyle": "white"
     },
     "tabBar": {
         "color": "#7A7E83",
@@ -19,8 +20,14 @@
         "backgroundColor": "#ffffff",
         "list": [
             {
+                "pagePath": "pages/index/index",
+                "text": "觅食",
+                "iconPath": "images/icon_component.png",
+                "selectedIconPath": "images/icon_component.png"
+            },
+            {
                 "pagePath": "pages/mapDetail/mapDetail",
-                "text": "我的",
+                "text": "地图",
                 "iconPath": "images/icon_component.png",
                 "selectedIconPath": "images/icon_component.png"
             },
