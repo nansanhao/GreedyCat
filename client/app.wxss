@@ -16,11 +16,13 @@ page {
   font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
 }
 
-.page__bd {
+
+.page-body {
   padding-bottom: 40px;
 }
 
 /* --------------------------------------globalUI----------------------------------------- */
+
 
 .ui-cells-title {
   margin-top: 0.77em;
@@ -43,6 +45,7 @@ page {
   border-top: 1rpx solid #d9d9d9;
 }
 
+
 .ui-cells:after, .ui-cells:before {
   content: " ";
   position: absolute;
@@ -57,6 +60,7 @@ page {
   border-bottom: 1rpx solid #d9d9d9;
 }
 
+
 .ui-cell {
   padding: 10px 15px;
   position: relative;
@@ -65,6 +69,7 @@ page {
   -webkit-align-items: center;
   align-items: center;
 }
+
 
 .ui-cell:before {
   content: " ";
@@ -76,6 +81,7 @@ page {
   color: #d9d9d9;
   left: 15px;
 }
+
 
 .ui-cell:first-child:before {
   display: none;
@@ -99,7 +105,7 @@ page {
   position: relative;
 }
 
-.ui-cell-ft-in-access:after {
+.ui-cell-foot-in-access:after {
   content: " ";
   display: inline-block;
   height: 6px;
