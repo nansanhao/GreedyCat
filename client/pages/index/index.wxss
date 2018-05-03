@@ -80,30 +80,26 @@
 
 .category-image {
   border-radius: 50%;
-  width: 120rpx;
-  height: 120rpx;
+  width: 100rpx;
+  height: 100rpx;
 }
 
 .category-text {
   margin-top: 20rpx;
-  font-size: 14px;
+  font-size: 12px;
   text-align: center;
-  color:#888;
+  color: #888;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 /*---------------------------------tab-------------------------------------*/
 
 .tab {
-  margin-top:5px; 
+  margin-top: 5px;
   position: relative;
   height: 100%;
-}
-
-.tab-content {
-  box-sizing: border-box;
-  height: 100%;
-  padding-top: 50px;
-  overflow: auto;
 }
 
 .navbar {
@@ -113,7 +109,7 @@
   top: 0;
   width: 100%;
   border-bottom: 1rpx solid #ccc;
-  background-color:#fff; 
+  background-color: #fff;
 }
 
 .navbar-item {
@@ -126,7 +122,7 @@
 }
 
 .navbar-item-on {
-  color: #EB6159;
+  color: #eb6159;
 }
 
 .navbar-slider {
@@ -136,8 +132,8 @@
   bottom: 0;
   width: 180rpx;
   height: 3px;
-  background-color: #EB6159;
-  transition: transform .3s;
+  background-color: #eb6159;
+  transition: transform 0.3s;
 }
 
 .navbar-title {
@@ -147,4 +143,17 @@
   width: auto;
   overflow: hidden;
   white-space: nowrap;
+}
+
+
+.tab-content {
+  box-sizing: border-box;
+  height: 100%;
+  padding-top: 50px;
+  overflow: auto;
+}
+
+tab-content-list {
+  display: flex;
+  flex-direction: column;
 }

@@ -18,6 +18,18 @@ Page({
       'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
       'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
     ],
+    mostLikesList:[{
+      id:"sadfsadfasfasd fsad sad sd",
+      likes:10,
+      dislikes:10,
+      collections:10,
+      comments:10,
+      mapName:"日料万岁",
+      description:"测试测试测试测试测试测试测试测asdfaaaaaaaaaaaaaaaaaaaaaaaaaaa都是感受到分公司电饭锅aaaasdfasdf",
+      city: "武汉",
+      locality: "江汉区",
+      category: 1
+    }],
     tabs: ["最多like", "最新", "最热"],
     activeIndex: 0,
     sliderOffset: 0,
