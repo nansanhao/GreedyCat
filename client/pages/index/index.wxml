@@ -17,9 +17,9 @@
     <view class="category-text">{{item.name}}</view>
   </navigator>
 </view>
-<swiper indicator-dots="true" autoplay="true" circular='true'>
-  <swiper-item wx:for="{{imageUrls}}" wx:key="*this">
-    <image src="{{item}}" style="width:750rpx" />
+<swiper indicator-dots="true" autoplay="true" circular='true' style="height:250rpx">
+  <swiper-item wx:for="{{imageUrls}}" wx:key="*this" >
+    <image src="{{item}}" style="width:750rpx;" />
   </swiper-item>
 </swiper>
 <view class="tab">
@@ -32,8 +32,20 @@
     <view class="navbar-slider" style="transform: translateX({{sliderOffset}}px);"></view>
   </view>
   <view class="tab-content">
-    <view class="" hidden="{{activeIndex != 0}}">大方的说法</view>
-    <view class="" hidden="{{activeIndex != 1}}">选项二的内容</view>
-    <view class="" hidden="{{activeIndex != 2}}">选项三的内容</view>
+    <view class="tab-content-list" hidden="{{activeIndex != 0}}">
+      <navigator wx:for="{{mostLikesList}}" wx:key="id" hover-class='none'>
+        <map-item mapName="{{item.mapName}}" description="{{item.description}}" city="{{item.city}}" locality="{{item.locality}}" category="item.category" counters="{{[item.likes,item.dislikes,item.collections,item.comments]}}" />
+      </navigator>
+    </view>
+    <view class="tab-content-list" hidden="{{activeIndex != 1}}">
+      <!-- <navigator wx:for="newestList">
+      <map-item />
+      </navigator> -->
+    </view>
+    <view class="tab-content-list" hidden="{{activeIndex != 2}}">
+      <!-- <navigator wx:for="hotestList">
+      <map-item />
+      </navigator> -->
+    </view>
   </view>
 </view>
