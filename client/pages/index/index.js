@@ -5,66 +5,75 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    city: "武汉",
+    categories: [
+      { name: "日料", imageSrc: "../../icons/icon.png", url:"../categories/categories" },
+      { name: "西式简餐", imageSrc: "../../icons/icon.png", url:"../categories/categories" },
+      { name: "川湘菜", imageSrc: "../../icons/icon.png", url:"../categories/categories" },
+      { name: "东南亚风情", imageSrc: "../../icons/icon.png", url:"../categories/categories" },
+      { name: "更多", imageSrc: "../../icons/icon.png", url:"../categories/categories" }
+    ],
+    imageUrls: [
+      'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
+      'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
+      'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
+    ],
+    tabs: ["最多like", "最新", "最热"],
+    activeIndex: 0,
+    sliderOffset: 0,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-  
+  onLoad: function () {
+
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
-  },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
   },
 
   inputConfirm: function (e) {
     console.log(e);
-  }
+  },
+
+  tabClick: function (e) {
+    this.setData({
+      sliderOffset: e.currentTarget.offsetLeft,
+      activeIndex: e.currentTarget.dataset.index
+    });
+  },
 })
