@@ -1,1 +1,41 @@
 /* pages/newMap/newMap.wxss */
+
+.picker{
+  padding: 19rpx 26rpx;
+  background-color: #FFFFFF;
+}
+.ui-label{
+    padding-right: 30rpx
+}
+.section{
+    
+}
+.textarea-wrp {
+    padding:20rpx 30rpx;
+    background-color:#fff;
+}
+.ui-btn{
+    background-color: #EB6159 !important;
+}
+.tags{
+    display: flex;
+    flex-wrap: wrap;
+    padding:0 30rpx
+}
+.tag{
+    display: inline-block;
+    padding: 4rpx 10rpx;
+    border-radius: 25rpx;
+    margin: 4rpx;
+    background-color: #FFFFFF;
+    color: #EB6159;
+    border: 1rpx solid
+}
+.tag-isChoosed{
+    background-color: #EB6159;
+    color: white;
+}
+.switch-wrap{
+    margin: 20rpx 0
+}
+

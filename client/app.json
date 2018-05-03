@@ -1,22 +1,35 @@
 {
     "pages": [
+        "pages/mapDetail/mapDetail",
+        "pages/newMap/newMap",
         "pages/index/index",
-        "pages/addCgi/addCgi",
-        "pages/newMap/newMap"
+        "pages/addCgi/addCgi"
     ],
     "window": {
         "backgroundColor": "#F6F6F6",
         "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#F6F6F6",
-        "navigationBarTitleText": "Wafer Quick Start",
-        "navigationBarTextStyle": "black"
+        "navigationBarBackgroundColor": "#EB6159",
+        "navigationBarTitleText": "为食猫",
+        "navigationBarTextStyle": "write"
     },
     "tabBar": {
-      "list": [{
-        "pagePath": "pages/newMap",
-        "text": "我的",
-        "iconPath": "iconPath",
-        "selectedIconPath": "selectedIconPath"
-      }]
+        "color": "#7A7E83",
+        "selectedColor": "#3cc51f",
+        "borderStyle": "black",
+        "backgroundColor": "#ffffff",
+        "list": [
+            {
+                "pagePath": "pages/mapDetail/mapDetail",
+                "text": "我的",
+                "iconPath": "images/icon_component.png",
+                "selectedIconPath": "images/icon_component.png"
+            },
+            {
+                "pagePath": "pages/newMap/newMap",
+                "text": "我的",
+                "iconPath": "images/icon_component.png",
+                "selectedIconPath": "images/icon_component.png"
+            }
+        ]
     }
 }

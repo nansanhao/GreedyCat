@@ -1,0 +1,14 @@
+<!--pages/mapDetail/mapDetail.wxml-->
+<view class="page-body">
+    <view>
+      <map latitude="{{latitude}}" longitude="{{longitude}}" markers="{{markers}}">
+      </map>
+    </view>
+    <view class='section'>
+        <view class='icon-wrap'>
+            <view class='icon'><image mode='aspectFit' class='icon-image' src="../../images/icon_component.png"/></view>
+            <view class='icon'></view>
+            <view class='icon'></view>
+        </view>
+    </view>
+</view>
