@@ -16,7 +16,7 @@ page {
   font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
 }
 
-.page__bd {
+.page-body {
   padding-bottom: 40px;
 }
 
@@ -99,7 +99,7 @@ page {
   position: relative;
 }
 
-.ui-cell-ft-in-access:after {
+.ui-cell-foot-in-access:after {
   content: " ";
   display: inline-block;
   height: 6px;

@@ -8,5 +8,6 @@
 	},
 	"appid": "wx64a1acbd25ba6342",
 	"projectname": "GreedyCat",
+	"compileType": "miniprogram",
 	"condition": {}
 }
