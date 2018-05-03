@@ -14,6 +14,7 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+<<<<<<< HEAD
 
 // 显示繁忙提示
 var showBusy = text => wx.showToast({
@@ -40,3 +41,8 @@ var showModel = (title, content) => {
 }
 
 module.exports = { formatTime, showBusy, showSuccess, showModel }
+=======
+module.exports = {
+  formatTime: formatTime
+}
+>>>>>>> cc31e15de23dadc09c76495ea89d0b1cc7682d11
