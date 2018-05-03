@@ -1,0 +1,21 @@
+/* pages/mapDetail/mapDetail.wxss */
+map{
+    width: 100%; height: 300px;
+}
+.icon-wrap{
+    display: flex;
+    justify-content: space-around;
+
+}
+.icon-image{
+    height: 120rpx;
+    width: 120rpx;
+    margin:16rpx 0;
+}
+.icon{
+    display: flex;
+    flex-direction: column;
+}
+.icon-num{
+    text-align: center;
+}
