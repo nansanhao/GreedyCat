@@ -13,4 +13,32 @@
             
         </view>
     </view>
+    <view class='description-wrap'>
+        <view class='description'>
+             <text>{{description}}</text>
+        </view>
+        <view class='userName'>
+            <text>--{{userName}}</text>
+        </view>
+    </view>
+    <view class='comment-wrap'>
+        <view class='comment-title'>
+            <text class='comment-title-content'>用户评论</text>
+            <image class='comment-title-image' src='../../icons/icon.png' aspectFit></image>
+        </view>
+        
+        <view class='comment-body'>
+            <view class='comment-body-item' wx:for="{{comments}}" wx:for-item="comment">
+                <view><image src='{{comment.avaterUrl}}' class='comment-image'></image></view>
+                <view class='comment-body-wrap'>
+                    <view class='comment-body-userName'>
+                        {{comment.userName}}
+                    </view>
+                    <view class='comment-body-content'>
+                        {{comment.content}}
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
 </view>

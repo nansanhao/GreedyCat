@@ -2,13 +2,23 @@
 Page({
 
   /**
-   * 页面的初始数据
+   * 页面的初始数据nickname
+  avaterUrl:(用户头像的url)
    */
   data: {
       icons:[
           { name: "likes", num: 5255, imageUrl:"../../icons/icon.png"},
           { name: "dislikes", num: 125, imageUrl: "../../icons/icon.png" },
           { name: "collection", num: 35, imageUrl: "../../icons/icon.png" }],
+        description:"这是一段示例文字",
+        userName:"小明",
+        comments:[
+            { userName: "小红", avaterUrl:"../../icons/icon.png",content:"这是一段评论。"},
+            { userName: "小红", avaterUrl: "../../icons/icon.png", content: "这是一段评论。" },
+            { userName: "小红", avaterUrl: "../../icons/icon.png", content: "这是一段评论。" },
+            { userName: "小红", avaterUrl: "../../icons/icon.png", content: "这是一段评论。" },
+            { userName: "小红", avaterUrl: "../../icons/icon.png", content: "这是一段评论。" }
+        ],
       latitude: 23.099994,
       longitude: 113.324520,
       markers: [{

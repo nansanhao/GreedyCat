@@ -1,7 +1,8 @@
 {
     "pages": [
-        "pages/index/index",
         "pages/mapDetail/mapDetail",
+        "pages/index/index",
+        
         "pages/newMap/newMap",
     
         "pages/categories/categories"
