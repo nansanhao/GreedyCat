@@ -1,11 +1,10 @@
 {
+
     "pages": [
-        "pages/mapDetail/mapDetail",
         "pages/index/index",
-        
-        "pages/newMap/newMap",
-    
-        "pages/categories/categories"
+        "pages/categories/categories",
+        "pages/mapDetail/mapDetail",
+        "pages/newMap/newMap"
     ],
     "window": {
         "backgroundColor": "#F6F6F6",
@@ -23,21 +22,24 @@
             {
                 "pagePath": "pages/index/index",
                 "text": "觅食",
-                "iconPath": "/icons/icon.png",
-                "selectedIconPath": "/icons/icon.png"
+                "iconPath": "images/icon_component.png",
+                "selectedIconPath": "images/icon_component_HL.png"
+
             },
             {
                 "pagePath": "pages/mapDetail/mapDetail",
                 "text": "地图",
-                "iconPath": "/icons/icon.png",
-                "selectedIconPath": "/icons/icon.png"
+                "iconPath": "images/icon_component.png",
+                "selectedIconPath": "images/icon_component_HL.png"
             },
             {
                 "pagePath": "pages/newMap/newMap",
                 "text": "我的",
-                "iconPath": "/icons/icon.png",
-                "selectedIconPath": "/icons/icon.png"
+                "iconPath": "images/icon_component.png",
+                "selectedIconPath": "images/icon_component_HL.png"
+
             }
         ]
     }
 }
+

@@ -6,7 +6,6 @@
 
 #API
 
-
 ---
 
 ##查询地图列表(按关键字、分类)
@@ -38,7 +37,7 @@ GET url + "/maps/mostComments?offset=" +offset+ "&limit="+ limits+"&category=" +
         dislikes：number,
         collections：number,
         mapName：string,
-        discripiton:string,
+        description:string,
         city:string,
         locality:string,
         category: 暂定为number 后续加一个对应数字的表
@@ -60,7 +59,7 @@ GET url + "/coordinates?keyword="+keyword
     coordinates:[ //符合关键字查找到店铺/坐标
       {	
         name：string,
-        discripiton:string,
+        description:string,
         address:string,
       }, //其他省略
     ]
@@ -86,7 +85,7 @@ GET url +"/map/myMap?id="+mainmap
       dislikes：number,
       collections：number,
       mapName：string,
-      discripiton:string,
+      description:string,
       city:string,
       locality:string,
       category:number,
@@ -231,7 +230,7 @@ data:{
         dislikes：number,
         collections：number,
         mapName：string,
-        discripiton:string,
+        description:string,
         city:string,
         locality:string,
         category: 暂定为number 后续加一个对应数字的表
@@ -273,7 +272,7 @@ request:
     map:{
       userId:string
       mapName：string,
-      discripiton:string,
+      description:string,
       city:string,
       locality:string,
       category:number
