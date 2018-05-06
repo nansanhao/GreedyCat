@@ -5,7 +5,7 @@ map{
 .icon-wrap{
     display: flex;
     justify-content: space-around;
-
+    background-color: whitesmoke;
 }
 .icon-image{
     height: 120rpx;
@@ -18,4 +18,41 @@ map{
 }
 .icon-num{
     text-align: center;
+}
+.userName{
+    text-align: right;
+}
+.description-wrap{
+    padding: 20rpx 30rpx;
+    background-color: white;
+}
+.comment-title-image{
+    height: 80rpx;
+    width: 80rpx;
+    float: right !important;
+}
+.comment-title{
+    text-align: center;
+    display: flex;
+    padding: 4rpx;
+    align-items: center;
+    justify-content: center; 
+
+}
+.comment-title-content{
+    color: #EB6159;
+}
+.comment-image{
+    height: 120rpx;
+    width: 120rpx;
+}
+.comment-body-item{
+    padding: 20rpx 30rpx;
+    background-color: white;
+    display: flex;
+    margin:10rpx 0;
+}
+.comment-body-wrap{
+    flex: 1;
+    margin-left: 20rpx;
 }
