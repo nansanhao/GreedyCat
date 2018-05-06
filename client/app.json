@@ -1,45 +1,43 @@
 {
-
-    "pages": [
-        "pages/index/index",
-        "pages/categories/categories",
-        "pages/mapDetail/mapDetail",
-        "pages/newMap/newMap"
-    ],
-    "window": {
-        "backgroundColor": "#EB6159",
-        "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#EB6159",
-        "navigationBarTitleText": "为食猫",
-        "navigationBarTextStyle": "white"
-    },
-    "tabBar": {
-        "color": "#7A7E83",
-        "selectedColor": "#3cc51f",
-        "borderStyle": "black",
-        "backgroundColor": "#ffffff",
-        "list": [
-            {
-                "pagePath": "pages/index/index",
-                "text": "觅食",
-                "iconPath": "images/icon_component.png",
-                "selectedIconPath": "images/icon_component_HL.png"
-
-            },
-            {
-                "pagePath": "pages/mapDetail/mapDetail",
-                "text": "地图",
-                "iconPath": "images/icon_component.png",
-                "selectedIconPath": "images/icon_component_HL.png"
-            },
-            {
-                "pagePath": "pages/newMap/newMap",
-                "text": "我的",
-                "iconPath": "images/icon_component.png",
-                "selectedIconPath": "images/icon_component_HL.png"
-
-            }
-        ]
-    }
+  "pages": [
+    "pages/index/index",
+    "pages/categories/categories",
+    "pages/mapDetail/mapDetail",
+    "pages/newMap/newMap",
+    "pages/resultList/resultList",
+    "pages/chooseCity/chooseCity"
+  ],
+  "window": {
+    "backgroundColor": "#EB6159",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#EB6159",
+    "navigationBarTitleText": "为食猫",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#3cc51f",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "觅食",
+        "iconPath": "icons/icon.png",
+        "selectedIconPath": "icons/icon.png"
+      },
+      {
+        "pagePath": "pages/mapDetail/mapDetail",
+        "text": "地图",
+        "iconPath": "icons/icon.png",
+        "selectedIconPath": "icons/icon.png"
+      },
+      {
+        "pagePath": "pages/newMap/newMap",
+        "text": "我的",
+        "iconPath": "icons/icon.png",
+        "selectedIconPath": "icons/icon.png"
+      }
+    ]
+  }
 }
-
