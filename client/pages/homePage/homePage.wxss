@@ -1,0 +1,71 @@
+/* pages/homePage/homePage.wxss */
+.avatar,.nickname{
+    display: flex;
+    justify-content: space-around;
+    background-color: #EB6159;
+}
+.nickname{
+    color: white;
+    padding: 40rpx 0 10rpx 0;
+    font-size: 34rpx;
+}
+.avatar-image{
+    height: 200rpx;
+    width: 200rpx;
+    border-radius: 100rpx;
+}
+.icon-wrap{
+    display: flex;
+    justify-content: space-around;
+    background-color: whitesmoke;
+}
+.icon-image{
+    height: 160rpx;
+    width: 160rpx;
+    margin:16rpx 0;
+}
+.icon{
+    display: flex;
+    flex-direction: column;
+}
+.icon-num{
+    text-align: center;
+    color: #EB6159;
+    font-size: 34rpx;
+}
+.linksList{
+    padding: 20rpx 30rpx;
+}
+.link{
+    padding: 20rpx 30rpx; 
+    display: flex;
+    background-color: white;
+}
+.link-title{
+    flex: 1;
+}
+.right-arrow {
+    display :inline-block;
+    position: relative;
+    width: 36rpx;
+    height: 36rpx;
+    margin-right: 20rpx;
+}
+
+.right-arrow::after {
+    display: inline-block;
+    content: " ";
+    height: 18rpx;
+    width: 18rpx;
+    border-width: 4rpx 4rpx 0 0;
+    border-color: #c7c7cc;
+    border-style: solid;
+    transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+    position: absolute;
+    top: 50%;
+    right: 6rpx;
+    margin-top: -9rpx;
+}
+.hr{
+    border-top: 2px whitesmoke solid;
+}

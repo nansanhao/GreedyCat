@@ -1,0 +1,21 @@
+<!--pages/homePage/homePage.wxml-->
+<view class='avatar'>
+    <image src='{{avatarUrl}}' class='avatar-image'></image>
+</view>
+<view class='nickname'>
+    <text>{{nickname}}</text>
+</view>
+
+<view class='icon-wrap'>
+    <view wx:for="{{icons}}" wx:for-item="icon" class='icon' >
+        <image  src="{{icon.imageUrl}} " class="icon-image"></image>
+        <text class='icon-num'>{{icon.name}}:{{icon.num}}</text>
+    </view>
+</view>
+
+<view class='linksList'>
+    <view wx:for="{{linksList}}" wx:for-item="link"  class='link {{index==0?"":"hr"}}' >
+        <text class='link-title '>{{link.name}}</text>
+        <view class='right-arrow'></view>
+    </view>
+</view>
