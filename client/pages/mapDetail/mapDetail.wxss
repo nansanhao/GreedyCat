@@ -25,6 +25,7 @@ map{
 .description-wrap{
     padding: 20rpx 30rpx;
     background-color: white;
+    
 }
 .comment-title-image{
     height: 80rpx;

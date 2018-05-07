@@ -37,6 +37,7 @@
                     <view class='comment-body-content'>
                         {{comment.content}}
                     </view>
+                    
                 </view>
             </view>
         </view>
