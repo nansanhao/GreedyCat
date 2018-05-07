@@ -1,0 +1,5 @@
+/* pages/resultList/resultList.wxss */
+
+.top-interval {
+  margin-top:8px;
+}

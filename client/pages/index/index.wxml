@@ -2,10 +2,10 @@
   <view class="slogan slogan-big">slogan</view>
   <view class="slogan slogan-small">slogan</view>
   <view class="search-bar-box">
-    <view class="city-box">
+    <navigator class="city-box" opte-type="navigate" url="/pages/chooseCity/chooseCity" hover-class="none">
       <view class="city-arrow"></view>
       <view class="city-text">{{city}}</view>
-    </view>
+    </navigator>
     <view class="search-bar">
       <search-bar></search-bar>
     </view>
@@ -34,18 +34,18 @@
   <view class="tab-content">
     <view class="tab-content-list" hidden="{{activeIndex != 0}}">
       <navigator wx:for="{{mostLikesList}}" wx:key="id" hover-class='none'>
-        <map-item mapName="{{item.mapName}}" description="{{item.description}}" city="{{item.city}}" locality="{{item.locality}}" category="item.category" counters="{{[item.likes,item.dislikes,item.collections,item.comments]}}" />
+        <map-item item-detail="{{item}}" />
       </navigator>
     </view>
     <view class="tab-content-list" hidden="{{activeIndex != 1}}">
-      <!-- <navigator wx:for="newestList">
-      <map-item />
-      </navigator> -->
+      <navigator wx:for="{{newestList}}" wx:key="id" hover-class='none'>
+        <map-item item-detail="{{item}}" />
+      </navigator>
     </view>
     <view class="tab-content-list" hidden="{{activeIndex != 2}}">
-      <!-- <navigator wx:for="hotestList">
-      <map-item />
-      </navigator> -->
+      <navigator wx:for="{{hottestList}}" wx:key="id" hover-class='none'>
+        <map-item item-detail="{{item}}" />
+      </navigator>
     </view>
   </view>
 </view>
