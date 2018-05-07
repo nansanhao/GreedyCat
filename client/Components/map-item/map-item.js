@@ -1,23 +1,19 @@
 // Components/map-item/map-item.js
 Component({
   properties: {
-    counters: {
-      type:Array
-    },
-    mapName:{
-      type:String
-    },
-    description: {
-      type: String
-    },
-    city: {
-      type: String
-    },
-    locality: {
-      type: String
-    },
-    category: {
-      type:Number
+    itemDetail: {
+      type: Object
     }
   },
+
+  attached() {
+    this.setData({
+      counters: [
+        { name: "likes", num: this.data.itemDetail.likes },
+        { name: "dislikes", num: this.data.itemDetail.dislikes },
+        { name: "comments", num: this.data.itemDetail.comments },
+        { name: "collections", num: this.data.itemDetail.collections },
+      ]
+    })
+  }
 })

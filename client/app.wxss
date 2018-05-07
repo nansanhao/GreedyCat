@@ -12,13 +12,10 @@
 
 page {
   background-color: #f8f8f8;
-  font-size: 16px;
+  font-size: 17px;
   font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
 }
 
-.page-body {
-  padding-bottom: 40px;
-}
 
 /* --------------------------------------globalUI----------------------------------------- */
 
@@ -83,6 +80,7 @@ page {
   background-color: #ececec;
 }
 
+
 .ui-cell-head image {
   margin-right: 5px;
   vertical-align: middle;
@@ -119,6 +117,19 @@ page {
   right: 2px;
 }
 
+.ui-title-box{
+  position: relative;
+  background-color: #fff;
+  line-height: 1.41176471;
+  font-size: 17px;
+}
+
+.ui-title-text {
+  padding: 10px 15px;
+  color:#EB6159;
+  position: relative;
+  text-align: center;
+}
 /* --------------------------------------formItem----------------------------------------- */
 
 .ui-cell-switch {
