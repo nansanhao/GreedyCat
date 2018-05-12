@@ -13,9 +13,9 @@
     </view>
 </view>
 
-<view class='linksList'>
-    <view wx:for="{{linksList}}" wx:for-item="link"  class='link {{index==0?"":"hr"}}' >
-        <text class='link-title '>{{link.name}}</text>
-        <view class='right-arrow'></view>
+<view class='ui-cells hr'>
+    <view wx:for="{{linksList}}" wx:for-item="link"  class='ui-cell' >
+        <view class='ui-cell-body'>{{link.name}}</view>
+        <view class='ui-cell-foot-in-access'></view>
     </view>
 </view>
