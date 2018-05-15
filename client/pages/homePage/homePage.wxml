@@ -3,19 +3,27 @@
     <image src='{{avatarUrl}}' class='avatar-image'></image>
 </view>
 <view class='nickname'>
-    <text>{{nickname}}</text>
+    <text>{{nickName}}</text>
 </view>
 
 <view class='icon-wrap'>
-    <view wx:for="{{icons}}" wx:for-item="icon" class='icon' >
-        <image  src="{{icon.imageUrl}} " class="icon-image"></image>
+    <view wx:for="{{icons}}" wx:for-item="icon" class='icon' wx:key='name'> 
+        <image src="{{icon.imageUrl}} " class="icon-image"></image>
         <text class='icon-num'>{{icon.name}}:{{icon.num}}</text>
     </view>
 </view>
 
 <view class='ui-cells hr'>
-    <view wx:for="{{linksList}}" wx:for-item="link"  class='ui-cell' >
+    <view wx:for="{{linksList}}" wx:for-item="link" class='ui-cell' wx:key='name'>
         <view class='ui-cell-body'>{{link.name}}</view>
         <view class='ui-cell-foot-in-access'></view>
     </view>
 </view>
+
+<modal modal-hidden="{{modalHidden}}" lock-mask="true" animation="true" costume="true" width='400'>
+    <view class="modal-inner">
+        <image class='inner-image' src='../../icons/icon.png'></image>
+        <view class='inner-text'>喵咪找不着路了！</view>
+        <button class='inner-button' open-type='getUserInfo' bindgetuserinfo='confirmAuthory'>求求你打开授权</button>
+    </view>
+</modal>

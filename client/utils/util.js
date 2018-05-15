@@ -34,10 +34,31 @@ var showModel = (title, content) => {
 
     wx.showModal({
         title,
-        content: JSON.stringify(content),
-        showCancel: false
+        content: content,
+        showCancel: false,
+        confirmColor:"#EB6159"
     })
 }
 
-module.exports = { formatTime, showBusy, showSuccess, showModel }
+function checkLocationAuth(callback) {
+    wx.getSetting({
+        success(res) {
+            if (!res.authSetting['scope.userLocation']) {
+                wx.authorize({
+                    scope: 'scope.userLocation',
+                    success() {
+                        callback()
+                    },
+                    fail() {
+                        showModel("获取用户位置失败，请用户重新授权", "右上角 - 关于 - 右上角 - 设置")                     
+                    }
+                })
+            } else {
+                callback()
+            }
+        }
+    })
+}
+
+module.exports = { formatTime, showBusy, showSuccess, showModel, checkLocationAuth}
 
