@@ -38,33 +38,21 @@ Page({
         tabs: ["最多like", "最新", "最热"],
         activeIndex: 0,
         sliderOffset: 0,
+        modalHidden: true
     },
 
     onShow() {
-        console.log(this)
-
     },
 
     onLoad() {
         var that = this
-        util.checkLocationAuth(() => {
-            wx.getLocation({
-                success: function (res) {
-                    var lit = res.longitude
-                    var lat = res.latitude
-                    wx.request({
-                        url: `https://apis.map.qq.com/ws/geocoder/v1/?location=${lat},${lit}&key=${mapkey}`,
-                        success: (res) => {
-                            var city = res.data.result.address_component.city
-                            city = city.replace(/市/, '')
-                            city = city.replace(/特别行政区/, '')
-                            that.setData({
-                                city: city
-                            })
-                        }
-                    })
-                },
-            })
+        util.checkLocationAuth((success) => {
+            if (success) { //已授权或允许授权
+                that.confirmLocation()
+            } else {
+                that.setData({ modalHidden: false })
+            }
+
         })
     },
 
@@ -77,5 +65,38 @@ Page({
             sliderOffset: e.currentTarget.offsetLeft,
             activeIndex: e.currentTarget.dataset.index
         });
+    },
+    askAuthory() {
+        var that = this
+        wx.openSetting({
+            success(res){
+                that.setData({ modalHidden: true })
+                if(res.authSetting['scope.userLocation']){
+                    that.confirmLocation()
+                } else {
+                    util.showModel('提示','您关闭了定位信息，部分功能将受到限制，若要重新授权请按如下步骤\n右上角"···"->"关于"->右上角"···"->设置')
+                }
+            }
+        })
+    },
+    confirmLocation() {
+        var that = this
+        wx.getLocation({
+            success: function (res) {
+                var lit = res.longitude
+                var lat = res.latitude
+                wx.request({
+                    url: `https://apis.map.qq.com/ws/geocoder/v1/?location=${lat},${lit}&key=${mapkey}`,
+                    success: (res) => {
+                        var city = res.data.result.address_component.city
+                        city = city.replace(/市/, '')
+                        city = city.replace(/特别行政区/, '')
+                        that.setData({
+                            city: city
+                        })
+                    }
+                })
+            },
+        })
     }
 })

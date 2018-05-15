@@ -16,19 +16,19 @@ Page({
             { name: "帮助", linkUrl: "#" },
             { name: "反馈", linkUrl: "#" }
         ],
-        modalHidden:true
+        modalHidden: true
     },
 
 
-    onLoad () {
-        if (app.data.logged&&app.data.userAuthory) {
+    onLoad() {
+        if (app.data.logged && app.data.userAuthory) {
             let userInfo = app.data.userInfo
             this.setData({
                 avatarUrl: userInfo.avatarUrl,
                 nickName: userInfo.nickName
             })
-        } else if(!app.data.userAuthory){ //未授权登录
-            this.setData({modalHidden:false})
+        } else if (!app.data.userAuthory) { //未授权登录
+            this.setData({ modalHidden: false })
         }
 
     },
@@ -41,6 +41,15 @@ Page({
     },
 
     confirmAuthory(e) {
-        console.log(e)
+        if (e.detail.userInfo) {
+            app.login(() => {
+                let userInfo = app.data.userInfo
+                this.setData({
+                    avatarUrl: userInfo.avatarUrl,
+                    nickName: userInfo.nickName,
+                    modalHidden: true
+                })
+            })
+        }
     }
 })

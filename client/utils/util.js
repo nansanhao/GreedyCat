@@ -1,17 +1,17 @@
 const formatTime = date => {
-  const year = date.getFullYear()
-  const month = date.getMonth() + 1
-  const day = date.getDate()
-  const hour = date.getHours()
-  const minute = date.getMinutes()
-  const second = date.getSeconds()
+    const year = date.getFullYear()
+    const month = date.getMonth() + 1
+    const day = date.getDate()
+    const hour = date.getHours()
+    const minute = date.getMinutes()
+    const second = date.getSeconds()
 
-  return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+    return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
 
 const formatNumber = n => {
-  n = n.toString()
-  return n[1] ? n : '0' + n
+    n = n.toString()
+    return n[1] ? n : '0' + n
 }
 
 
@@ -36,7 +36,7 @@ var showModel = (title, content) => {
         title,
         content: content,
         showCancel: false,
-        confirmColor:"#EB6159"
+        confirmColor: "#EB6159"
     })
 }
 
@@ -46,19 +46,15 @@ function checkLocationAuth(callback) {
             if (!res.authSetting['scope.userLocation']) {
                 wx.authorize({
                     scope: 'scope.userLocation',
-                    success() {
-                        callback()
-                    },
-                    fail() {
-                        showModel("获取用户位置失败，请用户重新授权", "右上角 - 关于 - 右上角 - 设置")                     
-                    }
+                    success() { callback(true) },
+                    fail() { callback(false) }
                 })
             } else {
-                callback()
+                callback(true)
             }
         }
     })
 }
 
-module.exports = { formatTime, showBusy, showSuccess, showModel, checkLocationAuth}
+module.exports = { formatTime, showBusy, showSuccess, showModel, checkLocationAuth }
 
