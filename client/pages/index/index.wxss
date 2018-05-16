@@ -152,7 +152,7 @@
   box-sizing: border-box;
   height: 100%;
   padding-top: 50px;
-  padding-bottom: 300rpx;
+  padding-bottom: 200rpx;
   overflow: auto;
 }
 

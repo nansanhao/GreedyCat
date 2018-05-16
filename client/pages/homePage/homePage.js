@@ -20,7 +20,7 @@ Page({
     },
 
 
-    onLoad() {
+    onShow() {
         if (app.data.logged && app.data.userAuthory) {
             let userInfo = app.data.userInfo
             this.setData({
@@ -33,21 +33,16 @@ Page({
 
     },
 
-    onShow() { //防止用户获取图片超时，每次都刷新
-        var avartarUrl = this.data.avatarUrl
-        this.setData({
-            avatarUrl: avartarUrl
-        })
-    },
+    onClose() { this.setData({ modalHidden: true }) },
 
     confirmAuthory(e) {
+        this.setData({ modalHidden: true })
         if (e.detail.userInfo) {
             app.login(() => {
                 let userInfo = app.data.userInfo
                 this.setData({
                     avatarUrl: userInfo.avatarUrl,
                     nickName: userInfo.nickName,
-                    modalHidden: true
                 })
             })
         }

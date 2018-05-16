@@ -8,6 +8,9 @@ Component({
                     var that = this
                     setTimeout(() => that.setData({ top: 20 }), 100)
                     setTimeout(() => that.setData({ opacity: 0.7 }), 100)
+                } else if (newVal && !oldVal && this.data.animation) {
+                    this.setData({ top: 0 })
+                    this.setData({ opacity: 0 })
                 }
             }
         },
