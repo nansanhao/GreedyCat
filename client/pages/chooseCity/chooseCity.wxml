@@ -7,14 +7,14 @@
         <view class="title-text">热门城市</view>
       </view>
       <view class="city-items">
-        <view class="city-item" wx:for="{{hotCity}}" wx:key="*this">{{item}}</view>
+        <view class="city-item" wx:for="{{hotCity}}" wx:key="*this" data-city='{{item}}' bindtap="chooseCity">{{item}}</view>
       </view>
     </view>
     <view class="city-list">
       <view wx:for="{{cityList}}" wx:key="name" wx:for-item="list" class="city-cells">
         <view class="city-cell-title" id="{{list.name}}">{{list.name}}</view>
         <view wx:for="{{list.list}}" wx:key="*this" class="ui-cell city-cell">
-          <view class="field">
+          <view class="field" bindtap="chooseCity" data-city='{{item}}'>
             {{item}}
           </view>
         </view>

@@ -1,6 +1,7 @@
 // pages/chooseCity/chooseCity.js
 
 const city = require('../../utils/city')
+const app = getApp()
 
 
 Page({
@@ -20,9 +21,6 @@ Page({
                 })
             }
         })
-    },
-
-    onShow(){
     },
 
     _cityProcess() {
@@ -54,6 +52,14 @@ Page({
             toID: e.target.dataset.choice
         })
     },
+
+    chooseCity(e) {
+        app.data.city = e.target.dataset.city
+        wx.switchTab({
+            url: '../index/index',
+        })
+
+    }
 
 
 })

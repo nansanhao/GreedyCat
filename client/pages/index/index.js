@@ -3,6 +3,7 @@
 const qcloud = require('../../vendor/wafer2-client-sdk/index')
 const config = require('../../config')
 const util = require('../../utils/util')
+const app = getApp()
 
 const mapkey = 'LREBZ-DKOKU-6GIVF-BOXUR-W6HWZ-LLBBI'
 
@@ -42,6 +43,9 @@ Page({
     },
 
     onShow() {
+        if(app.data.city){
+            this.setData({city:app.data.city})
+        }
     },
 
     onLoad() {
