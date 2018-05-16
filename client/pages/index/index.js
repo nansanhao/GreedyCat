@@ -39,7 +39,6 @@ Page({
         tabs: ["最多like", "最新", "最热"],
         activeIndex: 0,
         sliderOffset: 0,
-        modalHidden: true
     },
 
     onShow() {
@@ -54,7 +53,7 @@ Page({
             if (success) { //已授权或允许授权
                 that.confirmLocation()
             } else {
-                that.setData({ modalHidden: false })
+                util.showModel('提示', '您关闭了定位信息，部分功能将受到限制，若要重新授权请按如下步骤\n右上角"···"->"关于"->右上角"···"->设置')
             }
 
         })
@@ -70,19 +69,7 @@ Page({
             activeIndex: e.currentTarget.dataset.index
         });
     },
-    askAuthory() {
-        var that = this
-        wx.openSetting({
-            success(res){
-                that.setData({ modalHidden: true })
-                if(res.authSetting['scope.userLocation']){
-                    that.confirmLocation()
-                } else {
-                    util.showModel('提示','您关闭了定位信息，部分功能将受到限制，若要重新授权请按如下步骤\n右上角"···"->"关于"->右上角"···"->设置')
-                }
-            }
-        })
-    },
+   
     confirmLocation() {
         var that = this
         wx.getLocation({
