@@ -3,7 +3,7 @@ const CONF = {
     rootPathname: '',
 
     // 微信小程序 App ID
-    appId: '',
+    appId: 'wx64a1acbd25ba6342',
 
     // 微信小程序 App Secret
     appSecret: '',
@@ -34,7 +34,7 @@ const CONF = {
         // Bucket 名称
         fileBucket: 'qcloudtest',
         // 文件夹
-        uploadFolder: ''
+        uploadFolder: 'imagetest'
     },
 
     // 微信登录态有效期

@@ -33,7 +33,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  width: 50px;
+  justify-content: center;
 }
 
 .city-arrow {
@@ -101,6 +101,7 @@
   margin-top: 5px;
   position: relative;
   height: 100%;
+  
 }
 
 .navbar {
@@ -151,10 +152,36 @@
   box-sizing: border-box;
   height: 100%;
   padding-top: 50px;
+  padding-bottom: 300rpx;
   overflow: auto;
 }
 
 tab-content-list {
   display: flex;
   flex-direction: column;
+}
+
+/*---------------------------------- modal--------------------------------------- */
+
+.modal-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+    width: 400rpx;
+    box-sizing: border-box;
+}
+.inner-image {
+    width:200rpx;
+    height: 200rpx;
+}
+.inner-text {
+    font-size: 14px;
+    text-align: center;
+    padding: 20rpx 0;
+}
+
+.inner-button {
+    background-color:#EB6159;
+    color:#fff;
 }

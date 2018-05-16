@@ -19,10 +19,10 @@
 </view>
 <swiper indicator-dots="true" autoplay="true" circular='true' style="height:250rpx">
   <swiper-item wx:for="{{imageUrls}}" wx:key="*this" >
-    <image src="{{item}}" style="width:750rpx;" />
+    <image src="{{item}}" style="width:750rpx;" bind:tap="requestTest"/>
   </swiper-item>
 </swiper>
-<view class="tab">
+<view class="tab ">
   <view class="navbar">
     <block wx:for="{{tabs}}" wx:key="*this">
       <view data-index="{{index}}" class="navbar-item {{activeIndex == index ? 'navbar-item-on' : ''}}" bindtap="tabClick">
@@ -49,3 +49,10 @@
     </view>
   </view>
 </view>
+<modal modal-hidden="{{modalHidden}}" lock-mask="true" animation="true" costume="true" width='400'>
+    <view class="modal-inner">
+        <image class='inner-image' src='../../icons/icon.png'></image>
+        <view class='inner-text'>喵咪找不着路了..</view>
+        <button class='inner-button' bindtap='askAuthory'>求求你授权吧</button>
+    </view>
+</modal>

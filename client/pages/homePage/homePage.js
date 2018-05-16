@@ -1,79 +1,55 @@
 // pages/homePage/homePage.js
+const app = getApp()
+
 Page({
+    data: {
+        avatarUrl: "../../icons/user-unlogin.png",
+        nickName: "游客",
+        icons: [
+            { name: "喜欢", num: 5255, imageUrl: "../../icons/icon.png" },
+            { name: "被踩", num: 125, imageUrl: "../../icons/icon.png" },
+            { name: "被收藏", num: 35, imageUrl: "../../icons/icon.png" }],
+        linksList: [
+            { name: "我的地图", linkUrl: "#" },
+            { name: "我的收藏", linkUrl: "#" },
+            { name: "我的喜欢", linkUrl: "#" },
+            { name: "帮助", linkUrl: "#" },
+            { name: "反馈", linkUrl: "#" }
+        ],
+        modalHidden: true
+    },
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
-      avatarUrl:"../../icons/icon.png",
-      nickname:"用户ID",
-      icons: [
-          { name: "喜欢", num: 5255, imageUrl: "../../icons/icon.png" },
-          { name: "被踩", num: 125, imageUrl: "../../icons/icon.png" },
-          { name: "被收藏", num: 35, imageUrl: "../../icons/icon.png" }],
-      linksList: [
-          { name: "我的地图", linkUrl: "#" },
-          { name: "我的收藏", linkUrl: "#" },
-          { name: "我的喜欢", linkUrl: "#" },
-          { name: "帮助", linkUrl: "#" },
-          { name: "反馈", linkUrl: "#" }
-      ],
-      },
-      
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
-  },
+    onLoad() {
+        if (app.data.logged && app.data.userAuthory) {
+            let userInfo = app.data.userInfo
+            this.setData({
+                avatarUrl: userInfo.avatarUrl,
+                nickName: userInfo.nickName
+            })
+        } else if (!app.data.userAuthory) { //未授权登录
+            this.setData({ modalHidden: false })
+        }
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
+    },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
+    onShow() { //防止用户获取图片超时，每次都刷新
+        var avartarUrl = this.data.avatarUrl
+        this.setData({
+            avatarUrl: avartarUrl
+        })
+    },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  }
+    confirmAuthory(e) {
+        if (e.detail.userInfo) {
+            app.login(() => {
+                let userInfo = app.data.userInfo
+                this.setData({
+                    avatarUrl: userInfo.avatarUrl,
+                    nickName: userInfo.nickName,
+                    modalHidden: true
+                })
+            })
+        }
+    }
 })
