@@ -33,6 +33,7 @@ Page({
 
     },
 
+    onClose() { this.setData({ modalHidden: true }) },
 
     confirmAuthory(e) {
         this.setData({ modalHidden: true })
