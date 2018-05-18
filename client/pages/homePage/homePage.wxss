@@ -13,9 +13,11 @@
 }
 
 .avatar-image {
-    height: 180rpx;
-    width: 180rpx;
-    border-radius: 100rpx;
+    margin-top: 16rpx;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    box-sizing: border-box;
 }
 
 .icon-wrap {

@@ -3,15 +3,17 @@
 const qcloud = require('../../vendor/wafer2-client-sdk/index')
 const config = require('../../config')
 const util = require('../../utils/util')
+const map = require('../../vendor/qqmap-wx-jssdk.min.js')
 const app = getApp()
 
 const mapkey = 'LREBZ-DKOKU-6GIVF-BOXUR-W6HWZ-LLBBI'
+const mapsdk = new map({ key: mapkey })
 
 
 Page({
 
     data: {
-        city: "广州",
+        city: "全国",
         categories: [
             { name: "日料", imageSrc: "../../icons/icon.png", url: "../categories/categories" },
             { name: "西式简餐", imageSrc: "../../icons/icon.png", url: "../categories/categories" },
@@ -42,8 +44,8 @@ Page({
     },
 
     onShow() {
-        if(app.data.city){
-            this.setData({city:app.data.city})
+        if (app.data.city) {
+            this.setData({ city: app.data.city })
         }
     },
 
@@ -69,25 +71,23 @@ Page({
             activeIndex: e.currentTarget.dataset.index
         });
     },
-   
+
     confirmLocation() {
         var that = this
-        wx.getLocation({
-            success: function (res) {
-                var lit = res.longitude
-                var lat = res.latitude
-                wx.request({
-                    url: `https://apis.map.qq.com/ws/geocoder/v1/?location=${lat},${lit}&key=${mapkey}`,
-                    success: (res) => {
-                        var city = res.data.result.address_component.city
-                        city = city.replace(/市/, '')
-                        city = city.replace(/特别行政区/, '')
-                        that.setData({
-                            city: city
-                        })
-                    }
+        mapsdk.reverseGeocoder({
+            success: (res) => {
+                var city = res.result.address_component.city
+                city = city.replace(/市/, '')
+                city = city.replace(/特别行政区/, '')
+                that.setData({
+                    city: city
                 })
-            },
+            }
+        })
+    },
+    requestTest() {
+        wx.getSystemInfo({
+            success: function(res) {console.log(res)},
         })
     }
 })
