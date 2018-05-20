@@ -6,9 +6,10 @@ const util = require('./utils/util')
 
 App({
     data: {
-        userInfo: {},
-        logged: false,
-        userAuthory: false
+        userInfo: {},   
+        logged: false,  //用户是否登录
+        userAuthory: false, //用户是否授权用户信息
+        numbers: [0, 0, 0] //依次为点赞踩收藏数目
     },
     onLaunch: function () {
         qcloud.setLoginUrl(config.service.loginUrl)
@@ -24,7 +25,7 @@ App({
             }
         })
     },
-    login(callback = () => { }) {
+    login(callback = () => { }) {  //用户登录流程 
         if (this.data.logged) return
 
         util.showBusy('正在登录')
@@ -37,19 +38,23 @@ App({
                     util.showSuccess('登录成功')
                     that.data.userInfo = result
                     that.data.logged = true
-                    callback()
+                    that._saveUserInfo(callback)
                 } else {
                     // 如果不是首次登录，不会返回用户信息，请求用户信息接口获取
                     qcloud.request({
                         url: config.service.requestUrl,
                         login: true,
                         success(result) {
-                            util.showSuccess('登录成功')
-                            that.data.userInfo = result.data.data
-                            that.data.logged = true
-                            callback()
+                            if (result.statusCode == 200) {
+                                util.showSuccess('登录成功')
+                                that.data.userInfo = result.data.data
+                                that.data.logged = true
+                                that._saveUserInfo(callback)
+                                
+                            } else {
+                                util.showModel('请求失败', '请稍后重试,错误代码：' + result.statusCode)
+                            }
                         },
-
                         fail(error) {
                             util.showModel('请求失败', error.message)
                         }
@@ -62,5 +67,25 @@ App({
             }
         })
     },
+    _saveUserInfo(callback = () => { }) { //发送请求保存信息 并获得各种数
+        let that = this;
+        let userInfo = this.data.userInfo
+        wx.request({
+            url: config.service.host + '/user/save',
+            method: 'POST',
+            data: {
+                openId: userInfo.openId,
+                nickName: userInfo.nickName,
+                avatarUrl: userInfo.avatarUrl
+            },
+            success(res) {
+                that.data.numbers = res.data.data.numbers
+                callback()
+            },
+            fail(res) {
+                util.showModel('提示', '网络错误，请检查你的网络后重试')
+            }
+        })
+    }
 
 })

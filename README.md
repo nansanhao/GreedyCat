@@ -199,7 +199,7 @@ request:
 
 ##我的主页 
 
-GET url+"/user/:id/infomation"
+POST url+"/user/save" 上传登陆信息同时获得点赞数
 
 ```json
 

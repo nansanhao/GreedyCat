@@ -9,7 +9,6 @@
   margin-right: 100rpx;
   border-bottom: 1rpx solid #d9d9d9;
   box-sizing: border-box;
-  height: 270rpx;
 }
 
 .box-title {

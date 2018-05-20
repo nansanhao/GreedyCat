@@ -19,7 +19,7 @@
 </view>
 <swiper indicator-dots="true" autoplay="true" circular='true' style="height:250rpx">
   <swiper-item wx:for="{{imageUrls}}" wx:key="*this" >
-    <image src="{{item}}" style="width:750rpx;" bind:tap="requestTest"/>
+    <image src="{{item}}" style="width:750rpx;" />
   </swiper-item>
 </swiper>
 <view class="tab ">
