@@ -85,9 +85,4 @@ Page({
             }
         })
     },
-    requestTest() {
-        wx.getSystemInfo({
-            success: function(res) {console.log(res)},
-        })
-    }
 })

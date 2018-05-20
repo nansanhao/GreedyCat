@@ -9,11 +9,10 @@
 .nickname {
     color: white;
     padding: 20rpx 0 20rpx 0;
-    font-size: 34rpx;
 }
 
 .avatar-image {
-    margin-top: 16rpx;
+    margin-top: 8px;
     height: 100px;
     width: 100px;
     border-radius: 50%;
@@ -40,11 +39,10 @@
 .icon-num {
     text-align: center;
     color: #eb6159;
-    font-size: 34rpx;
 }
 
 .hr {
-    margin-top: 10px;
+    margin-top: 10rpx;
 }
 
 /*---------------------------------- modal--------------------------------------- */
@@ -66,8 +64,30 @@
 }
 
 .inner-image {
-    width: 240rpx;
-    height: 240rpx;
+    width: 200rpx;
+    height: 200rpx;
+}
+
+.icon {
+    width: 33%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.icon::before {
+    content: " ";
+    position: absolute;
+    height: 80%;
+    left: 0;
+    top:10%;
+    border-left: 1rpx solid #d9d9d9;
+
+}
+
+.icon:first-child::before {
+    display: none;
 }
 
 .inner-text {
@@ -77,6 +97,7 @@
 }
 
 .inner-button {
+    font-size: 18px;
     background-color: #eb6159;
     margin: 0;
     color: #fff;
