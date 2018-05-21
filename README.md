@@ -28,7 +28,7 @@ GET url + "/maps/newest?offset=" +offset+ "&limit="+ limits+"&category=" + categ
 
 GET url + "/maps/mostComments?offset=" +offset+ "&limit="+ limits+"&category=" + category
 
-```json
+```
 {
   data:{
     maps:[ //已经排序好的n个map get数据库中取出排序好后索引为 offset~offset+limits的limits个map 若有keyword则在mapname内搜索  筛选掉isPublic为false的项
@@ -53,7 +53,7 @@ GET url + "/maps/mostComments?offset=" +offset+ "&limit="+ limits+"&category=" +
 
 GET url + "/coordinates?keyword="+keyword
 
-```json
+```
 {
   data:{
     coordinates:[ //符合关键字查找到店铺/坐标
@@ -77,7 +77,7 @@ GET url + "/map?id="+id
 
 GET url +"/map/myMap?id="+mainmap
 
-```json
+```
 {
   data:{
     map:{
@@ -120,7 +120,7 @@ GET url +"/map/myMap?id="+mainmap
 
 GET url +"/map/coordinate?id="+id
 
-```json
+```
 {
   data:{
     coordinate:{
@@ -138,7 +138,7 @@ GET url +"/map/coordinate?id="+id
 
 POST url+“/map/newCoordinate”
 
-```json
+```
 request:
 {
   data:{
@@ -219,10 +219,10 @@ POST url+"/user/save" 上传登陆信息同时获得点赞数
 
 GET url+"/user/:id/maps"
 
-GET url+"/user/:id/collectionmaps"
+GET url+"/user/:id/collectedMaps"
 
 ```json
-data:{
+res.data.data:{
     maps:[ 
       {	
         mapId:string
@@ -239,16 +239,13 @@ data:{
   }
 ```
 
-DELETE url +"/user/:id/maps"
+DELETE url +"/user/:id/map"
 
-DELETE url +"/user/:id/collectionmaps"
+DELETE url +"/user/:id/collectedmap";
 
 ```
-request:{
-  data:{
-    mapId:string
-  }
-}
+data:{ "mapId":string }
+
 ```
 
 
@@ -261,16 +258,13 @@ request:{
 
 ##新建、更新地图
 
-PUT url+“/map/newMap”
+POST url+“/map/newMap”  PUT url +"/map/update" 
 
-POST url+“/map/newMap”
-
-```json
-request:
-{
+```
+wx.request({
   data:{
+    openId:app.data.userInfo.openId
     map:{
-      userId:string
       mapName：string,
       description:string,
       city:string,
@@ -278,28 +272,26 @@ request:
       category:number
       ispublic:bool
     }
-}
+})
 ```
 
 
 
-PUT url +"/map/newCoordinate"
+POST url +"/map/coordinate"  PUT url +"/map/coordinate" 
 
-POST url +"/map/newCoordinate"
-
-```json
-request:{
+```
+wx.request({
   data:{
-  coordinate:{
+  	coordinate:{
     mapId:string
     longtitude:number,
     altitude:number,
     name:string,
     address:string,
     description:string
- 	 }
+ 	}
   }
-}
+})
 
 ```
 
@@ -308,12 +300,12 @@ request:{
 DELETE url +"/map/coordinate"
 
 ```
-request:{
+wx.request({
   data:{
     mapId:string,
     coordinateId:string
   }
-}
+})
 ```
 
 

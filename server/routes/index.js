@@ -9,4 +9,5 @@ const userRouter = require('./user')
 router.use('/weapp',sdkRouter.routes())
 router.use('/user',userRouter.routes())
 
+
 module.exports = router

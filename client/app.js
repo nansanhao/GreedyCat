@@ -79,8 +79,11 @@ App({
                 avatarUrl: userInfo.avatarUrl
             },
             success(res) {
-                that.data.numbers = res.data.data.numbers
-                callback()
+                console.log(res)
+                if(res.data.code==0){
+                    that.data.numbers = res.data.data.numbers
+                    callback()
+                } 
             },
             fail(res) {
                 util.showModel('提示', '网络错误，请检查你的网络后重试')
