@@ -79,6 +79,7 @@ App({
                 avatarUrl: userInfo.avatarUrl
             },
             success(res) {
+                console.log(res)
                 that.data.numbers = res.data.data.numbers
                 callback()
             },
