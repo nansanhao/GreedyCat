@@ -13,19 +13,19 @@ Page({
             { name: "我的地图", linkUrl: "#" },
             { name: "我的收藏", linkUrl: "#" },
             { name: "我的喜欢", linkUrl: "#" },
+        ],
+        otherList:[
             { name: "帮助", linkUrl: "#" },
-            { name: "反馈", linkUrl: "#" }
+            { name: "反馈", linkUrl: "#" },
         ],
         modalHidden: true
     },
 
 
     onShow() { //每次显示刷新一下数据 防止头像加载失败
-        if (app.data.logged && app.data.userAuthory) {
-            this._refreshInfo()
-        } else if (!app.data.userAuthory) { //未授权登录
-            this.setData({ modalHidden: false })
-        }
+        setTimeout(()=>{
+            this._checkAuthoryShowModal(this._refreshInfo)
+        },2000)
 
     },
 
@@ -52,11 +52,20 @@ Page({
         }
     },
     navigateTo (e) { //列表项跳转 需要判断是否登录
+        console.log(e)
+        wx.navigateTo({
+            url: '',
+        })
+    },
+    navigateToWithAuthory(e) {
+        var that = this
+        this._checkAuthoryShowModal(()=>{
+            that.navigateTo(e)
+        })
+    },
+    _checkAuthoryShowModal(callback=()=>{}) {
         if (app.data.logged && app.data.userAuthory) {
-            console.log(e)
-           wx.navigateTo({
-               url: '',
-           })
+            callback()
         } else if (!app.data.userAuthory) { //未授权登录
             this.setData({ modalHidden: false })
         }

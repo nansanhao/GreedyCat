@@ -28,7 +28,7 @@ App({
     login(callback = () => { }) {  //用户登录流程 
         if (this.data.logged) return
 
-        util.showBusy('正在登录')
+        util.showLoding('正在登录')
         var that = this
 
         // 调用登录接口
