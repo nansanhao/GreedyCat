@@ -14,6 +14,12 @@
     padding:20rpx 30rpx;
     background-color:#fff;
 }
+.textarea-len{
+    background-color: white;
+    padding: 20rpx 30rpx;
+    text-align: right;
+    color: #999;
+}
 .ui-btn{
     background-color: #EB6159 !important;
 }
@@ -24,12 +30,13 @@
 }
 .tag{
     display: inline-block;
-    padding: 4rpx 10rpx;
-    border-radius: 25rpx;
-    margin: 4rpx;
+    padding: 6rpx 12rpx;
+    border-radius: 26rpx;
+    margin: 8rpx;
     background-color: #FFFFFF;
     color: #EB6159;
-    border: 1rpx solid
+    border: 2rpx solid;
+    font-size:16px;
 }
 .tag-isChoosed{
     background-color: #EB6159;

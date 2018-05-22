@@ -28,7 +28,7 @@
                 "selectedIconPath": "icons/icon.png"
             },
             {
-                "pagePath": "pages/mapDetail/mapDetail",
+                "pagePath": "pages/newMap/newMap",
                 "text": "地图",
                 "iconPath": "icons/icon.png",
                 "selectedIconPath": "icons/icon.png"

@@ -5,6 +5,8 @@ Page({
      */
     data: {
         in: true,
+        textareaLen:0,
+        textareaMaxLen:50,
         tags: [
             { tagName: "美食", isChoosed: false },
             { tagName: "旅游", isChoosed: false },
@@ -26,18 +28,27 @@ Page({
         obj[key] = !value
         this.setData(obj)
 
-
-
     }
     ,
     formSubmit: function (e) {
         console.log('form发生了submit事件，携带数据为：', e.detail.value)
+        wx.request({
+            url: config.host,
+        })
     },
     bindPickerChange: function (e) {
         console.log('picker发送选择改变，携带值为', e.detail.value)
         this.setData({
             location: e.detail.value
         })
+    },
+    /**
+     * textarea实时更新字数
+     */
+    bindTextAreaChange:function(e) {
+        var that = this
+        var len = parseInt(e.detail.value.length)
+        that.setData({ textareaLen: len })
     },
     /**
      * 生命周期函数--监听页面加载
