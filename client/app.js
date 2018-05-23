@@ -1,4 +1,4 @@
-//app.js
+ //app.js
 
 const qcloud = require('./vendor/wafer2-client-sdk/index')
 const config = require('./config')
@@ -80,7 +80,6 @@ App({
                 avatarUrl: userInfo.avatarUrl
             },
             success(res) {
-                console.log(res)
                 if(res.data.code==0){
                     that.data.numbers = res.data.data.numbers
                     that.data.mainMapId = res.data.data.mainMapId

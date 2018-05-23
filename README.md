@@ -258,21 +258,29 @@ data:{ "mapId":string }
 
 ##新建、更新地图
 
-POST url+“/map/newMap”  PUT url +"/map/update" 
+POST url+“/map/myMap”  PUT url +"/map/myMap" 
 
 ```
 wx.request({
   data:{
-    openId:app.data.userInfo.openId
-    map:{
-      mapName：string,
-      description:string,
-      city:string,
-      locality:string,
-      category:number
-      ispublic:bool
-    }
+	"openId":"oHK1_4u3u76xPXjqG78PPE7DgpIw",
+	"map":{
+		"mapName":"日料万岁",
+		"description":"werfadfsfadfsadfsssssssssssssssssssssssssssssssssssssssssssssssssss",
+		"province":"湖北省",
+		"city":"武汉市",
+		"locality":"江汉区",
+		"isPublic":true
+	}
+	
 })
+
+{
+    "code": 0,
+    "data": {
+        "mapId": 3
+    }
+}
 ```
 
 
