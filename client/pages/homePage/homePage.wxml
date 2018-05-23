@@ -14,11 +14,19 @@
 </view>
 
 <view class='ui-cells hr'>
-    <view wx:for="{{linksList}}" wx:for-item="link" class='ui-cell' wx:key='name' bindtap='navigateTo' hover-class='ui-active' data-url='{{item.linkUrl}}'>
+    <view wx:for="{{linksList}}" wx:for-item="link" class='ui-cell' wx:key='name' bindtap='navigateToWithAuthory' hover-class='ui-active' data-url='{{link.linkUrl}}' >
         <view class='ui-cell-body'>{{link.name}}</view>
         <view class='ui-cell-foot-in-access'></view>
     </view>
 </view>
+
+<view class='ui-cells hr'>
+    <view wx:for="{{otherList}}" wx:for-item="link" class='ui-cell' wx:key='name' bindtap='navigateTo' hover-class='ui-active' data-url='{{link.linkUrl}}' >
+        <view class='ui-cell-body'>{{link.name}}</view>
+        <view class='ui-cell-foot-in-access'></view>
+    </view>
+</view>
+
 
 <modal modal-hidden="{{modalHidden}}"  animation="true" costume="true" width='350'>
     <view class="modal-inner">

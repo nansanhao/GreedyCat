@@ -23,14 +23,18 @@ var showBusy = text => wx.showToast({
 })
 
 // 显示成功提示
-var showSuccess = text => wx.showToast({
-    title: text,
-    icon: 'success'
-})
+var showSuccess = text => {
+    wx.hideLoading();
+    wx.showToast({
+        title: text,
+        icon: 'success'
+    })
+}
 
 // 显示失败提示
 var showModel = (title, content) => {
     wx.hideToast();
+    wx.hideLoading();
 
     wx.showModal({
         title,
@@ -56,5 +60,13 @@ function checkLocationAuth(callback) {
     })
 }
 
-module.exports = { formatTime, showBusy, showSuccess, showModel, checkLocationAuth }
+var showLoding = (title = '加载中') => {
+    wx.showLoading({
+        title: title,
+        mask: true
+    })
+}
+
+
+module.exports = { formatTime, showBusy, showSuccess, showModel, showLoding, checkLocationAuth }
 
