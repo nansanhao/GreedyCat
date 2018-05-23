@@ -1,10 +1,13 @@
 // pages/newMap/newMap.js
+
+const config = require('../../config')
 Page({
     /**
      * 页面的初始数据
      */
     data: {
         in: true,
+        location:["北京市","北京市","东城区"],
         textareaLen:0,
         textareaMaxLen:50,
         tags: [
@@ -28,14 +31,40 @@ Page({
         obj[key] = !value
         this.setData(obj)
 
-    }
-    ,
+    },
+    /**
+     * 页面提交事件
+     */
     formSubmit: function (e) {
         console.log('form发生了submit事件，携带数据为：', e.detail.value)
+        let newMap = e.detail.value
+        let openId=getApp().data.userInfo.openId
+        let data={
+            openId:openId,
+            map:{
+                mapName:newMap.mapName,
+                description: newMap.description,
+                province:newMap.location[0],
+                city: newMap.location[1],
+                locality: newMap.location[2],
+                isPublic: newMap.isPublic
+            }
+        };
+        console.log(data)
+        //向后台发送数据
         wx.request({
-            url: config.host,
+            url: config.service.host+"/map/newMap",
+            method:"POST",
+            data:data,
+            success:function (res){
+                console.log(res)
+            }
+            
         })
     },
+    /**
+     * picker发生改变
+     */
     bindPickerChange: function (e) {
         console.log('picker发送选择改变，携带值为', e.detail.value)
         this.setData({
