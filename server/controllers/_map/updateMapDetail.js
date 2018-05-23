@@ -30,7 +30,7 @@ module.exports = async (ctx, next) => {
     }
 
     try {
-        res = await mysql('map').update(information).where({ mapid })
+        let res = await mysql('map').update(information).where({ mapid })
     } catch (e) {
         console.log(e)
         debug('%s: %O', ERRORS.DBERR.ERR_WHEN_INSERT_TO_DB, e)

@@ -12,7 +12,7 @@ module.exports = async (ctx, next) => {
         avatarUrl: userInfo.avatarUrl
     })
     try {
-        var res = await mysql('user').count('open_id as hasUser').where({
+        let res = await mysql('user').count('open_id as hasUser').where({
             open_id
         })
         if (res[0].hasUser) {

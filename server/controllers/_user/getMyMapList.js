@@ -5,20 +5,18 @@ const debug = require('debug')('qcloud-sdk[AuthDbService]')
 
 module.exports = async (ctx, next) => {
     const {
-        openId: open_id,
-        mainMapId: main_mapid
-    } = ctx.request.body;
+        openId: author_id
+    } = ctx.request.query
+    console.log(ctx.request)
     try {
-        let res = await mysql('user').count('open_id as hasUser').where({
-            open_id
+        res = await mysql('map').select().where({author_id})
+        res.map((value,index)=>{
+            value.category = JSON.parse(value.category)
         })
-        if (res[0].hasUser) {
-            await mysql('user').update({
-                main_mapid
-            }).where({
-                open_id
-            })
+        ctx.state.data = {
+            maps: res
         }
+
     } catch (e) {
         console.log(e)
         debug('%s: %O', ERRORS.DBERR.ERR_WHEN_INSERT_TO_DB, e)

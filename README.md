@@ -258,7 +258,7 @@ data:{ "mapId":string }
 
 ##新建、更新地图
 
-POST url+“/map/newMap”  PUT url +"/map/update" 
+POST url+“/map/myMap”  PUT url +"/map/myMap" 
 
 ```
 wx.request({

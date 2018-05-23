@@ -31,7 +31,7 @@ module.exports = async (ctx, next) => {
     }
 
     try {
-        res = await mysql('map').insert(informaiton).returning('mapid')
+        let res = await mysql('map').insert(informaiton).returning('mapid')
         ctx.state.data = {
             mapId: res[0]
         }
