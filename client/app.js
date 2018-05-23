@@ -9,7 +9,8 @@ App({
         userInfo: {},   
         logged: false,  //用户是否登录
         userAuthory: false, //用户是否授权用户信息
-        numbers: [0, 0, 0] //依次为点赞踩收藏数目
+        numbers: [0, 0, 0], //依次为点赞踩收藏数目
+        mainMapId:null
     },
     onLaunch: function () {
         qcloud.setLoginUrl(config.service.loginUrl)
@@ -82,6 +83,7 @@ App({
                 console.log(res)
                 if(res.data.code==0){
                     that.data.numbers = res.data.data.numbers
+                    that.data.mainMapId = res.data.data.mainMapId
                     callback()
                 } 
             },
