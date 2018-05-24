@@ -1,4 +1,4 @@
-/* pages/myMaps/myMaps.wxss */
+/* Components/map-item-list/map-item-list.wxss */
 .item-delete{
     position: absolute;
     width: 100px;

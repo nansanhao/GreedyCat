@@ -1,14 +1,13 @@
 {
     "pages": [
+        "pages/index/index",
         "pages/myMaps/myMaps",
         "pages/mapDetail/mapDetail",
-        "pages/index/index",
         "pages/categories/categories",
         "pages/newMap/newMap",
         "pages/homePage/homePage",
         "pages/resultList/resultList",
         "pages/chooseCity/chooseCity"
-        
     ],
     "window": {
         "backgroundColor": "#EB6159",

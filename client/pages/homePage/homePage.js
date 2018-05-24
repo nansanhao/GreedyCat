@@ -10,7 +10,7 @@ Page({
             { name: "dislikes", num: 0, imageUrl: "../../icons/icon.png" },
             { name: "collections", num: 0, imageUrl: "../../icons/icon.png" }],
         linksList: [
-            { name: "我的地图", linkUrl: "#" },
+            { name: "我的地图", linkUrl: "/pages/myMaps/myMaps" },
             { name: "我的收藏", linkUrl: "#" },
             { name: "我的喜欢", linkUrl: "#" },
             { name: "帮助", linkUrl: "#" },
@@ -55,7 +55,7 @@ Page({
         if (app.data.logged && app.data.userAuthory) {
             console.log(e)
            wx.navigateTo({
-               url: '',
+               url:e.currentTarget.dataset.url
            })
         } else if (!app.data.userAuthory) { //未授权登录
             this.setData({ modalHidden: false })

@@ -1,10 +1,1 @@
-<!--pages/myMaps/myMaps.wxml-->
-<view wx:for="{{mapList}}" wx:key="id" style='position: relative'>
-
-    <view class='item' data-index="{{index}}" style="{{item.txtStyle}}" bindtouchstart='bindtouchstart' bindtouchmove='bindtouchmove' bindtouchend='bindtouchend'>
-        <view class='item-delete'></view>
-        <map-item item-detail="{{item}}" />
-    </view>
-
-
-</view>
+<map-item-list mapList="{{mapList}}" bind:deleteItem="deleteItem" />
