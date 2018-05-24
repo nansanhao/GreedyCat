@@ -22,11 +22,11 @@ module.exports = async (ctx, next) => {
                 }).where({
                     open_id
                 }),
-                res = await mysql('user').select('num_likes', 'num_dislikes', 'num_collecteds','main_mapid').where({
+                res = await mysql('user').select('num_liked', 'num_disliked', 'num_collected','main_mapid').where({
                     open_id
                 });
                 ctx.state.data = {
-                    numbers: [res[0].num_likes, res[0].num_dislikes, res[0].num_collecteds],
+                    numbers: [res[0].num_liked, res[0].num_disliked, res[0].num_collected],
                     mainMapId:res[0].main_mapid
                 }
         } else {

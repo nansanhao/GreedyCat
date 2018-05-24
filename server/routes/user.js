@@ -9,12 +9,12 @@ router.post('/setMainMap',controllers._user.setMainMap)
 //获取用户地图列表
 router.get('/mapList',controllers._user.getMyMapList)
 //获取用户收藏地图列表
-router.get('/collectedMapList')
+router.get('/collectedMapList',controllers._user.getCollectedMaps)
 //删除收藏的地图
-router.delete('/collectedMap')
+router.delete('/collectedMap',controllers._user.deleteCollectedMap)
 
 //点赞、踩、收藏
-router.post('/admiration')
+router.post('/admiration',controllers._user.admiration)
 
 
 //新建评论

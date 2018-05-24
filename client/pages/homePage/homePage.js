@@ -6,13 +6,13 @@ Page({
         avatarUrl: "../../icons/user-unlogin.png",
         nickName: "游客",
         icons: [
-            { name: "likes", num: 0, imageUrl: "../../icons/icon.png" },
-            { name: "dislikes", num: 0, imageUrl: "../../icons/icon.png" },
-            { name: "collections", num: 0, imageUrl: "../../icons/icon.png" }],
+            { name: "likes", num: 0, imageUrl: "../../icons/like.png" },
+            { name: "dislikes", num: 0, imageUrl: "../../icons/dislike.png" },
+            { name: "collections", num: 0, imageUrl: "../../icons/collect.png" }],
         linksList: [
             { name: "我的地图", linkUrl: "#" },
-            { name: "我的收藏", linkUrl: "#" },
-            { name: "我的喜欢", linkUrl: "#" },
+            { name: "我的评论", linkUrl: "#" },
+            { name: "收藏地图", linkUrl: "#" },
         ],
         otherList:[
             { name: "帮助", linkUrl: "#" },

@@ -1,6 +1,6 @@
 <!--Components/map-item/map-item.wxml-->
  <view class="map-item-box">
-  <image class="map-item-image" src="../../icons/icon{{itemDetail.category}}.png"></image>
+  <image class="map-item-image" src="{{itemDetail.imgUrl}}"></image>
   <view class="map-item-right-part">
     <view class="map-name-box">
       <view class="map-name-head">{{itemDetail.mapName}}</view>
@@ -9,7 +9,7 @@
     <view class="map-description">{{itemDetail.description}}</view>
     <view class="map-counters-box">
       <view class="counter-box" wx:for="{{counters}}" wx:key="name">
-        <image class="counter-icon" src="../../icons/icon{{index}}.png"></image>
+        <image class="counter-icon" src="{{item.imgUrl}}"></image>
         <view class="counter-number"> {{item.num}}</view>
       </view>
     </view>
