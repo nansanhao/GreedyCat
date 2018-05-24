@@ -7,7 +7,6 @@ module.exports = async (ctx, next) => {
     const {
         openId: author_id
     } = ctx.request.query
-    console.log(ctx.request)
     try {
         res = await mysql('map').select().where({author_id})
         res.map((value,index)=>{

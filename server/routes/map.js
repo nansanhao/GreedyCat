@@ -13,18 +13,18 @@ router.put('/myMap',controllers._map.updateMapDetail)
 
 
 //新建坐标
-router.post('/coordinate')
+router.post('/coordinate',controllers._map.newCoordinate)
 //查看坐标信息
-router.get('/coordinate')
+router.get('/coordinate',controllers._map.getCoordinate)
 //删除坐标
-router.delete('coordinate')
+router.delete('/coordinate',controllers._map.deleteCoordinate)
 //修改坐标信息
-router.put('/coordinate')
+router.put('/coordinate',controllers._map.updateCoordinate)
 
-//新建评论
-router.post('/coordinate')
-//删除评论
-router.delete('coordinate')
+//搜索关键字
+router.get('/search')
+//获取列表
+router.get('/mapList')
 
 
 

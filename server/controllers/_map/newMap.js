@@ -4,36 +4,21 @@ const {
 const debug = require('debug')('qcloud-sdk[AuthDbService]')
 
 module.exports = async (ctx, next) => {
-    const {
+    let {
         map: mapDetail,
-        openId: author_id
+        open_id: author_id
     } = ctx.request.body;
-    const {
-        mapName: map_name,
-        description,
-        province,
-        city,
-        locality,
-        isPublic: is_public
-    } = mapDetail
-
-    let informaiton = {
-        map_name,
-        description,
-        province,
-        city,
-        locality,
-        is_public,
-        author_id,
-    }
+    
     if(mapDetail.category){
-        informaiton.category=JSON.stringify(mapDetail.category)
+        mapDetail.category=JSON.stringify(mapDetail.category)
     }
+
+    mapDetail.author_id=author_id
 
     try {
-        let res = await mysql('map').insert(informaiton).returning('mapid')
+        let res = await mysql('map').insert(mapDetail).returning('mapid')
         ctx.state.data = {
-            mapId: res[0]
+            mapid: res[0]
         }
     } catch (e) {
         console.log(e)

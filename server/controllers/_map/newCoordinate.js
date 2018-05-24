@@ -4,20 +4,13 @@ const {
 const debug = require('debug')('qcloud-sdk[AuthDbService]')
 
 module.exports = async (ctx, next) => {
-    let {
-        map: mapDetail,
-        mapid
-    } = ctx.request.body
-
-    if (mapDetail.category) {
-        mapDetail.category = JSON.stringify(mapDetail.category)
-    }
-
-
+    let coordinate = ctx.request.body
     try {
-        let res = await mysql('map').update(mapDetail).where({
-            mapid
-        })
+        res = await mysql('coordinate').insert(coordinate).returning('id')
+        ctx.state.data = {
+            coordinate_id:res[0]
+        }
+
     } catch (e) {
         console.log(e)
         debug('%s: %O', ERRORS.DBERR.ERR_WHEN_INSERT_TO_DB, e)
