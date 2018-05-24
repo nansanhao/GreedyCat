@@ -1,4 +1,4 @@
-//app.js
+ //app.js
 
 const qcloud = require('./vendor/wafer2-client-sdk/index')
 const config = require('./config')
@@ -9,7 +9,8 @@ App({
         userInfo: {},   
         logged: false,  //用户是否登录
         userAuthory: false, //用户是否授权用户信息
-        numbers: [0, 0, 0] //依次为点赞踩收藏数目
+        numbers: [0, 0, 0], //依次为点赞踩收藏数目
+        mainMapId:null
     },
     onLaunch: function () {
         qcloud.setLoginUrl(config.service.loginUrl)
@@ -28,7 +29,7 @@ App({
     login(callback = () => { }) {  //用户登录流程 
         if (this.data.logged) return
 
-        util.showBusy('正在登录')
+        util.showLoding('正在登录')
         var that = this
 
         // 调用登录接口
@@ -79,9 +80,9 @@ App({
                 avatarUrl: userInfo.avatarUrl
             },
             success(res) {
-                console.log(res)
                 if(res.data.code==0){
                     that.data.numbers = res.data.data.numbers
+                    that.data.mainMapId = res.data.data.mainMapId
                     callback()
                 } 
             },

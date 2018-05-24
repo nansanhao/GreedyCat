@@ -15,22 +15,19 @@ const formatNumber = n => {
 }
 
 
-// 显示繁忙提示
-var showBusy = text => wx.showToast({
-    title: text,
-    icon: 'loading',
-    duration: 10000
-})
 
 // 显示成功提示
-var showSuccess = text => wx.showToast({
-    title: text,
-    icon: 'success'
-})
+let showSuccess = text => {
+    wx.hideLoading();
+    wx.showToast({
+        title: text,
+        icon: 'success'
+    })
+}
 
 // 显示失败提示
-var showModel = (title, content) => {
-    wx.hideToast();
+let showModel = (title, content) => {
+    wx.hideLoading();
 
     wx.showModal({
         title,
@@ -40,7 +37,7 @@ var showModel = (title, content) => {
     })
 }
 
-function checkLocationAuth(callback) {
+let checkLocationAuth = (callback) => {
     wx.getSetting({
         success(res) {
             if (!res.authSetting['scope.userLocation']) {
@@ -56,5 +53,13 @@ function checkLocationAuth(callback) {
     })
 }
 
-module.exports = { formatTime, showBusy, showSuccess, showModel, checkLocationAuth }
+let showLoding = (title = '加载中') => {
+    wx.showLoading({
+        title: title,
+        mask: true
+    })
+}
+
+
+module.exports = { formatTime, showSuccess, showModel, showLoding, checkLocationAuth }
 
