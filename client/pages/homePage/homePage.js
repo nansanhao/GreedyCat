@@ -6,13 +6,13 @@ Page({
         avatarUrl: "../../icons/user-unlogin.png",
         nickName: "游客",
         icons: [
-            { name: "likes", num: 0, imageUrl: "../../icons/icon.png" },
-            { name: "dislikes", num: 0, imageUrl: "../../icons/icon.png" },
-            { name: "collections", num: 0, imageUrl: "../../icons/icon.png" }],
+            { name: "likes", num: 0, imageUrl: "../../icons/like.png" },
+            { name: "dislikes", num: 0, imageUrl: "../../icons/dislike.png" },
+            { name: "collections", num: 0, imageUrl: "../../icons/collect.png" }],
         linksList: [
             { name: "我的地图", linkUrl: "/pages/myMaps/myMaps" },
-            { name: "我的收藏", linkUrl: "#" },
-            { name: "我的喜欢", linkUrl: "#" },
+            { name: "我的评论", linkUrl: "#" },
+            { name: "收藏地图", linkUrl: "#" },
         ],
         otherList:[
             { name: "帮助", linkUrl: "#" },
@@ -52,9 +52,8 @@ Page({
         }
     },
     navigateTo (e) { //列表项跳转 需要判断是否登录
-        console.log(e)
         wx.navigateTo({
-            url: '',
+            url: e.currentTarget.dataset.url
         })
     },
     navigateToWithAuthory(e) {
@@ -65,11 +64,7 @@ Page({
     },
     _checkAuthoryShowModal(callback=()=>{}) {
         if (app.data.logged && app.data.userAuthory) {
-           wx.navigateTo({
-               url:e.currentTarget.dataset.url
-           })
             callback()
-
         } else if (!app.data.userAuthory) { //未授权登录
             this.setData({ modalHidden: false })
         }

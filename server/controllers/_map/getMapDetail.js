@@ -5,7 +5,7 @@ const debug = require('debug')('qcloud-sdk[AuthDbService]')
 
 module.exports = async (ctx, next) => {
     const {
-        mapId: mapid
+        mapid
     } = ctx.request.query
     try {
         let res = await mysql('map').select().where({
