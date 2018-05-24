@@ -1,8 +1,9 @@
 {
     "pages": [
         "pages/index/index",
-        "pages/categories/categories",
+        "pages/myMaps/myMaps",
         "pages/mapDetail/mapDetail",
+        "pages/categories/categories",
         "pages/newMap/newMap",
         "pages/homePage/homePage",
         "pages/resultList/resultList",
@@ -28,7 +29,7 @@
                 "selectedIconPath": "icons/icon.png"
             },
             {
-                "pagePath": "pages/mapDetail/mapDetail",
+                "pagePath": "pages/newMap/newMap",
                 "text": "地图",
                 "iconPath": "icons/tabbar/map.png",
                 "selectedIconPath": "icons/tabbar/map_selected.png"
@@ -42,4 +43,3 @@
         ]
     }
 }
-

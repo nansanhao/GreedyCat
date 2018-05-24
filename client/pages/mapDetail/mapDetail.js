@@ -19,14 +19,53 @@ Page({
             { userName: "小红", avaterUrl: "../../icons/icon.png", content: "这是一段评论。" },
             { userName: "小红", avaterUrl: "../../icons/icon.png", content: "这是一段评论。" }
         ],
-      latitude: 23.099994,
-      longitude: 113.324520,
+        latitude: 40.006822,
+      longitude: 116.481451,
       markers: [{
-          latitude: 23.099994,
-          longitude: 113.324520,
-          name: 'T.I.T 创意园'
+          latitude: 40.006822,
+          longitude: 116.481451,
+          title: 'T.I.T 创意园',
+          iconPath:"../../icons/location.png",
+          width: 40,
+          height: 40, 
+          callout:{
+              content: '我是这个气泡',
+              display:"ALWAYS",
+              fontSize: 12,
+              color: '#ffffff',
+              bgColor: '#000000',
+              padding: 8,
+              borderRadius: 4,
+          }
+      }],
+      polyline:[{
+          points: [{
+                  longitude: '116.481451',
+                  latitude: '40.006822'
+              }, {
+                  longitude: '116.487847',
+                  latitude: '40.002607'
+              }, {
+                  longitude: '116.496507',
+                  latitude: '40.006103'
+              }],
+          color: "#228B22",
+              width: 3
+      }],
+      controls: [{
+          id: 1,
+          iconPath: '../../icons/icon.png',
+          position: {
+              left: 350,
+              top: 270,
+              width: 20,
+              height: 20
+          },
+          clickable: true
       }],
   },
+  
+
 
   /**
    * 生命周期函数--监听页面加载

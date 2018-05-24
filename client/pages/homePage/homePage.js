@@ -10,7 +10,7 @@ Page({
             { name: "dislikes", num: 0, imageUrl: "../../icons/dislike.png" },
             { name: "collections", num: 0, imageUrl: "../../icons/collect.png" }],
         linksList: [
-            { name: "我的地图", linkUrl: "#" },
+            { name: "我的地图", linkUrl: "/pages/myMaps/myMaps" },
             { name: "我的评论", linkUrl: "#" },
             { name: "收藏地图", linkUrl: "#" },
         ],
@@ -52,9 +52,8 @@ Page({
         }
     },
     navigateTo (e) { //列表项跳转 需要判断是否登录
-        console.log(e)
         wx.navigateTo({
-            url: '',
+            url: e.currentTarget.dataset.url
         })
     },
     navigateToWithAuthory(e) {

@@ -1,0 +1,1 @@
+<map-item-list mapList="{{mapList}}" bind:deleteItem="deleteItem" />

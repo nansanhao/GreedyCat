@@ -1,7 +1,7 @@
 <!--pages/mapDetail/mapDetail.wxml-->
 <view class="page-body">
     <view>
-      <map latitude="{{latitude}}" longitude="{{longitude}}" markers="{{markers}}">
+      <map latitude="{{latitude}}" longitude="{{longitude}}" markers="{{markers}}" polyline='{{polyline}}' controls="{{controls}}">
       </map>
     </view>
     <view class='section'>
