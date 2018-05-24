@@ -1,0 +1,9 @@
+<view wx:for="{{mapList}}" wx:key="id">
+
+    <view class='item' data-index="{{index}}" style="{{item.txtStyle}}" bindtouchstart='bindtouchstart' bindtouchmove='bindtouchmove' bindtouchend='bindtouchend'>
+        <view class='item-delete'>
+            <button class='btn-delete' data-id="{{item.id}}" bindtap='btnDelete'>删除</button>
+        </view>
+        <map-item item-detail="{{item}}" />
+    </view>
+</view>

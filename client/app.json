@@ -1,8 +1,9 @@
 {
     "pages": [
         "pages/index/index",
-        "pages/categories/categories",
+        "pages/myMaps/myMaps",
         "pages/mapDetail/mapDetail",
+        "pages/categories/categories",
         "pages/newMap/newMap",
         "pages/homePage/homePage",
         "pages/resultList/resultList",
@@ -42,4 +43,3 @@
         ]
     }
 }
-
