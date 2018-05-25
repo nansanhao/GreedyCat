@@ -6,8 +6,8 @@
     </view>
     <view class='section'>
         <view class='icon-wrap'>
-            <view wx:for="{{icons}}" wx:for-item="icon" class='icon' >
-                <image  src="{{icon.imageUrl}} " class="icon-image"></image>
+            <view wx:for="{{icons}}" wx:for-item="icon" class='icon'>
+                <image  src="{{icon.isActive?icon.activeImageUrl:icon.inactiveImageUrl}} " class="icon-image" data-index='{{index}}' bindtap='iconTap'></image>
                 <text class='icon-num'>{{icon.num}}</text>
             </view>
             
