@@ -19,7 +19,7 @@
     },
     "tabBar": {
         "color": "#7A7E83",
-        "selectedColor": "#3cc51f",
+        "selectedColor": "#EB6159",
         "borderStyle": "black",
         "backgroundColor": "#ffffff",
         "list": [
@@ -32,14 +32,14 @@
             {
                 "pagePath": "pages/newMap/newMap",
                 "text": "地图",
-                "iconPath": "icons/icon.png",
-                "selectedIconPath": "icons/icon.png"
+                "iconPath": "icons/tabbar/map.png",
+                "selectedIconPath": "icons/tabbar/map_selected.png"
             },
             {
                 "pagePath": "pages/homePage/homePage",
                 "text": "我的",
-                "iconPath": "icons/icon.png",
-                "selectedIconPath": "icons/icon.png"
+                "iconPath": "icons/tabbar/homepage.png",
+                "selectedIconPath": "icons/tabbar/homepage_selected.png"
             }
         ]
     }

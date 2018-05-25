@@ -5,8 +5,8 @@ const debug = require('debug')('qcloud-sdk[AuthDbService]')
 
 module.exports = async (ctx, next) => {
     const {
-        openId: open_id,
-        mainMapId: main_mapid
+        open_id,
+        main_mapid
     } = ctx.request.body;
     try {
         let res = await mysql('user').count('open_id as hasUser').where({

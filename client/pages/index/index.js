@@ -15,10 +15,10 @@ Page({
     data: {
         city: "全国",
         categories: [
-            { name: "日料", imageSrc: "../../icons/icon.png", url: "../categories/categories" },
-            { name: "西式简餐", imageSrc: "../../icons/icon.png", url: "../categories/categories" },
-            { name: "川湘菜", imageSrc: "../../icons/icon.png", url: "../categories/categories" },
-            { name: "东南亚风情", imageSrc: "../../icons/icon.png", url: "../categories/categories" },
+            { name: "日料", imageSrc: "../../icons/category/Japanese.png", url: "../categories/categories" },
+            { name: "西式简餐", imageSrc: "../../icons/category/western.png", url: "../categories/categories" },
+            { name: "川湘菜", imageSrc: "../../icons/category/ChuanXiang.png", url: "../categories/categories" },
+            { name: "东南亚风情", imageSrc: "../../icons/category/Southeast_Asia.png", url: "../categories/categories" },
             { name: "更多", imageSrc: "../../icons/icon.png", url: "../categories/categories" }
         ],
         imageUrls: [
@@ -36,7 +36,7 @@ Page({
             description: "测试测试测试测试测试测试测试测asdfaaaaaaaaaaaaaaaaaaaaaaaaaaa都是感受到分公司电饭锅aaaasdfasdf",
             city: "武汉",
             locality: "江汉区",
-            category: 1
+            imgUrl :'../../icons/category/Japanese.png'
         }],
         tabs: ["最多like", "最新", "最热"],
         activeIndex: 0,

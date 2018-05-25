@@ -1,23 +1,18 @@
 const {
     mysql
 } = require('../../qcloud')
+const moment = require('moment')
 const debug = require('debug')('qcloud-sdk[AuthDbService]')
 
 module.exports = async (ctx, next) => {
-    let {
-        map: mapDetail,
-        mapid
-    } = ctx.request.body
-
-    if (mapDetail.category) {
-        mapDetail.category = JSON.stringify(mapDetail.category)
-    }
-
+    let comment = ctx.request.body
+    comment.create_time = moment().format('YYYY-MM-DD HH:mm:ss')
 
     try {
-        let res = await mysql('map').update(mapDetail).where({
-            mapid
-        })
+        res = await mysql('comment').insert(comment).returning('id')
+        ctx.state.data = {
+            comment_id : res[0]
+        }
     } catch (e) {
         console.log(e)
         debug('%s: %O', ERRORS.DBERR.ERR_WHEN_INSERT_TO_DB, e)
