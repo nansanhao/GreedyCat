@@ -10,24 +10,40 @@ Page({
             {
                 name: "likes",
                 num: 5255,
-                activeImageUrl: "../../icons/icon.png",
-                inactiveImageUrl: "../../icons/location.png",
-                isActive: true
+                activeImageUrl: "../../icons/like.png",
+                inactiveImageUrl: "../../icons/likeNot.png",
+                isActive: false
             },
             {
                 name: "dislikes",
                 num: 125,
-                activeImageUrl: "../../icons/icon.png",
-                inactiveImageUrl: "../../icons/location.png",
-                isActive: true
+                activeImageUrl: "../../icons/disLike.png",
+                inactiveImageUrl: "../../icons/disLikeNot.png",
+                isActive: false
             },
             {
                 name: "collection",
                 num: 35,
-                activeImageUrl: "../../icons/icon.png",
-                inactiveImageUrl: "../../icons/location.png",
-                isActive: true
+                activeImageUrl: "../../icons/collect.png",
+                inactiveImageUrl: "../../icons/collectNot.png",
+                isActive: false
             }],
+        menuItems: [{
+            name: "新建坐标",
+            style:"top:-240rpx",
+            linkUrl:"#"
+        },
+        {
+            name: "切换地图",
+            style: "top:-160rpx",
+            linkUrl: "#"
+            }, 
+            {
+                name: "新建地图",
+                style: "top:-80rpx",
+                linkUrl: "#"
+            }],
+        isMenuActive: false,
         description: "这是一段示例文字",
         userName: "小明",
         comments: [
@@ -82,12 +98,23 @@ Page({
             clickable: true
         }],
     },
+    //icon点击事件
     iconTap: function (e) {
         let index = e.currentTarget.dataset.index;
         let icons = this.data.icons;
         icons[index].isActive = !icons[index].isActive;
+
+        let change = icons[index].isActive ? 1 : -1;
+        icons[index].num = icons[index].num + change;
+
         this.setData({
             icons: icons
+        })
+    },
+    //菜单点击事件
+    menuTap:function(e){
+        this.setData({
+            isMenuActive: !this.data.isMenuActive
         })
     },
 
@@ -146,5 +173,13 @@ Page({
      */
     onShareAppMessage: function () {
 
+    },
+    /**
+     * 页面滚动响应
+     */
+    onPageScroll:function(){
+        this.setData({
+            isMenuActive:false
+        })
     }
 })
