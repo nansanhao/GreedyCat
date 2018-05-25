@@ -42,9 +42,9 @@ Page({
             map:{
                 mapName:newMap.mapName,
                 description: newMap.description,
-                province:newMap.location[0],
-                city: newMap.location[1],
-                locality: newMap.location[2],
+                province:this.data.location[0],
+                city: this.data.location[1],
+                locality: this.data.location[2],
                 isPublic: newMap.isPublic
             }
         };
