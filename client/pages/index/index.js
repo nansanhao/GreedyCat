@@ -18,10 +18,10 @@ Page({
 
         //categories
         categories: [
-            { name: "日韩料理", imageSrc: "../../icons/category/Japanese.png", url: "../categories/categories" },
-            { name: "西式简餐", imageSrc: "../../icons/category/western.png", url: "../categories/categories" },
-            { name: "川湘菜", imageSrc: "../../icons/category/ChuanXiang.png", url: "../categories/categories" },
-            { name: "东南亚风情", imageSrc: "../../icons/category/Southeast_Asia.png", url: "../categories/categories" },
+            { name: "日韩料理", imageSrc: "../../icons/category/Japanese.png" },
+            { name: "西式简餐", imageSrc: "../../icons/category/western.png" },
+            { name: "川湘菜", imageSrc: "../../icons/category/ChuanXiang.png" },
+            { name: "东南亚风情", imageSrc: "../../icons/category/Southeast_Asia.png" },
             { name: "更多", imageSrc: "../../icons/category/else.png", url: "../categories/categories" }
         ],
 
@@ -31,7 +31,7 @@ Page({
             'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
             'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
         ],
-        
+
 
         //navbar
         tabs: ["最多like", "最新", "最热"],
@@ -40,13 +40,13 @@ Page({
 
         //mapList
         likeList: [],
-        likeOffset:0,
-        likeIsEnd:false,
-        timeList:[],
-        timeOffset:0,
+        likeOffset: 0,
+        likeIsEnd: false,
+        timeList: [],
+        timeOffset: 0,
         timeIsEnd: false,
-        hotList:[],
-        hotOffset:0,
+        hotList: [],
+        hotOffset: 0,
         hotIsEnd: false,
 
 
@@ -73,20 +73,39 @@ Page({
         this._loadList('like')
         this._loadList('time')
         this._loadList('hot')
-        
+
     },
 
-    inputConfirm(e) {
-        console.log(e);
+    onReachBottom() {
+        let order = ['like', 'time', 'hot']
+        order = order[this.data.activeIndex]
+        if (!this.data[order + 'IsEnd']) {
+            this._loadList(order)
+        }
     },
 
+    searchInput(e) {
+        if(e.detail.value){
+            let url = '../resultList/resultList'
+            url += '?keyword=' + e.detail.value
+            if(this.data.city!='全国'){
+                url +='&locality='+this.data.city
+            }
+
+            wx.navigateTo({
+                url
+            })
+        }
+    },
+
+    //navbar切换部分
     tabClick(e) {
         this.setData({
             sliderOffset: e.currentTarget.offsetLeft,
             activeIndex: e.currentTarget.dataset.index
         });
     },
-
+    //获得本地所在城市
     confirmLocation() {
         var that = this
         mapsdk.reverseGeocoder({
@@ -95,15 +114,16 @@ Page({
                 city = city.replace(/市/, '')
                 city = city.replace(/特别行政区/, '')
                 that.setData({
-                    city: city
+                    city
                 })
+                app.data.city = city
             }
         })
     },
-
-    _loadList(order,limit = 5) {
+    //获得地图列表
+    _loadList(order, limit = 5) {
         let that = this
-        let offset = this.data[order+'Offset']
+        let offset = this.data[order + 'Offset']
         wx.request({
             url: config.service.host + '/map/mapList',
             data: {
@@ -112,22 +132,16 @@ Page({
                 limit
             },
             success(res) {
-                let maps  = {}
+                let maps = {}
                 maps[order + 'List'] = that.data[order + 'List'].concat(res.data.data.maps)
-                maps[order + 'Offset'] = that.data[order + 'Offset']+limit
-                if(res.data.data.maps.length < limit){
-                    maps[order+'IsEnd'] = true
+                maps[order + 'Offset'] = that.data[order + 'Offset'] + res.data.data.maps.length
+                if (res.data.data.maps.length < limit) {
+                    maps[order + 'IsEnd'] = true
                 }
                 that.setData(maps)
             }
         })
     },
 
-    onReachBottom() {
-        let order = ['like','time','hot']
-        order = order[this.data.activeIndex]
-        if(!this.data[order+'IsEnd']){
-            this._loadList(order)
-        } 
-    }
+
 })

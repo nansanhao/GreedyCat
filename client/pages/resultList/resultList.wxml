@@ -1,10 +1,26 @@
 <!--pages/resultList/resultList.wxml-->
 
-<view class="ui-title-box top-interval">
-  <view class="ui-title-text">匹配地图</view>
-</view>
-<view class="top-interval" >
-  <navigator wx:for="{{mapList}}" wx:key="id" hover-class='none'>
-    <map-item item-detail="{{item}}" />
-  </navigator>
+<view class="tab">
+  <view class="navbar">
+    <block wx:for="{{tabs}}" wx:key="*this">
+      <view data-index="{{index}}" class="navbar-item {{activeIndex == index ? 'navbar-item-on' : ''}}" bindtap="tabClick">
+        <view class="navbar-title">{{item}}</view>
+      </view>
+    </block>
+    <view class="navbar-slider" style="transform: translateX({{sliderOffset}}px);left:{{(750/tabs.length-180)/2}}rpx"></view>
+  </view>
+  <view class="tab-content">
+    <view class="tab-content-list" hidden="{{activeIndex != 0}}">
+      <navigator wx:for="{{maps}}" wx:key="mapid" hover-class='none'>
+        <map-item item-detail="{{item}}" />
+      </navigator>
+      <view wx:if='{{mapIsEnd}}' class='end-tip'>猫咪真的找不到了~</view>
+    </view>
+    <view class="tab-content-list" hidden="{{activeIndex != 1}}">
+       <navigator wx:for="{{coordinates}}" wx:key="id" hover-class='none'>
+        <coordinate-item item-detail="{{item}}" />
+      </navigator>
+      <view wx:if='{{coordinateIsEnd}}' class='end-tip'>猫咪真的找不到了~</view> 
+    </view>
+  </view>
 </view>

@@ -1,89 +1,66 @@
 // pages/resultList/resultList.js
+
+const config = require('../../config')
 Page({
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
-    mapList: [{
-      id: "sadfsadfasfasd fsad sad sd",
-      likes: 10,
-      dislikes: 10,
-      collections: 10,
-      comments: 10,
-      mapName: "日料万岁",
-      description: "测试测试测试测试测试测试测试测asdfaaaaaaaaaaaaaaaaaaaaaaaaaaa都是感受到分公司电饭锅aaaasdfasdf",
-      city: "武汉",
-      locality: "江汉区",
-      category: 1
+    data: {
+        tabs: ["匹配地图", "匹配店铺"],
+        activeIndex: 0,
+        sliderOffset: 0,
+
+        //mapList
+        maps: [],
+        mapOffset: 0,
+        mapIsEnd: false,
+        coordinates: [],
+        coordinateOffset: 0,
+        coordinateIsEnd: false,
     },
-      {
-        id: "sadfsadfasfasd fs sad sd",
-        likes: 10,
-        dislikes: 10,
-        collections: 10,
-        comments: 10,
-        mapName: "日料万岁",
-        description: "测试测试测试测试测试测试测试测asdfaaaaaaaaaaaaaaaaaaaaaaaaaaa都是感受到分公司电饭锅aaaasdfasdf",
-        city: "武汉",
-        locality: "江汉区",
-        category: 1
-      }]
-  },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
-  },
+    onLoad(){
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
+        this._loadList('map')
+        this._loadList('coordinate')
+    },
+    onReachBottom() {
+        let list = ['map', 'coordinate']
+        list = list[this.data.activeIndex]
+        if (!this.data[list + 'IsEnd']) {
+            this._loadList(list)
+        }
+    },
+    //navbar切换部分
+    tabClick(e) {
+        this.setData({
+            sliderOffset: e.currentTarget.offsetLeft,
+            activeIndex: e.currentTarget.dataset.index
+        });
+    },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  }
+    //获得列表
+    _loadList(list, limit = 5) {
+        wx.showNavigationBarLoading()
+        wx.showLoading({
+            title: '加载中',
+        })
+        let that = this
+        let data = this.options
+        data.order = 'time'
+        data.offset = this.data[list+'Offset']
+        wx.request({
+            url: config.service.host + '/map/' + list + 'List',
+            data,
+            success(res) {
+                let result = {}
+                result[list + 's'] = that.data[list + 's'].concat(res.data.data[list + 's'])
+                result[list + 'Offset'] = that.data[list + 'Offset'] + res.data.data[list + 's'].length
+                if (res.data.data[list+'s'].length < limit) {
+                    result[list + 'IsEnd'] = true
+                }
+                that.setData(result)
+                wx.hideNavigationBarLoading()
+                wx.hideLoading()
+            }
+        })
+    },
 })

@@ -15,7 +15,12 @@ Page({
       { name: "养生早点", imageSrc: "../../icons/category/breakfast.png" },
       { name: "简约小食", imageSrc: "../../icons/category/bbq.png" },
       { name: "其他", imageSrc: "../../icons/category/else.png" },
-    ]
+    ],
   },
 
+    onLoad() {
+        this.setData({
+            city:getApp().data.city
+        })
+    }
 })
