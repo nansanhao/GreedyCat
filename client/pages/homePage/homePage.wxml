@@ -28,11 +28,10 @@
 </view>
 
 
-<modal modal-hidden="{{modalHidden}}"  animation="true" costume="true" width='350'>
+<modal modal-hidden="{{modalHidden}}"  animation="true" costume="true" width='400'>
     <view class="modal-inner">
         <icon class="inner-close" type='cancel' color='#eb6159' size='20' bindtap='onClose'></icon>
-        <image class='inner-image' src='../../icons/icon.png'></image>
-        <view class='inner-text'>喵咪找不着路了..</view>
+        <image class='inner-image' src='../../icons/lost-01.png'></image>
         <button class='inner-button' open-type='getUserInfo' bindgetuserinfo='confirmAuthory'>求求你授权吧</button>
     </view>
 </modal>

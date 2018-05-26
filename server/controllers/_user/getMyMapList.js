@@ -8,12 +8,19 @@ module.exports = async (ctx, next) => {
         openId: author_id
     } = ctx.request.query
     try {
-        res = await mysql('map').select().where({author_id})
-        res.map((value,index)=>{
-            value.category = JSON.parse(value.category)
-        })
+        let maps = await mysql('map').select().where({author_id})
+        if(maps[0]) {
+            maps.map((value,index)=>{
+                value.category = JSON.parse(value.category)
+                Reflect.deleteProperty(value,'is_public')
+                Reflect.deleteProperty(value,'author_id')
+                Reflect.deleteProperty(value,'create_time')
+                return value
+            })
+        }
+
         ctx.state.data = {
-            maps: res
+            maps
         }
 
     } catch (e) {

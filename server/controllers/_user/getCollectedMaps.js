@@ -11,16 +11,25 @@ module.exports = async (ctx, next) => {
     try {
         res = await mysql('userAdmiredMap').select('mapid').where({
             open_id,
-            collecteds: true
+            collected: true
         })
 
         mapid = []
 
         for( item of res) {
-            mapid.push(res.mapid)
+            mapid.push(item.mapid)
         }
 
-        maps = await mysql('map').whereIn('mapid',mapid)
+        maps = await mysql('map').whereIn('mapid',mapid).andWhere('is_public',true)
+        if(maps[0]) {
+            maps.map((value,index)=>{
+                value.category = JSON.parse(value.category)
+                Reflect.deleteProperty(value,'is_public')
+                Reflect.deleteProperty(value,'author_id')
+                Reflect.deleteProperty(value,'create_time')
+                return value
+            })
+        }
 
         ctx.state.data = {
             maps 
