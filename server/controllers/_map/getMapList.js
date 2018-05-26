@@ -14,16 +14,34 @@ module.exports = async (ctx, next) => {
     } = dataProcess(ctx.request.query)
 
     try {
-        maps = await mysql('map').select()
-            .where('is_public', true).andWhere('category', 'like', category)
-            .andWhere(function () {
-                this.where('map_name', 'like', keyword).orWhere('description', 'like', keyword)
-            })
-            .andWhere(function () {
-                this.where('province', 'like', locality)
-                    .orWhere('city', 'like', locality).orWhere('locality', 'like', locality)
-            })
-            .orderBy(order, order == 'create_time' ? 'asc' : 'desc').limit(limit).offset(offset)
+
+        if (category == '%其他%') {
+            maps = await mysql('map').select()
+                .where('is_public', true)
+                .andWhere(function(){
+                    this.where('category', 'like', category).orWhere('category','like','%[]%')
+                    })
+                .andWhere(function () {
+                    this.where('map_name', 'like', keyword).orWhere('description', 'like', keyword)
+                })
+                .andWhere(function () {
+                    this.where('province', 'like', locality)
+                        .orWhere('city', 'like', locality).orWhere('locality', 'like', locality)
+                })
+                .orderBy(order, order == 'create_time' ? 'asc' : 'desc').limit(limit).offset(offset)
+        } else {
+            maps = await mysql('map').select()
+                .where('is_public', true).andWhere('category', 'like', category)
+                .andWhere(function () {
+                    this.where('map_name', 'like', keyword).orWhere('description', 'like', keyword)
+                })
+                .andWhere(function () {
+                    this.where('province', 'like', locality)
+                        .orWhere('city', 'like', locality).orWhere('locality', 'like', locality)
+                })
+                .orderBy(order, order == 'create_time' ? 'asc' : 'desc').limit(limit).offset(offset)
+        }
+
 
         if (maps[0]) {
             maps.map((value, index) => {

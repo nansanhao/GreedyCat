@@ -14,13 +14,13 @@
       <navigator wx:for="{{maps}}" wx:key="mapid" hover-class='none'>
         <map-item item-detail="{{item}}" />
       </navigator>
-      <view wx:if='{{mapIsEnd}}' class='end-tip'>猫咪真的找不到了~</view>
+      <view wx:if='{{isEnd[0]}}' class='end-tip'>猫咪真的找不到了~</view>
     </view>
     <view class="tab-content-list" hidden="{{activeIndex != 1}}">
        <navigator wx:for="{{coordinates}}" wx:key="id" hover-class='none'>
         <coordinate-item item-detail="{{item}}" />
       </navigator>
-      <view wx:if='{{coordinateIsEnd}}' class='end-tip'>猫咪真的找不到了~</view> 
+      <view wx:if='{{isEnd[1]}}' class='end-tip'>猫咪真的找不到了~</view> 
     </view>
   </view>
 </view>

@@ -25,8 +25,8 @@
             {
                 "pagePath": "pages/index/index",
                 "text": "觅食",
-                "iconPath": "icons/icon.png",
-                "selectedIconPath": "icons/icon.png"
+                "iconPath": "icons/tabbar/index.png",
+                "selectedIconPath": "icons/tabbar/index_selected.png"
             },
             {
                 "pagePath": "pages/newMap/newMap",

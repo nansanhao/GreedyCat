@@ -12,7 +12,7 @@
     </view>
 </view>
 <view class="category-box">
-    <navigator wx:for="{{categories}}" class="category-single" wx:key="name" url='{{item.url || "../resultList/resultList?category="+ item.name + (city=="全国"?"":"&locality=" + city) }}' open-type='navigate' hover-class='none'>
+    <navigator wx:for="{{categories}}" class="category-single" wx:key="name" url='{{item.url || "../resultList/resultList?category="+ item.name +"&locality=" + city }}' open-type='navigate' hover-class='none'>
         <image class="category-image" src="{{item.imageSrc}}" />
         <view class="category-text">{{item.name}}</view>
     </navigator>

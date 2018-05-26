@@ -11,22 +11,38 @@ Page({
         //mapList
         maps: [],
         mapOffset: 0,
-        mapIsEnd: false,
+        
         coordinates: [],
         coordinateOffset: 0,
-        coordinateIsEnd: false,
+        isEnd: [false,false],
+
+        keyword: undefined,
+        category: undefined,
+        locality: undefined
     },
 
-    onLoad(){
-
-        this._loadList('map')
-        this._loadList('coordinate')
+    onLoad() {
+        this.setData({
+            keyword: this.options.keyword || '',
+            category: this.options.category || '',
+            locality: this.options.locality || ''
+        })
+        this._loadMapList()
+        this._loadCoordinateList()
     },
     onReachBottom() {
-        let list = ['map', 'coordinate']
-        list = list[this.data.activeIndex]
-        if (!this.data[list + 'IsEnd']) {
-            this._loadList(list)
+        let index = this.data.activeIndex
+        if (!this.data.isEnd[index]) {
+            switch (this.data.activeIndex) {
+                case 0:
+                    this._loadMapList();
+                    break;
+                case 1:
+                    this._loadCoordinateList();
+                    break;
+                default:
+                    break;
+            }
         }
     },
     //navbar切换部分
@@ -38,24 +54,26 @@ Page({
     },
 
     //获得列表
-    _loadList(list, limit = 5) {
+    _loadMapList(limit = 5) {
+        let that = this
+        let data = this._dataProcess()
+        data.offset = this.data.mapOffset
         wx.showNavigationBarLoading()
         wx.showLoading({
             title: '加载中',
+            mask: true
         })
-        let that = this
-        let data = this.options
-        data.order = 'time'
-        data.offset = this.data[list+'Offset']
         wx.request({
-            url: config.service.host + '/map/' + list + 'List',
+            url: config.service.host + '/map/mapList',
             data,
             success(res) {
                 let result = {}
-                result[list + 's'] = that.data[list + 's'].concat(res.data.data[list + 's'])
-                result[list + 'Offset'] = that.data[list + 'Offset'] + res.data.data[list + 's'].length
-                if (res.data.data[list+'s'].length < limit) {
-                    result[list + 'IsEnd'] = true
+                result.maps = that.data.maps.concat(res.data.data.maps)
+                result.mapOffset = that.data.mapOffset + res.data.data.maps.length
+                if (res.data.data.maps.length < limit) {
+                    let isEnd = that.data.isEnd
+                    isEnd[0] = true
+                    result.isEnd = isEnd
                 }
                 that.setData(result)
                 wx.hideNavigationBarLoading()
@@ -63,4 +81,49 @@ Page({
             }
         })
     },
+
+    _loadCoordinateList(limit = 5) {
+        let that = this
+        let data = this._dataProcess()
+        data.offset = this.data.coordinateOffset
+        wx.showNavigationBarLoading()
+        wx.showLoading({
+            title: '加载中',
+            mask: true
+        })
+        wx.request({
+            url: config.service.host + '/map/coordinateList',
+            data,
+            success(res) {
+                let result = {}
+                result.coordinates = that.data.coordinates.concat(res.data.data.coordinates)
+                result.coordinateOffset = that.data.coordinateOffset + res.data.data.coordinates.length
+                if (res.data.data.coordinates.length < limit) {
+                    let isEnd = that.data.isEnd
+                    isEnd[1] = true
+                    result.isEnd = isEnd
+                }
+                that.setData(result)
+                wx.hideNavigationBarLoading()
+                wx.hideLoading()
+            }
+        })
+    },
+
+    _dataProcess() {
+        let data = {}
+        let { category, keyword, locality } = this.data
+        if (category) {
+            data.category = category
+        }
+        if (keyword) {
+            data.keyword = keyword
+        }
+
+        if (locality && locality != '全国') {
+            data.locality = locality
+        }
+
+        return data;
+    }
 })

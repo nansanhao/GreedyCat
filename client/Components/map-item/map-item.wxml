@@ -1,6 +1,6 @@
 <!--Components/map-item/map-item.wxml-->
  <view class="map-item-box">
-  <image class="map-item-image" src="{{itemDetail.main_image_url||'../../icons/icon.png'}}"></image>
+  <image class="map-item-image" src="{{itemDetail.main_image_url||'../../icons/lost.png'}}"></image>
   <view class="map-item-right-part">
     <view class="map-name-box">
       <view class="map-name-head">{{itemDetail.map_name}}</view>

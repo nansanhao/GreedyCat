@@ -5,6 +5,6 @@ Component({
         itemDetail: {
             type: Object
         }
-    },
+    }
 
 })

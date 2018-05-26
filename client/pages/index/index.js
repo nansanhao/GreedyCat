@@ -124,6 +124,10 @@ Page({
     _loadList(order, limit = 5) {
         let that = this
         let offset = this.data[order + 'Offset']
+        wx.showLoading({
+            title: '加载中',
+            mask: true
+        })
         wx.request({
             url: config.service.host + '/map/mapList',
             data: {
@@ -139,6 +143,7 @@ Page({
                     maps[order + 'IsEnd'] = true
                 }
                 that.setData(maps)
+                wx.hideLoading()
             }
         })
     },
