@@ -1,21 +1,21 @@
 <!--pages/mapDetail/mapDetail.wxml-->
 <view class="page-body">
     <view>
-      <map latitude="{{latitude}}" longitude="{{longitude}}" markers="{{markers}}" polyline='{{polyline}}' controls="{{controls}}">
-      </map>
+        <map latitude="{{latitude}}" longitude="{{longitude}}" markers="{{markers}}" polyline='{{polyline}}' controls="{{controls}}">
+        </map>
     </view>
     <view class='section'>
         <view class='icon-wrap'>
-            <view wx:for="{{icons}}" wx:for-item="icon" class='icon' >
-                <image  src="{{icon.imageUrl}} " class="icon-image"></image>
+            <view wx:for="{{icons}}" wx:for-item="icon" class='icon'>
+                <image src="{{icon.isActive?icon.activeImageUrl:icon.inactiveImageUrl}} " class="icon-image" data-index='{{index}}' bindtap='iconTap'></image>
                 <text class='icon-num'>{{icon.num}}</text>
             </view>
-            
+
         </view>
     </view>
     <view class='description-wrap'>
         <view class='description'>
-             <text>{{description}}</text>
+            <text>{{description}}</text>
         </view>
         <view class='userName'>
             <text>--{{userName}}</text>
@@ -24,12 +24,14 @@
     <view class='comment-wrap'>
         <view class='comment-title'>
             <text class='comment-title-content'>用户评论</text>
-            <image class='comment-title-image' src='../../icons/icon.png' aspectFit></image>
+            <image class='comment-title-image' src='../../icons/comment.png' aspectFit></image>
         </view>
-        
+
         <view class='comment-body'>
             <view class='comment-body-item' wx:for="{{comments}}" wx:for-item="comment">
-                <view><image src='{{comment.avaterUrl}}' class='comment-image'></image></view>
+                <view>
+                    <image src='{{comment.avaterUrl}}' class='comment-image'></image>
+                </view>
                 <view class='comment-body-wrap'>
                     <view class='comment-body-userName'>
                         {{comment.userName}}
@@ -37,9 +39,17 @@
                     <view class='comment-body-content'>
                         {{comment.content}}
                     </view>
-                    
+
                 </view>
             </view>
+        </view>
+    </view>
+    <view class='menu-wrap'>
+        <view class="menu-items">
+            <view class='menu-item' wx:for="{{menuItems}}" style="{{isMenuActive?item.style:'top:-60rpx'}} ;opacity:{{isMenuActive?'1':'0;visibility:hidden'}}">{{item.name}}</view>
+        </view>
+        <view class='menu-plus' bindtap='menuTap'>
+            <view  style="transition: all .3s;{{isMenuActive?'transform:rotate(-145deg)':''}}">+</view>
         </view>
     </view>
 </view>

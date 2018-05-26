@@ -14,12 +14,14 @@ Page({
             dislikes: 10,
             collections: 10,
             comments: 10,
-            mapName: "日料万岁",
-            description: "测试测试测试测试测试测试测试测asdfaaaaaaaaaaaaaaaaaaaaaaaaaaa都是感受到分公司电饭锅aaaasdfasdf",
+            mapName: "日本料理",
+            description: "日本料理，主要分为两大类『日本和食』和『日本洋食』。 [1]  当提到日本料理时，许多人会联想到寿司、生鱼片，这些日本人自己发明的食物就是『和食』",
             city: "武汉",
             locality: "江汉区",
             category: 1,
-            txtStyle: ""//用来滑动删除使用的字段
+            txtStyle: "",//用来滑动删除使用的字段
+            imgUrl:"../../icons/category/Japanese.png",
+            linkUrl:"/pages/mapDetail/mapDetail"
         },
         {
             id: "sadfsadfasfasd fs sad sd",
@@ -27,24 +29,28 @@ Page({
             dislikes: 10,
             collections: 10,
             comments: 10,
-            mapName: "日料万岁",
-            description: "测试测试测试测试测试测试测试测asdfaaaaaaaaaaaaaaaaaaaaaaaaaaa都是感受到分公司电饭锅aaaasdfasdf",
+            mapName: "日本料理",
+            description: "日本料理，主要分为两大类『日本和食』和『日本洋食』。 [1]  当提到日本料理时，许多人会联想到寿司、生鱼片，这些日本人自己发明的食物就是『和食』",
             city: "武汉",
             locality: "江汉区",
             category: 1,
-            txtStyle: ""
+            txtStyle: "",
+            imgUrl: "../../icons/category/Japanese.png",
+            linkUrl: "/pages/mapDetail/mapDetail"
         },{
             id: "sadfsadfasfasd fs sad sd",
             likes: 10,
             dislikes: 10,
             collections: 10,
             comments: 10,
-            mapName: "日料万岁",
-            description: "测试测试测试测试测试测试测试测asdfaaaaaaaaaaaaaaaaaaaaaaaaaaa都是感受到分公司电饭锅aaaasdfasdf",
+            mapName: "日本料理",
+            description: "日本料理，主要分为两大类『日本和食』和『日本洋食』。 [1]  当提到日本料理时，许多人会联想到寿司、生鱼片，这些日本人自己发明的食物就是『和食』",
             city: "武汉",
             locality: "江汉区",
             category: 1,
-            txtStyle: ""
+            txtStyle: "",
+            imgUrl: "../../icons/category/Japanese.png",
+            linkUrl: "/pages/mapDetail/mapDetail"
         }]
 
     },

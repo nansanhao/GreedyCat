@@ -10,7 +10,7 @@ map{
 .icon-image{
     height: 120rpx;
     width: 120rpx;
-    margin:16rpx 0;
+    margin:16rpx 0 0 0;
 }
 .icon{
     display: flex;
@@ -28,9 +28,8 @@ map{
     
 }
 .comment-title-image{
-    height: 80rpx;
-    width: 80rpx;
-    float: right !important;
+    height: 70rpx;
+    width: 70rpx;
 }
 .comment-title{
     text-align: center;
@@ -38,6 +37,8 @@ map{
     padding: 4rpx;
     align-items: center;
     justify-content: center; 
+    background-color: white;
+    margin: 40rpx  0 20rpx 0;
 
 }
 .comment-title-content{
@@ -56,4 +57,34 @@ map{
 .comment-body-wrap{
     flex: 1;
     margin-left: 20rpx;
+}
+.menu-wrap{
+    position: fixed;
+    bottom: 80rpx;
+    right: 30rpx;
+    width: 120rpx;
+    
+
+}
+.menu-plus{
+    height: 120rpx;
+    width: 120rpx;
+    border-radius: 60rpx;
+    box-shadow: 4rpx 4rpx 4rpx #888888;
+    background: #EB6159;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    color: white;
+}
+.menu-item{
+    position: absolute;
+    transition: all .4s;
+    background-color: #EB6159;
+    border-radius: 80rpx;
+    color: white;
+    padding: 8rpx 12rpx;
+    margin-left: -60rpx;
+    box-shadow: 4rpx 4rpx 4rpx #888888;
 }
