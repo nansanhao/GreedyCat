@@ -12,12 +12,12 @@
 }
 
 .slogan-small {
-  font-size: 22px;
+  font-size: 17px;
   padding-top: 8px;
 }
 
 .slogan-big {
-  font-size: 25px;
+  font-size: 20px;
 }
 
 .search-bar-box {
@@ -152,7 +152,6 @@
   box-sizing: border-box;
   height: 100%;
   padding-top: 50px;
-  padding-bottom: 200rpx;
   overflow: auto;
 }
 
@@ -161,27 +160,9 @@ tab-content-list {
   flex-direction: column;
 }
 
-/*---------------------------------- modal--------------------------------------- */
-
-.modal-inner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 5px;
-    width: 400rpx;
-    box-sizing: border-box;
-}
-.inner-image {
-    width:200rpx;
-    height: 200rpx;
-}
-.inner-text {
-    font-size: 14px;
+.end-tip {
     text-align: center;
-    padding: 20rpx 0;
-}
-
-.inner-button {
-    background-color:#EB6159;
-    color:#fff;
+    padding: 8px 0 20px 0;
+    font-size:14px;
+    color:#888;
 }

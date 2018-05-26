@@ -4,7 +4,7 @@ const app = getApp()
 Page({
     data: {
         avatarUrl: "../../icons/user-unlogin.png",
-        nickName: "游客",
+        nickName: "流浪猫",
         icons: [
             { name: "likes", num: 0, imageUrl: "../../icons/like.png" },
             { name: "dislikes", num: 0, imageUrl: "../../icons/dislike.png" },
@@ -23,10 +23,7 @@ Page({
 
 
     onShow() { //每次显示刷新一下数据 防止头像加载失败
-        setTimeout(()=>{
-            this._checkAuthoryShowModal(this._refreshInfo)
-        },2000)
-
+        this._checkAuthoryShowModal(this._refreshInfo)
     },
 
     onClose() { this.setData({ modalHidden: true }) },

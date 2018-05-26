@@ -5,30 +5,36 @@ const debug = require('debug')('qcloud-sdk[AuthDbService]')
 
 module.exports = async (ctx, next) => {
     let {
-        openId: open_id,
+        open_id,
         mapid
     } = ctx.request.body
 
     try {
-        res = await mysql('userAdmiredMap').update('collecteds', false).where({
+        let res = await mysql('userAdmiredMap').select('liked','disliked').where({
             open_id,
             mapid
-        }).returning('likes', 'dislikes')
+        })
+        if (!res[0].liked && !res[0].disliked) {
+            await mysql('userAdmiredMap').where({
+                open_id,
+                mapid
+            }).del()
+        } else {
+            await mysql('userAdmiredMap').update('collected',false).where({
+                open_id,
+                mapid
+            })
+        }
+
         res = await mysql('map').where({
             mapid
         }).select('author_id')
         await mysql('user').where({
             open_id: res[0].author_id
-        }).decrement('num_collecteds', 1)
-
-
-        if (!res[0].likes && !res[0].dislikes) {
-            mysql('userAdmiredMap').where({
-                open_id,
-                mapid
-            }).del()
-        }
-
+        }).decrement('num_collected', 1)
+        await mysql('map').where({
+            mapid
+        }).decrement('num_collected', 1)
 
     } catch (e) {
         console.log(e)

@@ -19,8 +19,8 @@ module.exports = async function (ctx, next) {
         // catch 住全局的错误信息
         debug('Catch Error: %o', e)
 
-        // 设置状态码为 200 - 服务端错误
-        ctx.status = 200
+        // 设置状态码为 404 服务端找不到
+        ctx.status = 404
 
         // 输出详细的错误信息
         ctx.body = {

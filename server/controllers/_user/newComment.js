@@ -9,9 +9,12 @@ module.exports = async (ctx, next) => {
     comment.create_time = moment().format('YYYY-MM-DD HH:mm:ss')
 
     try {
-        res = await mysql('comment').insert(comment).returning('id')
+        await mysql('map').where({
+            mapid: comment.mapid
+        }).increment('num_comment', 1)
+        let res = await mysql('comment').insert(comment).returning('id')
         ctx.state.data = {
-            comment_id : res[0]
+            comment_id: res[0]
         }
     } catch (e) {
         console.log(e)

@@ -12,7 +12,7 @@ module.exports = async (ctx, next) => {
         res = await mysql('coordinate').where({
             id
         }).select()
-
+        
         ctx.state.data = {
             coordinate:res[0]
         }

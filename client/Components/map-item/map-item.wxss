@@ -1,7 +1,7 @@
 /* Components/map-item/map-item.wxss */
 
 .map-item-box {
-  padding: 8px 10px;
+  padding: 16rpx 20rpx;
   border-bottom: 1rpx solid #d9d9d9;
   display: flex;
   align-items: center;
@@ -9,15 +9,14 @@
 }
 
 .map-item-image {
-  margin:0 16rpx;
-  width: 100rpx;
-  height: 100rpx;
+  width: 200rpx;
+  height: 200rpx;
 }
 
 .map-item-right-part {
   flex: 1;
-  padding-left: 20rpx;
-  display: flex;
+  margin-left: 36rpx;
+  display: flex;    
   flex-direction: column;
 }
 
@@ -39,12 +38,14 @@
 
 .map-description {
   margin: 10rpx 0;
+  height: 36px;
   width: 100%;
-  font-size:15px;
+  color: #353535;
+  font-size:14px;
   word-break: break-all;
   text-overflow: ellipsis;
   display: -webkit-box; 
-  line-height: 20px;
+  line-height: 18px;
   -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
   -webkit-line-clamp: 2; 
   overflow: hidden; 
@@ -57,13 +58,13 @@
 .counter-box {
   flex: 1;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 
 .counter-icon {
-  width: 25px;
-  height: 25px;
+  width: 60rpx;
+  height: 60rpx;
   margin-right:5px;
 }
 

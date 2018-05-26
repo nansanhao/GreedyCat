@@ -10,6 +10,10 @@ module.exports = async (ctx, next) => {
 
 
     try {
+        res = await mysql('comment').select('mapid').where({id})
+        await mysql('map').where({
+            mapid: res[0].mapid
+        }).decrement('num_comment', 1)
         await mysql('comment').where({
             id
         }).del()
