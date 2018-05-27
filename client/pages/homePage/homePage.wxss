@@ -13,8 +13,8 @@
 
 .avatar-image {
     margin-top: 8px;
-    height: 200rpx;
-    width: 200rpx;
+    height: 180rpx;
+    width: 180rpx;
     border-radius: 50%;
     box-sizing: border-box;
     background-color: #fff;

@@ -59,10 +59,17 @@
   overflow: auto;
 }
 
-tab-content-list {
-  display: flex;
-  flex-direction: column;
+.not-found-box {
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
+
+.not-found-image {
+  height:500rpx;
+  width:500rpx;
+}
+
 
 .end-tip {
     text-align: center;

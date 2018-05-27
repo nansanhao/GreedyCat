@@ -125,5 +125,19 @@ Page({
         }
 
         return data;
+    } ,
+    searchInput(e) {
+        if (e.detail.value) {
+            this.setData({
+                keyword:e.detail.value,
+                maps: [],
+                mapOffset: 0,
+                coordinates: [],
+                coordinateOffset: 0,
+                isEnd: [false, false],
+            })
+            this._loadMapList()
+            this._loadCoordinateList()
+        }
     }
 })

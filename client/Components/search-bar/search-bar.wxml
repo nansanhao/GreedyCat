@@ -12,5 +12,5 @@
       <view class="search-bar-text">搜索</view>
     </label>
   </view>
-  <view class="search-bar-cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+  <view style="color:{{cancelColor}}"class="search-bar-cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
 </view>
