@@ -1,4 +1,4 @@
-/* pages/mapDetail/mapDetail.wxss */
+/* pages/myMapDetail/myMapDetail.wxss */
 map{
     width: 100%; height: 300px;
 }
@@ -48,9 +48,6 @@ map{
     height: 120rpx;
     width: 120rpx;
 }
-.comment-wrap{
-    margin-bottom: 200rpx
-}
 .comment-body-item{
     padding: 20rpx 30rpx;
     background-color: white;
@@ -61,29 +58,48 @@ map{
     flex: 1;
     margin-left: 20rpx;
 }
-.footbar{
-    position: fixed;
-    bottom: 0;
-    display: flex;
-    width: 100%;
-    background-color: #EB6159;
-    color: white;
-    padding: 20rpx 0;
-    opacity: 0.9;
+
+.marker-img{
+    width:80rpx;
+    height:80rpx;
+}
+.markers-wrap{
     
+    margin: 20rpx 0;
 }
-.return-img,.share-img{
-    width: 70rpx;
-    height:70rpx;
-    margin-right: 20rpx;
-}
-.return,.share{
+.marker{
+    margin: 2rpx;
+    background-color: white;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    flex: 1;
-    font-size: 18px;
+    align-items: center
 }
-.return{
-    border-right: 2rpx whitesmoke solid;
+.menu-wrap{
+    position: fixed;
+    bottom: 80rpx;
+    right: 30rpx;
+    width: 120rpx;
+    
+
+}
+.menu-plus{
+    height: 120rpx;
+    width: 120rpx;
+    border-radius: 60rpx;
+    box-shadow: 4rpx 4rpx 4rpx #888888;
+    background: #EB6159;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    color: white;
+}
+.menu-item{
+    position: absolute;
+    transition: all .4s;
+    background-color: #EB6159;
+    border-radius: 80rpx;
+    color: white;
+    padding: 8rpx 12rpx;
+    margin-left: -60rpx;
+    box-shadow: 4rpx 4rpx 4rpx #888888;
 }

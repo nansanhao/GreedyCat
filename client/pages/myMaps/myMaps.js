@@ -19,7 +19,7 @@ Page({
         });
     },
 
-    onShow: function (options) {
+    onLoad: function (options) {
         let that = this
         wx.request({
             url: config.service.host + "/user/mapList",

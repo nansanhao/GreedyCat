@@ -28,7 +28,7 @@ Component({
               let mapList = this.data.mapList;
               mapList = mapList.map(function (map, mapIndex) {
                   if (mapIndex != index) {
-                      map.txtStyle = "left:0px";
+                      map.txtStyle = "left:0rpx";
                   }
               });
               this.setData({
@@ -52,14 +52,14 @@ Component({
               let delBtnWidth = this.data.delBtnWidth;
 
               if (distant == 0 || distant < 0) {//如果移动距离小于等于0，文本层位置不变
-                  txtStyle = "left:0px";
+                  txtStyle = "left:0rpx";
               }
               else if (distant > 0) {
                   //移动距离大于0，文本层left值等于手指移动距离
-                  txtStyle = "left:-" + distant + "px";
+                  txtStyle = "left:-" + distant*2 + "rpx";
                   if (distant >= delBtnWidth) {
                       //控制手指移动距离最大值为删除按钮的宽度
-                      txtStyle = "left:-" + delBtnWidth + "px";
+                      txtStyle = "left:-" + delBtnWidth*2 + "rpx";
                   }
               }
 
@@ -87,7 +87,7 @@ Component({
               } else {
                   let index = e.currentTarget.dataset.index;
                   let mapList = this.data.mapList;
-                  mapList[index].txtStyle = "left:-100px";
+                  mapList[index].txtStyle = "left:-200rpx";
 
                   this.setData({
                       mapList: mapList

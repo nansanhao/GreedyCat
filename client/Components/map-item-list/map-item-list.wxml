@@ -1,9 +1,11 @@
-<view wx:for="{{mapList}}" wx:key="map id">
-
-    <view class='item' data-index="{{index}}" style="{{item.txtStyle}}" bindtouchstart='bindtouchstart' bindtouchmove='bindtouchmove' bindtouchend='bindtouchend' bindtap='bindtap' data-url='{{item.linkUrl}}'>
+<view wx:for="{{mapList}}" wx:key="map id" class='map-list'>
+    <view class='item' data-index="{{index}}" style="{{item.txtStyle}}" bindtouchstart='bindtouchstart' bindtouchmove='bindtouchmove' bindtouchend='bindtouchend' >
         <view class='item-delete'>
             <button class='btn-delete' data-id="{{item.id}}" bindtap='btnDelete'>删除</button>
         </view>
-        <map-item item-detail="{{item}}" />
+        <view bindtap='bindtap' data-url='{{"../myMapDetail/myMapDetail?mapid="+item.mapid}}'>
+            <map-item item-detail="{{item}}" />
+        </view>
+        
     </view>
 </view>
