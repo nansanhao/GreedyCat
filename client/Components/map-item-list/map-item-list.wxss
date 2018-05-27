@@ -8,7 +8,7 @@
 }
 .item{
     position: relative;
-    transition: left .3s;
+    transition: left .7s;
 }
 .btn-delete{
     height: 100%;

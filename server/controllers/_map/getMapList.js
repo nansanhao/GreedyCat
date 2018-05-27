@@ -14,8 +14,14 @@ module.exports = async (ctx, next) => {
     } = dataProcess(ctx.request.query)
 
     try {
+
+
+        let otherCategory = (category == "%其他%" ? '%[]%' : category)
         maps = await mysql('map').select()
-            .where('is_public', true).andWhere('category', 'like', category)
+            .where('is_public', true)
+            .andWhere(function () {
+                this.where('category', 'like', category).orWhere('category', 'like', otherCategory)
+            })
             .andWhere(function () {
                 this.where('map_name', 'like', keyword).orWhere('description', 'like', keyword)
             })
@@ -24,6 +30,8 @@ module.exports = async (ctx, next) => {
                     .orWhere('city', 'like', locality).orWhere('locality', 'like', locality)
             })
             .orderBy(order, order == 'create_time' ? 'asc' : 'desc').limit(limit).offset(offset)
+
+
 
         if (maps[0]) {
             maps.map((value, index) => {
@@ -39,13 +47,6 @@ module.exports = async (ctx, next) => {
             maps
         }
 
-        if(keyword!='%%'||category!='%%') {
-            let coordinates = await mysql('coordinate').where('category', 'like', category)
-            .andWhere(function () {
-                this.where('name', 'like', keyword).orWhere('description', 'like', keyword).orWhere('address', 'like', keyword)
-            }).orderBy(order, order == 'create_time' ? 'asc' : 'desc').limit(limit).offset(offset)
-            ctx.state.data.coordinates = coordinates
-        }
 
     } catch (e) {
         console.log(e)

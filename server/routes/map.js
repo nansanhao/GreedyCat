@@ -23,8 +23,10 @@ router.delete('/coordinate',controllers._map.deleteCoordinate)
 router.put('/coordinate',controllers._map.updateCoordinate)
 
 
-//获取列表
+//获取地图列表
 router.get('/mapList',controllers._map.getMapList)
+//获取坐标列表
+router.get('/coordinateList',controllers._map.getCoordinateList)
 
 
 

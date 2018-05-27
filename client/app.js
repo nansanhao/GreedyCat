@@ -10,7 +10,8 @@ App({
         logged: false,  //用户是否登录
         userAuthory: false, //用户是否授权用户信息
         numbers: [0, 0, 0], //依次为点赞踩收藏数目
-        mainMapId:null
+        mainMapId:null,
+        city:'全国'
     },
     onLaunch: function () {
         qcloud.setLoginUrl(config.service.loginUrl)
