@@ -1,5 +1,20 @@
 // Components/searchBar.js
 Component({
+    properties:{
+        cancelColor:{
+            type:String,
+            value:"#fff"
+        },
+        inputShowed:{
+            type:Boolean,
+            value:false,
+        },
+        inputVal:{
+            type:String,
+            value:''
+        }
+    },
+
 
   methods: {
     showInput: function () {
@@ -29,10 +44,7 @@ Component({
   },
 
 
-  data: {
-    inputShowed: false,
-    inputVal: ""
-  },
+
   
 
 });

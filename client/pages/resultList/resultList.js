@@ -1,89 +1,143 @@
 // pages/resultList/resultList.js
+
+const config = require('../../config')
 Page({
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
-    mapList: [{
-      id: "sadfsadfasfasd fsad sad sd",
-      likes: 10,
-      dislikes: 10,
-      collections: 10,
-      comments: 10,
-      mapName: "日料万岁",
-      description: "测试测试测试测试测试测试测试测asdfaaaaaaaaaaaaaaaaaaaaaaaaaaa都是感受到分公司电饭锅aaaasdfasdf",
-      city: "武汉",
-      locality: "江汉区",
-      category: 1
+    data: {
+        tabs: ["匹配地图", "匹配店铺"],
+        activeIndex: 0,
+        sliderOffset: 0,
+
+        //mapList
+        maps: [],
+        mapOffset: 0,
+        
+        coordinates: [],
+        coordinateOffset: 0,
+        isEnd: [false,false],
+
+        keyword: undefined,
+        category: undefined,
+        locality: undefined
     },
-      {
-        id: "sadfsadfasfasd fs sad sd",
-        likes: 10,
-        dislikes: 10,
-        collections: 10,
-        comments: 10,
-        mapName: "日料万岁",
-        description: "测试测试测试测试测试测试测试测asdfaaaaaaaaaaaaaaaaaaaaaaaaaaa都是感受到分公司电饭锅aaaasdfasdf",
-        city: "武汉",
-        locality: "江汉区",
-        category: 1
-      }]
-  },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
-  },
+    onLoad() {
+        this.setData({
+            keyword: this.options.keyword || '',
+            category: this.options.category || '',
+            locality: this.options.locality || ''
+        })
+        this._loadMapList()
+        this._loadCoordinateList()
+    },
+    onReachBottom() {
+        let index = this.data.activeIndex
+        if (!this.data.isEnd[index]) {
+            switch (this.data.activeIndex) {
+                case 0:
+                    this._loadMapList();
+                    break;
+                case 1:
+                    this._loadCoordinateList();
+                    break;
+                default:
+                    break;
+            }
+        }
+    },
+    //navbar切换部分
+    tabClick(e) {
+        this.setData({
+            sliderOffset: e.currentTarget.offsetLeft,
+            activeIndex: e.currentTarget.dataset.index
+        });
+    },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
+    //获得列表
+    _loadMapList(limit = 5) {
+        let that = this
+        let data = this._dataProcess()
+        data.offset = this.data.mapOffset
+        wx.showNavigationBarLoading()
+        wx.showLoading({
+            title: '加载中',
+            mask: true
+        })
+        wx.request({
+            url: config.service.host + '/map/mapList',
+            data,
+            success(res) {
+                let result = {}
+                result.maps = that.data.maps.concat(res.data.data.maps)
+                result.mapOffset = that.data.mapOffset + res.data.data.maps.length
+                if (res.data.data.maps.length < limit) {
+                    let isEnd = that.data.isEnd
+                    isEnd[0] = true
+                    result.isEnd = isEnd
+                }
+                that.setData(result)
+                wx.hideNavigationBarLoading()
+                wx.hideLoading()
+            }
+        })
+    },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
+    _loadCoordinateList(limit = 5) {
+        let that = this
+        let data = this._dataProcess()
+        data.offset = this.data.coordinateOffset
+        wx.showNavigationBarLoading()
+        wx.showLoading({
+            title: '加载中',
+            mask: true
+        })
+        wx.request({
+            url: config.service.host + '/map/coordinateList',
+            data,
+            success(res) {
+                let result = {}
+                result.coordinates = that.data.coordinates.concat(res.data.data.coordinates)
+                result.coordinateOffset = that.data.coordinateOffset + res.data.data.coordinates.length
+                if (res.data.data.coordinates.length < limit) {
+                    let isEnd = that.data.isEnd
+                    isEnd[1] = true
+                    result.isEnd = isEnd
+                }
+                that.setData(result)
+                wx.hideNavigationBarLoading()
+                wx.hideLoading()
+            }
+        })
+    },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
+    _dataProcess() {
+        let data = {}
+        let { category, keyword, locality } = this.data
+        if (category) {
+            data.category = category
+        }
+        if (keyword) {
+            data.keyword = keyword
+        }
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
+        if (locality && locality != '全国') {
+            data.locality = locality
+        }
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  }
+        return data;
+    } ,
+    searchInput(e) {
+        if (e.detail.value) {
+            this.setData({
+                keyword:e.detail.value,
+                maps: [],
+                mapOffset: 0,
+                coordinates: [],
+                coordinateOffset: 0,
+                isEnd: [false, false],
+            })
+            this._loadMapList()
+            this._loadCoordinateList()
+        }
+    }
 })

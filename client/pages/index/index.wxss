@@ -155,10 +155,6 @@
   overflow: auto;
 }
 
-tab-content-list {
-  display: flex;
-  flex-direction: column;
-}
 
 .end-tip {
     text-align: center;
