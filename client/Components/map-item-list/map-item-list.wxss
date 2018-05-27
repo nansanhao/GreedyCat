@@ -1,14 +1,14 @@
 /* Components/map-item-list/map-item-list.wxss */
 .item-delete{
     position: absolute;
-    width: 100px;
+    width: 200rpx;
     height: 100%;
-    right: -100px;
+    right: -200rpx;
     color: white
 }
 .item{
     position: relative;
-    transition: left .5s;
+    transition: left .3s;
 }
 .btn-delete{
     height: 100%;
@@ -18,4 +18,8 @@
     background-color: #e64340;
     color: white;
     border-radius: 0;
+    border: none;
+}
+.map-list{
+    overflow: hidden;
 }
