@@ -1,5 +1,6 @@
 // pages/myMapDetail/myMapDetail.js
 const config = require('../../config')
+const app = getApp();
 Page({
 
     /**

@@ -48,6 +48,9 @@ map{
     height: 120rpx;
     width: 120rpx;
 }
+.comment-wrap{
+    margin-bottom: 200rpx
+}
 .comment-body-item{
     padding: 20rpx 30rpx;
     background-color: white;

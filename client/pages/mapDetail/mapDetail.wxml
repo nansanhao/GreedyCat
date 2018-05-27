@@ -30,11 +30,11 @@
         <view class='comment-body'>
             <view class='comment-body-item' wx:for="{{comments}}" wx:for-item="comment">
                 <view>
-                    <image src='{{comment.avaterUrl}}' class='comment-image'></image>
+                    <image src='{{comment.simple_user_info.avatarUrl}}' class='comment-image'></image>
                 </view>
                 <view class='comment-body-wrap'>
                     <view class='comment-body-userName'>
-                        {{comment.userName}}
+                        {{comment.simple_user_info.nickName}}
                     </view>
                     <view class='comment-body-content'>
                         {{comment.content}}

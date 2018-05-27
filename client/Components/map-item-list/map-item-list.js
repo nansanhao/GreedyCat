@@ -98,9 +98,9 @@ Component({
       //点击事件
       bindtap:function(e){
           let url = e.currentTarget.dataset.url;
-        //   wx.navigateTo({
-        //       url: url
-        //   })
+          wx.navigateTo({
+              url: url
+          })
       },
       btnDelete: function (e) {
           let mapList = this.data.mapList;

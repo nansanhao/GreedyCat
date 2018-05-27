@@ -1,4 +1,6 @@
 // pages/mapDetail/mapDetail.js
+const config = require('../../config');
+const app = getApp();
 Page({
 
     /**
@@ -45,13 +47,6 @@ Page({
             }],
         description: "这是一段示例文字",
         userName: "小明",
-        comments: [
-            { userName: "小红", avaterUrl: "../../icons/icon.png", content: "这是一段评论。" },
-            { userName: "小红", avaterUrl: "../../icons/icon.png", content: "这是一段评论。" },
-            { userName: "小红", avaterUrl: "../../icons/icon.png", content: "这是一段评论。" },
-            { userName: "小红", avaterUrl: "../../icons/icon.png", content: "这是一段评论。" },
-            { userName: "小红", avaterUrl: "../../icons/icon.png", content: "这是一段评论。" }
-        ],
         latitude: 40.006822,
         longitude: 116.481451,
         markers: [{
@@ -117,7 +112,31 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        let that=this;
+        let mapid=options.mapid;
+        wx.request({
+            url: config.service.host + "/map/mapDetail",
+            data: {
+                mapid,
+                openId: app.data.userInfo.openId
+            },
+            success(res) {
+                let map=res.data.data.map;
+                let icons=that.data.icons;
+                icons[0].num = map.num_liked;
+                icons[1].num=map.num_disliked;
+                icons[2].num = map.num_collected;
+                console.log(map);
+                
+                that.setData({
+                    description:map.description,
+                    comments: map.comments,
+                    userName:map.author.nickName,
+                    icons
+                    
+                })
+            }
+        })
     },
 
     /**
