@@ -5,7 +5,7 @@ Component({
    */
   properties: {
       mapList: {
-          type: Object
+          type: Array
       }
   },
 

@@ -1,1 +1,7 @@
-<map-item-list mapList="{{mapList}}" bind:deleteItem="deleteItem" />
+
+<view class='tip'>左滑可删除</view>
+<delete-list config-list="{{list}}"  bind:deleteItem="onDeleteItem" >
+    <view wx:for='{{mapList}}'  wx:key='mapid' slot='{{item.mapid}}'>
+        <map-item item-detail="{{item}}"/>
+    </view>
+</delete-list>

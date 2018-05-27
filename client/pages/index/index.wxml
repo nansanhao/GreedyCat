@@ -33,19 +33,19 @@
     </view>
     <view class="tab-content">
         <view class="tab-content-list" hidden="{{activeIndex != 0}}">
-            <navigator wx:for="{{likeList}}" wx:key="mapid" hover-class='none' url='{{"../mapDetail/mapDetail?mapid="+item.mapid}}'>
+            <navigator wx:for="{{likeList}}" wx:key="mapid"  url='{{"../mapDetail/mapDetail?mapid="+item.mapid}}'>
                 <map-item item-detail="{{item}}" />
             </navigator>
             <view wx:if='{{likeIsEnd}}' class='end-tip'>猫咪真的找不到了~</view>
         </view>
         <view class="tab-content-list" hidden="{{activeIndex != 1}}">
-            <navigator wx:for="{{timeList}}" wx:key="mapid" hover-class='none' url='{{"../mapDetail/mapDetail?mapid="+item.mapid}}'>
+            <navigator wx:for="{{timeList}}" wx:key="mapid"  url='{{"../mapDetail/mapDetail?mapid="+item.mapid}}'>
                 <map-item item-detail="{{item}}" />
             </navigator>
             <view wx:if='{{timeIsEnd}}' class='end-tip'>猫咪真的找不到了~</view>
         </view>
         <view class="tab-content-list" hidden="{{activeIndex != 2}}">
-            <navigator wx:for="{{hotList}}" wx:key="mapid" hover-class='none' url='{{"../mapDetail/mapDetail?mapid="+item.mapid}}'>
+            <navigator wx:for="{{hotList}}" wx:key="mapid"  url='{{"../mapDetail/mapDetail?mapid="+item.mapid}}'>
                 <map-item item-detail="{{item}}" />
             </navigator>
             <view wx:if='{{hotIsEnd}}' class='end-tip'>猫咪真的找不到了~</view>

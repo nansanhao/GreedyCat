@@ -16,7 +16,7 @@
             <view class="not-found-box">
                 <image class="not-found-image" wx:if="{{!maps.length}}" src="../../icons/404.png"></image>
             </view>
-            <navigator wx:for="{{maps}}" wx:key="mapid" hover-class="none" url='{{"../mapDetail/mapDetail?mapid="+item.mapid}}'>
+            <navigator wx:for="{{maps}}" wx:key="mapid"  url='{{"../mapDetail/mapDetail?mapid="+item.mapid}}'>
                 <map-item item-detail="{{item}}" />
             </navigator>
             <view wx:if="{{isEnd[0]}}" class="end-tip">猫咪真的找不到了~</view>
@@ -25,7 +25,7 @@
             <view class="not-found-box">
                 <image class="not-found-image" wx:if="{{!coordinates.length}}" src="../../icons/404.png"></image>
             </view>
-            <navigator wx:for="{{coordinates}}" wx:key="id" hover-class="none">
+            <navigator wx:for="{{coordinates}}" wx:key="id" >
                 <coordinate-item item-detail="{{item}}" />
             </navigator>
             <view wx:if="{{isEnd[1]}}" class="end-tip">猫咪真的找不到了~</view>

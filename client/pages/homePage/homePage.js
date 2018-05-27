@@ -10,9 +10,9 @@ Page({
             { name: "dislikes", num: 0, imageUrl: "../../icons/dislike.png" },
             { name: "collections", num: 0, imageUrl: "../../icons/collect.png" }],
         linksList: [
-            { name: "我的地图", linkUrl: "/pages/myMaps/myMaps" },
-            { name: "我的评论", linkUrl: "#" },
-            { name: "收藏地图", linkUrl: "#" },
+            { name: "我的地图", linkUrl: "/pages/myMaps/myMaps?choice=0" },
+            { name: "我的评论", linkUrl: "/pages/myComments/myComments" },
+            { name: "收藏地图", linkUrl: "/pages/myMaps/myMaps?choice=1" },
         ],
         otherList:[
             { name: "帮助", linkUrl: "#" },

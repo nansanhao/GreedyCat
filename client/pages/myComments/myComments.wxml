@@ -1,0 +1,6 @@
+<view class='tip'>左滑可删除</view>
+<delete-list config-list="{{list}}" bind:deleteItem="onDeleteItem" >
+    <view wx:for='{{commentList}}'  wx:key='id' slot='{{item.id}}'>
+        <comment-item item-detail="{{item}}"/>
+    </view>
+</delete-list>
