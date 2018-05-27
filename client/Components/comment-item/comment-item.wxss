@@ -13,7 +13,6 @@
 
 .comment-item-right-part {
   flex: 1;
-  height:200rpx;
   margin-left: 36rpx;
   display: flex;    
   flex-direction: column;
@@ -28,7 +27,7 @@
 
 .comment-content {
   margin: 10rpx 0;
-  height: 36px;
+  height: 54px;
   width: 100%;
   color: #353535;
   font-size:14px;
@@ -37,7 +36,7 @@
   display: -webkit-box; 
   line-height: 18px;
   -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
-  -webkit-line-clamp: 2; 
+  -webkit-line-clamp: 3; 
   overflow: hidden; 
 }
 
