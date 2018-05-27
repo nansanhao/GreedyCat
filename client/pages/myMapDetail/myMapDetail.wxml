@@ -1,4 +1,4 @@
-<!--pages/mapDetail/mapDetail.wxml-->
+<!--pages/myMapDetail/myMapDetail.wxml-->
 <view class="page-body">
     <view>
         <map latitude="{{latitude}}" longitude="{{longitude}}" markers="{{markers}}" polyline='{{polyline}}' controls="{{controls}}">
@@ -21,6 +21,16 @@
             <text>--{{userName}}</text>
         </view>
     </view>
+    <view class='markers-wrap'>
+        <text class='ui-cells-title'>左滑删除</text>
+        <view class='ui-cells'>
+            <view class='ui-cell' wx:for="{{markers}}" bindtap='navigateToWithAuthory' hover-class='ui-active' data-url='{{link.linkUrl}}'>
+                <image class='marker-img' src='../../icons/marker.png'></image>
+                <text class='ui-cell-body'>{{item.title}}</text>
+                <view class='ui-cell-foot-in-access'></view>
+            </view>
+        </view>
+    </view>
     <view class='comment-wrap'>
         <view class='comment-title'>
             <text class='comment-title-content'>用户评论</text>
@@ -30,11 +40,11 @@
         <view class='comment-body'>
             <view class='comment-body-item' wx:for="{{comments}}" wx:for-item="comment">
                 <view>
-                    <image src='{{comment.simple_user_info.avatarUrl}}' class='comment-image'></image>
+                    <image src='{{comment.avaterUrl}}' class='comment-image'></image>
                 </view>
                 <view class='comment-body-wrap'>
                     <view class='comment-body-userName'>
-                        {{comment.simple_user_info.nickName}}
+                        {{comment.userName}}
                     </view>
                     <view class='comment-body-content'>
                         {{comment.content}}
@@ -44,14 +54,12 @@
             </view>
         </view>
     </view>
-    <view class='footbar'>
-        <view class='return'>
-            <image class='return-img' src='../../icons/icon.png'></image>
-            <text>首页</text>
+    <view class='menu-wrap'>
+        <view class="menu-items">
+            <view class='menu-item' wx:for="{{menuItems}}" style="{{isMenuActive?item.style:'top:-60rpx'}} ;opacity:{{isMenuActive?'1':'0;visibility:hidden'}}">{{item.name}}</view>
         </view>
-        <view class='share'>
-            <image class='share-img' src='../../icons/icon.png'></image>
-            <text>分享</text>
+        <view class='menu-plus' bindtap='menuTap'>
+            <view  style="transition: all .3s;{{isMenuActive?'transform:rotate(-145deg)':''}}">+</view>
         </view>
     </view>
 </view>

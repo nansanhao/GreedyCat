@@ -1,5 +1,5 @@
-// pages/mapDetail/mapDetail.js
-const config = require('../../config');
+// pages/myMapDetail/myMapDetail.js
+const config = require('../../config')
 const app = getApp();
 Page({
 
@@ -32,21 +32,29 @@ Page({
             }],
         menuItems: [{
             name: "新建坐标",
-            style:"top:-240rpx",
-            linkUrl:"#"
+            style: "top:-240rpx",
+            linkUrl: "#"
         },
         {
             name: "切换地图",
             style: "top:-160rpx",
             linkUrl: "#"
-            }, 
-            {
-                name: "新建地图",
-                style: "top:-80rpx",
-                linkUrl: "#"
-            }],
+        },
+        {
+            name: "新建地图",
+            style: "top:-80rpx",
+            linkUrl: "#"
+        }],
+        isMenuActive: false,
         description: "这是一段示例文字",
         userName: "小明",
+        comments: [
+            { userName: "小红", avaterUrl: "../../icons/icon.png", content: "这是一段评论。" },
+            { userName: "小红", avaterUrl: "../../icons/icon.png", content: "这是一段评论。" },
+            { userName: "小红", avaterUrl: "../../icons/icon.png", content: "这是一段评论。" },
+            { userName: "小红", avaterUrl: "../../icons/icon.png", content: "这是一段评论。" },
+            { userName: "小红", avaterUrl: "../../icons/icon.png", content: "这是一段评论。" }
+        ],
         latitude: 40.006822,
         longitude: 116.481451,
         markers: [{
@@ -64,8 +72,25 @@ Page({
                 bgColor: '#000000',
                 padding: 8,
                 borderRadius: 4,
-            }
-        }],
+            }, 
+        },
+            {
+                latitude: 40.006822,
+                longitude: 116.481451,
+                title: 'T.I.T 创意园',
+                iconPath: "../../icons/location.png",
+                width: 40,
+                height: 40,
+                callout: {
+                    content: '我是这个气泡',
+                    display: "ALWAYS",
+                    fontSize: 12,
+                    color: '#ffffff',
+                    bgColor: '#000000',
+                    padding: 8,
+                    borderRadius: 4,
+                },
+            }],
         polyline: [{
             points: [{
                 longitude: '116.481451',
@@ -105,38 +130,18 @@ Page({
             icons: icons
         })
     },
-    
-
+    //菜单点击事件
+    menuTap: function (e) {
+        this.setData({
+            isMenuActive: !this.data.isMenuActive
+        })
+    },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        let that=this;
-        let mapid=options.mapid;
-        wx.request({
-            url: config.service.host + "/map/mapDetail",
-            data: {
-                mapid,
-                openId: app.data.userInfo.openId
-            },
-            success(res) {
-                let map=res.data.data.map;
-                let icons=that.data.icons;
-                icons[0].num = map.num_liked;
-                icons[1].num=map.num_disliked;
-                icons[2].num = map.num_collected;
-                console.log(map);
-                
-                that.setData({
-                    description:map.description,
-                    comments: map.comments,
-                    userName:map.author.nickName,
-                    icons
-                    
-                })
-            }
-        })
+
     },
 
     /**
@@ -190,9 +195,9 @@ Page({
     /**
      * 页面滚动响应
      */
-    onPageScroll:function(){
+    onPageScroll: function () {
         this.setData({
-            isMenuActive:false
+            isMenuActive: false
         })
     }
 })

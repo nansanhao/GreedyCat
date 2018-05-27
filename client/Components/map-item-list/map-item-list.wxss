@@ -1,9 +1,9 @@
 /* Components/map-item-list/map-item-list.wxss */
 .item-delete{
     position: absolute;
-    width: 100px;
+    width: 200rpx;
     height: 100%;
-    right: -100px;
+    right: -200rpx;
     color: white
 }
 .item{
@@ -18,4 +18,8 @@
     background-color: #e64340;
     color: white;
     border-radius: 0;
+    border: none;
+}
+.map-list{
+    overflow: hidden;
 }
