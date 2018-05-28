@@ -1,105 +1,132 @@
 /* pages/myMapDetail/myMapDetail.wxss */
-map{
-    width: 100%; height: 300px;
+
+map {
+    width: 100%;
+    height: 300px;
 }
-.icon-wrap{
+
+/*----------------------------------icon-----------------------------------------------*/
+.icon-wrap {
     display: flex;
     justify-content: space-around;
-    background-color: whitesmoke;
+    margin-bottom: 30rpx;
+
 }
-.icon-image{
+
+.icon-image {
     height: 120rpx;
     width: 120rpx;
-    margin:16rpx 0 0 0;
+    margin: 16rpx 0 0 0;
 }
-.icon{
+
+.icon {
     display: flex;
     flex-direction: column;
 }
-.icon-num{
+
+.icon-num {
     text-align: center;
 }
-.userName{
+
+/*----------------------------------description--------------------------------------------*/
+.authorName {
     text-align: right;
 }
-.description-wrap{
-    padding: 20rpx 30rpx;
+
+.description-wrap {
+    padding: 10px 15px;
     background-color: white;
-    
 }
-.comment-title-image{
-    height: 70rpx;
-    width: 70rpx;
+
+/*----------------------------------comment-----------------------------------------------*/
+
+.comment-title-image {
+    position: absolute;
+    top: 10px;
+    right: -30rpx;
+    height: 50rpx;
+    width: 50rpx;
 }
-.comment-title{
-    text-align: center;
+
+.comment-item {
+    padding: 10px 15px;
+    background-color: white;
     display: flex;
-    padding: 4rpx;
+    flex-direction: column;
+    border-top: 1rpx solid #d9d9d9;
+}
+
+.comment-head {
+    display: flex;
     align-items: center;
-    justify-content: center; 
-    background-color: white;
-    margin: 40rpx  0 20rpx 0;
-
-}
-.comment-title-content{
-    color: #EB6159;
-}
-.comment-image{
-    height: 120rpx;
-    width: 120rpx;
-}
-.comment-body-item{
-    padding: 20rpx 30rpx;
-    background-color: white;
-    display: flex;
-    margin:10rpx 0;
-}
-.comment-body-wrap{
-    flex: 1;
-    margin-left: 20rpx;
 }
 
-.marker-img{
-    width:80rpx;
-    height:80rpx;
+.comment-userName {
+    font-size: 14px;
 }
-.markers-wrap{
-    
-    margin: 20rpx 0;
+.comment-avatar {
+    height: 50rpx;
+    width: 50rpx;
+    border-radius: 50%;
+    margin-right: 10px;
 }
-.marker{
+
+.comment-body {
+    margin-top: 20rpx;
+}
+
+
+/*----------------------------------marker-----------------------------------------------*/
+.marker-img {
+    width: 80rpx;
+    height: 80rpx;
+}
+
+.markers-wrap {
+    margin: 10px 0;
+}
+
+.marker {
     margin: 2rpx;
     background-color: white;
     display: flex;
-    align-items: center
+    align-items: center;
 }
-.menu-wrap{
+
+.marker-tip {
+    padding: 8px 0 10px 15px;
+    font-size:14px;
+    color:#888;
+}
+
+/*----------------------------------menu-----------------------------------------------*/
+.menu-wrap {
     position: fixed;
     bottom: 80rpx;
-    right: 30rpx;
-    width: 120rpx;
-    
-
+    right: 0;
+    width: 200rpx;
 }
-.menu-plus{
+
+.menu-plus {
     height: 120rpx;
     width: 120rpx;
     border-radius: 60rpx;
-    box-shadow: 4rpx 4rpx 4rpx #888888;
-    background: #EB6159;
+    box-shadow: 4rpx 4rpx 4rpx #888;
+    background: #eb6159;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 40px;
     color: white;
 }
-.menu-item{
+
+.menu-item {
     position: absolute;
-    transition: all .4s;
-    background-color: #EB6159;
+    transition: all 0.4s;
+    background-color: #eb6159;
     border-radius: 80rpx;
     color: white;
     padding: 8rpx 12rpx;
     margin-left: -60rpx;
-    box-shadow: 4rpx 4rpx 4rpx #888888;
+    box-shadow: 4rpx 4rpx 4rpx #888;
 }

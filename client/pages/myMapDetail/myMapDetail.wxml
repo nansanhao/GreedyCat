@@ -1,65 +1,71 @@
 <!--pages/myMapDetail/myMapDetail.wxml-->
-<view class="page-body">
-    <view>
-        <map latitude="{{latitude}}" longitude="{{longitude}}" markers="{{markers}}" polyline='{{polyline}}' controls="{{controls}}">
-        </map>
-    </view>
-    <view class='section'>
-        <view class='icon-wrap'>
-            <view wx:for="{{icons}}" wx:for-item="icon" class='icon'>
-                <image src="{{icon.isActive?icon.activeImageUrl:icon.inactiveImageUrl}} " class="icon-image" data-index='{{index}}' bindtap='iconTap'></image>
-                <text class='icon-num'>{{icon.num}}</text>
-            </view>
 
-        </view>
+<view>
+    <map latitude="{{latitude}}" longitude="{{longitude}}" markers="{{markers}}" polyline='{{polyline}}' controls="{{controls}}">
+    </map>
+</view>
+<view class='icon-wrap'>
+    <view wx:for="{{icons}}" wx:for-item="icon" class='icon' wx:key='name'>
+        <image src="{{icon.imageUrl}} " class="icon-image" data-index='{{index}}' bindtap='iconTap'></image>
+        <text class='icon-num'>{{icon.num}}</text>
     </view>
-    <view class='description-wrap'>
-        <view class='description'>
-            <text>{{description}}</text>
-        </view>
-        <view class='userName'>
-            <text>--{{userName}}</text>
-        </view>
+
+</view>
+<view class='description-wrap'>
+    <view class='description'>
+        <text>{{description}}</text>
     </view>
-    <view class='markers-wrap'>
-        <text class='ui-cells-title'>左滑删除</text>
+    <view class='authorName'>
+        <text>--  {{authorName}}</text>
+    </view>
+</view>
+<view class='markers-wrap'>
+    <view class='ui-title-box'>
+        <view class='ui-title-text'>我的觅食处</view>
+    </view>
+    <view wx:if='{{markers.length}}'>
         <view class='ui-cells'>
-            <view class='ui-cell' wx:for="{{markers}}" bindtap='navigateToWithAuthory' hover-class='ui-active' data-url='{{link.linkUrl}}'>
-                <image class='marker-img' src='../../icons/marker.png'></image>
-                <text class='ui-cell-body'>{{item.title}}</text>
-                <view class='ui-cell-foot-in-access'></view>
-            </view>
+            <delete-list config-list="{{configList}}" bind:deleteItem="onDeleteItem">
+                <view wx:for='{{markers}}' wx:key='id' slot='{{item.id}}'>
+                    <view class='ui-cell' bindtap='navigateToWithAuthory' hover-class='none' data-url='{{link.linkUrl}}'>
+                        <view class='ui-cell-head'>
+                            <image src='../../icons/marker.png'></image>
+                        </view>
+                        <view class='ui-cell-body'>{{item.name}}</view>
+                        <view class='ui-cell-foot-in-access'></view>
+                    </view>
+                </view>
+            </delete-list>
+        </view>
+        <view class='marker-tip'>左滑删除</view>
+
+    </view>
+
+</view>
+<view class='comment-wrap'>
+    <view class='ui-title-box'>
+        <view class='ui-title-text'>用户评论
+            <image class='comment-title-image' src='../../icons/ui/comment.png'></image>
         </view>
     </view>
-    <view class='comment-wrap'>
-        <view class='comment-title'>
-            <text class='comment-title-content'>用户评论</text>
-            <image class='comment-title-image' src='../../icons/comment.png' aspectFit></image>
+    <view class='comment-item' wx:for="{{comments}}" wx:for-item="comment" wx:key='id'>
+        <view class='comment-head'>
+            <image src='{{comment.simple_user_info.avatarUrl}}' class='comment-avatar'></image>
+            <view class='comment-userName'>
+                {{comment.simple_user_info.nickName}}
+            </view>
         </view>
-
         <view class='comment-body'>
-            <view class='comment-body-item' wx:for="{{comments}}" wx:for-item="comment">
-                <view>
-                    <image src='{{comment.avaterUrl}}' class='comment-image'></image>
-                </view>
-                <view class='comment-body-wrap'>
-                    <view class='comment-body-userName'>
-                        {{comment.userName}}
-                    </view>
-                    <view class='comment-body-content'>
-                        {{comment.content}}
-                    </view>
-
-                </view>
-            </view>
+            {{comment.content}}
         </view>
     </view>
-    <view class='menu-wrap'>
-        <view class="menu-items">
-            <view class='menu-item' wx:for="{{menuItems}}" style="{{isMenuActive?item.style:'top:-60rpx'}} ;opacity:{{isMenuActive?'1':'0;visibility:hidden'}}">{{item.name}}</view>
-        </view>
-        <view class='menu-plus' bindtap='menuTap'>
-            <view  style="transition: all .3s;{{isMenuActive?'transform:rotate(-145deg)':''}}">+</view>
-        </view>
+</view>
+
+<view class='menu-wrap'>
+    <view class="menu-items">
+        <navigator class='menu-item' wx:for="{{menuItems}}" style="{{isMenuActive?item.style:'top:-60rpx'}} ;opacity:{{isMenuActive?'1':'0;visibility:hidden'}}" wx:key='name' hover-class='none' url='{{item.linkUrl}}' open-type='navigateTo'>{{item.name}}</navigator>
+    </view>
+    <view class='menu-plus' bindtap='menuTap'>
+        <view style="transition: all .3s;{{isMenuActive?'transform:rotate(-135deg)':''}}">+</view>
     </view>
 </view>

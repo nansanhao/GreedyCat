@@ -32,7 +32,7 @@
                 "selectedIconPath": "icons/tabbar/index_selected.png"
             },
             {
-                "pagePath": "pages/newMap/newMap",
+                "pagePath": "pages/myMapDetail/myMapDetail",
                 "text": "地图",
                 "iconPath": "icons/tabbar/map.png",
                 "selectedIconPath": "icons/tabbar/map_selected.png"

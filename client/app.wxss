@@ -121,6 +121,9 @@ page {
   background-color: #fff;
   line-height: 1.41176471;
   font-size: 17px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .ui-title-text {

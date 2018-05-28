@@ -2,95 +2,67 @@
 const config = require('../../config')
 const app = getApp();
 Page({
-
-    /**
-     * 页面的初始数据nickname
-    avaterUrl:(用户头像的url)
-     */
     data: {
         icons: [
             {
-                name: "likes",
-                num: 5255,
-                activeImageUrl: "../../icons/like.png",
-                inactiveImageUrl: "../../icons/likeNot.png",
-                isActive: false
+                name: "liked",
+                num: 0,
+                imageUrl: "../../icons/like.png",
             },
             {
-                name: "dislikes",
-                num: 125,
-                activeImageUrl: "../../icons/disLike.png",
-                inactiveImageUrl: "../../icons/disLikeNot.png",
-                isActive: false
+                name: "disliked",
+                num: 0,
+                imageUrl: "../../icons/dislike.png",
             },
             {
-                name: "collection",
-                num: 35,
-                activeImageUrl: "../../icons/collect.png",
-                inactiveImageUrl: "../../icons/collectNot.png",
-                isActive: false
+                name: "collected",
+                num: 0,
+               imageUrl: "../../icons/collect.png",
             }],
         menuItems: [{
-            name: "新建坐标",
-            style: "top:-240rpx",
+            name: "新的觅食处",
+            style: "top:-320rpx",
             linkUrl: "#"
         },
         {
             name: "切换地图",
-            style: "top:-160rpx",
+            style: "top:-240rpx",
             linkUrl: "#"
+        },
+        {
+            name: "编辑地图",
+            style: "top:-160rpx",
+            linkUrl: "/pages/newMap/newMap?mapid=" + app.data.mainMapId
         },
         {
             name: "新建地图",
             style: "top:-80rpx",
-            linkUrl: "#"
+            linkUrl: "/pages/newMap/newMap"
         }],
         isMenuActive: false,
-        description: "这是一段示例文字",
-        userName: "小明",
-        comments: [
-            { userName: "小红", avaterUrl: "../../icons/icon.png", content: "这是一段评论。" },
-            { userName: "小红", avaterUrl: "../../icons/icon.png", content: "这是一段评论。" },
-            { userName: "小红", avaterUrl: "../../icons/icon.png", content: "这是一段评论。" },
-            { userName: "小红", avaterUrl: "../../icons/icon.png", content: "这是一段评论。" },
-            { userName: "小红", avaterUrl: "../../icons/icon.png", content: "这是一段评论。" }
-        ],
-        latitude: 40.006822,
-        longitude: 116.481451,
-        markers: [{
-            latitude: 40.006822,
-            longitude: 116.481451,
-            title: 'T.I.T 创意园',
-            iconPath: "../../icons/location.png",
-            width: 40,
-            height: 40,
-            callout: {
-                content: '我是这个气泡',
-                display: "ALWAYS",
-                fontSize: 12,
-                color: '#ffffff',
-                bgColor: '#000000',
-                padding: 8,
-                borderRadius: 4,
-            }, 
-        },
-            {
-                latitude: 40.006822,
-                longitude: 116.481451,
-                title: 'T.I.T 创意园',
-                iconPath: "../../icons/location.png",
-                width: 40,
-                height: 40,
-                callout: {
-                    content: '我是这个气泡',
-                    display: "ALWAYS",
-                    fontSize: 12,
-                    color: '#ffffff',
-                    bgColor: '#000000',
-                    padding: 8,
-                    borderRadius: 4,
-                },
-            }],
+        description: "",
+        userName: "",
+        comments: [],
+        markers:[],
+        mapid : null,
+        // markers: [
+        //     {
+        //     id: 0,
+        //     latitude: 40.006822,
+        //     longitude: 116.481451,
+        //     title: 'T.I.T 创意园',
+        //     width: 40,
+        //     height: 40,
+        //     callout: {
+        //         content: '我是这个气泡',
+        //         display: "ALWAYS",
+        //         fontSize: 12,
+        //         color: '#ffffff',
+        //         bgColor: '#000000',
+        //         padding: 8,
+        //         borderRadius: 4,
+        //     },
+        // }],
         polyline: [{
             points: [{
                 longitude: '116.481451',
@@ -116,19 +88,8 @@ Page({
             },
             clickable: true
         }],
-    },
-    //icon点击事件
-    iconTap: function (e) {
-        let index = e.currentTarget.dataset.index;
-        let icons = this.data.icons;
-        icons[index].isActive = !icons[index].isActive;
-
-        let change = icons[index].isActive ? 1 : -1;
-        icons[index].num = icons[index].num + change;
-
-        this.setData({
-            icons: icons
-        })
+        longitude: '116.487847',
+        latitude: '40.002607'
     },
     //菜单点击事件
     menuTap: function (e) {
@@ -141,63 +102,43 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        if (app.data.mainMapId != null) {
+            let that = this
+            wx.request({
+                url: config.service.host + '/map/mapDetail',
+                data: {
+                    mapid: app.data.mainMapId
+                },
+                success(res) {
+                    let data = that._dataProcess(res.data.data.map)
+                    that.setData(data)
+                    console.log(res)
+                }
+            })
+        }
 
     },
 
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function () {
 
-    },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-
-    },
-    /**
-     * 页面滚动响应
-     */
-    onPageScroll: function () {
+    onPageScroll() {
         this.setData({
             isMenuActive: false
         })
+    },
+    _dataProcess(rawData) {
+        let data = {};
+        data.comments = rawData.comments;
+        data.icons = this.data.icons
+        for (let i = 0; i < 3; i++) {
+            data.icons[i].num = rawData['num_' + data.icons[i].name]
+        }
+        data.description = rawData.description
+        data.authorName = rawData.author.nickName
+        data.coordinates = rawData.coordinates
+        // this.data.menuItems[2].linkUrl += '?mapid=' + this.options.mapid
+        data.menuItems 
+        let length = data.coordinates.length
+        data.configList = Array.from({ length }, (v, i) => ({ leftDistance: 0, itemId: data.coordinates[i].id }))
+        return data
     }
 })

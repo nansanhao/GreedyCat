@@ -1,3 +1,6 @@
 {
-    "navigationBarTitleText": "地图详情"
+    "navigationBarTitleText": "地图详情",
+    "usingComponents": {
+        "delete-list": "../../Components/delete-list/delete-list"
+    }
 }
