@@ -24,6 +24,10 @@ Page({
         let that = this
         let choice = ['mapList','collectedMapList']
         choice = choice[this.options.choice]
+        wx.showLoading({
+            title: '加载中',
+            mask: true
+        })
         wx.request({
             url: config.service.host + "/user/"+choice,
             data:{
@@ -36,6 +40,7 @@ Page({
                 that.setData({
                     mapList:res.data.data.maps
                 })
+                wx.hideLoading()
             }
 
         })

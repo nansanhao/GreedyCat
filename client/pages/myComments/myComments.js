@@ -11,6 +11,10 @@ Page({
 
     onLoad: function (options) {
         let that = this
+        wx.showLoading({
+            title: '加载中',
+            mask: true
+        })
         wx.request({
             url: config.service.host + "/user/comment",
             data: {
@@ -23,6 +27,7 @@ Page({
                 that.setData({
                     commentList
                 })
+                wx.hideLoading()
             }
 
         })
