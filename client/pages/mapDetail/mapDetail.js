@@ -30,21 +30,6 @@ Page({
                 inactiveImageUrl: "../../icons/collectNot.png",
                 isActive: false
             }],
-        menuItems: [{
-            name: "新建坐标",
-            style:"top:-240rpx",
-            linkUrl:"#"
-        },
-        {
-            name: "切换地图",
-            style: "top:-160rpx",
-            linkUrl: "#"
-            }, 
-            {
-                name: "新建地图",
-                style: "top:-80rpx",
-                linkUrl: "#"
-            }],
         description: "这是一段示例文字",
         userName: "小明",
         latitude: 40.006822,
@@ -100,7 +85,6 @@ Page({
 
         let change = icons[index].isActive ? 1 : -1;
         icons[index].num = icons[index].num + change;
-
         this.setData({
             icons: icons
         })
