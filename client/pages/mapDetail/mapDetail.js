@@ -123,6 +123,11 @@ Page({
     onLoad: function (options) {
         let that = this;
         let mapid = options.mapid;
+        wx.showLoading({
+            title: '加载中',
+            mask:true
+        })
+        wx.showNavigationBarLoading()
         wx.request({
             url: config.service.host + "/map/mapDetail",
             data: {
@@ -136,6 +141,8 @@ Page({
                     title: data.map_name
                 })
                 that.setData(data)
+                wx.hideLoading()
+                wx.hideNavigationBarLoading()
             }
         })
         //设置地图控件位置

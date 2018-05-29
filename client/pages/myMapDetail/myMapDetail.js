@@ -120,6 +120,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onShow(options) {
+        this.setData({mapid:app.data.mainMapId})
         if (app.data.mainMapId != null) {
             let that = this
             wx.showNavigationBarLoading()

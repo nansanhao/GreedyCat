@@ -91,6 +91,7 @@ map {
 
 .comment-body {
     margin-top: 20rpx;
+    line-height: 20px;
 }
 
 /*----------------------------------footbar-----------------------------------------------*/
@@ -145,3 +146,4 @@ map {
 .footbar-btn::after , .footbar-btn::before {
     display: none;
 }
+
