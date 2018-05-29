@@ -164,3 +164,6 @@ page {
   text-align: right;
 }
 
+.ui-btn-area{
+    margin: 1.17647059em 15px 1em;
+}

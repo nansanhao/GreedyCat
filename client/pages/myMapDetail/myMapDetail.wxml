@@ -1,8 +1,9 @@
 <!--pages/myMapDetail/myMapDetail.wxml-->
 <view wx:if='{{mapid!=null}}' class="page-body">
-    <view>
-        <map id='myMap' latitude="{{latitude}}" longitude="{{longitude}}" markers="{{markers}}" polyline='{{polyline}}' controls="{{controls}}" bindcontroltap='bindcontroltap' show-location>
+    <view class='map-warp'>
+        <map id='myMap' latitude="{{latitude}}" longitude="{{longitude}}" markers="{{markers}}" polyline='{{polyline}}' show-location>
         </map>
+        <image bindtap='lockLocation' class='map-button' src='../../icons/ui/location.png'></image>
     </view>
     <view class='icon-wrap'>
         <view wx:for="{{icons}}" wx:for-item="icon" class='icon' wx:key='name'>
@@ -23,15 +24,15 @@
         <view class='ui-title-box'>
             <view class='ui-title-text'>我的觅食处</view>
         </view>
-        <view wx:if='{{coordinates.length}}'>
+        <view wx:if='{{markers.length}}'>
             <view class='ui-cells'>
                 <delete-list config-list="{{configList}}" bind:deleteItem="onDeleteItem">
-                    <view wx:for='{{coordinates}}' wx:key='id' slot='{{item.id}}'>
-                        <view class='ui-cell marker-item' bindtap='navigateToWithAuthory' hover-class='none' data-url='{{link.linkUrl}}'>
+                    <view wx:for='{{markers}}' wx:key='id' slot='{{item.id}}'>
+                        <view class='ui-cell marker-item' bindtap='navigateToWithAuthory' hover-class='none' data-id='{{item.id}}'>
                             <view class='ui-cell-head'>
                                 <image src='../../icons/marker.png'></image>
                             </view>
-                            <view class='ui-cell-body'>{{item.name}}</view>
+                            <view class='ui-cell-body'>{{item.title}}</view>
                             <view class='ui-cell-foot-in-access'></view>
                         </view>
                     </view>
@@ -71,7 +72,7 @@
     </view>
 </view>
 
-<view wx:else  class='lost-wrap'>
+<view wx:else class='lost-wrap'>
     <image class='lost-image' src='../../icons/404.png'></image>
     <view class='lost-text'>猫咪还没有觅食地图呢..</view>
     <navigator hover-class='none' class='lost-btn'>去我的地图里找找吧</navigator>

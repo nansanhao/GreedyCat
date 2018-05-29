@@ -47,51 +47,9 @@ Page({
         markers: [],
         mapid: null,
         author:null,
-        // markers: [
-        //     {
-        //     id: 0,
-        //     latitude: 40.006822,
-        //     longitude: 116.481451,
-        //     title: 'T.I.T 创意园',
-        //     width: 40,
-        //     height: 40,
-        //     callout: {
-        //         content: '我是这个气泡',
-        //         display: "ALWAYS",
-        //         fontSize: 12,
-        //         color: '#ffffff',
-        //         bgColor: '#000000',
-        //         padding: 8,
-        //         borderRadius: 4,
-        //     },
-        // }],
-        // polyline: [{
-        //     points: [{
-        //         longitude: '116.481451',
-        //         latitude: '40.006822'
-        //     }, {
-        //         longitude: '116.487847',
-        //         latitude: '40.002607'
-        //     }, {
-        //         longitude: '116.496507',
-        //         latitude: '40.006103'
-        //     }],
-        //     color: "#228B22",
-        //     width: 3
-        // }],
-        controls: [{
-            id: 1,
-            iconPath: '../../icons/icon.png',
-            position: {
-                left: 3,
-                top: 270,
-                width: 20,
-                height: 20
-            },
-            clickable: true
-        }],
-        longitude: '116.487847',
-        latitude: '40.002607'
+        markers:[],
+        longitude: 0,
+        latitude: 0
     },
     //菜单点击事件
     menuTap: function (e) {
@@ -112,7 +70,7 @@ Page({
         })
     },
     //控件点击事件
-    bindcontroltap:function(e){
+    lockLocation:function(e){
         this.mapCtx.moveToLocation()
     },
 
@@ -142,6 +100,14 @@ Page({
                         title: res.data.data.map.map_name,
                     })
                     console.log(res)
+                    if (that.data.markers[0]) {
+                        that.setData({
+                            longitude: that.data.markers[0].longitude,
+                            latitude: that.data.markers[0].latitude,
+                        })
+                    } else {
+                        that.mapCtx.moveToLocation()
+                    }
                 }
             })
         }
@@ -149,23 +115,7 @@ Page({
     
     onLoad(){
         let that = this
-        wx.getSystemInfo({ //设置地图控件位置
-            success: function (res) {
-                console.log(res)
-                let width = res.screenWidth;
-                let controls = that.data.controls;
-                controls[0].position.left = width - controls[0].position.width * 2;
-                that.setData({
-                    controls: controls
-                })
-            },
-
-            onReady: function () {
-                // 使用 wx.createMapContext 获取 map 上下文
-                this.mapCtx = wx.createMapContext('myMap')
-            },
-
-        })
+        this.mapCtx = wx.createMapContext('myMap')
     },
         
 
@@ -190,7 +140,6 @@ Page({
             author_id: rawData.author_id,
             author: rawData.author,
             comments: rawData.comments,
-            coordinates:rawData.coordinates
         };
 
         let icons = this.data.icons
@@ -198,17 +147,66 @@ Page({
             icons[i].num = rawData['num_' + icons[i].name]
         }
         data.icons = icons
-
-        // this.data.menuItems[2].linkUrl += '?mapid=' + this.options.mapid
-        // data.menuItems
-
-        let length = data.coordinates.length
+        let length = rawData.coordinates.length
         data.configList = Array.from({
             length
         }, (v, i) => ({
             leftDistance: 0,
-            itemId: data.coordinates[i].id
+            itemId: rawData.coordinates[i].id
         }))
+
+        let markers = changeToMaker(rawData.coordinates);
+        let map_center = getMapCenter(markers);
+        data.markers = markers;
+        data.longitude = map_center.center_longitude
+        data.latitude = map_center.center_latitude
+
         return data
-    }
+    },
+    //控件点击事件
+    lockLocation: function (e) {
+        console.log(e)
+        this.mapCtx.moveToLocation()
+    },
 })
+
+
+function changeToMaker(coordinates) {
+    let callout = {
+        content: '我是这个气泡',
+        display: "ALWAYS",
+        fontSize: 12,
+        color: '#ffffff',
+        bgColor: '#000000',
+        padding: 8,
+        borderRadius: 4,
+    };
+    let iconPath = "../../icons/location.png";
+    let width = 40;
+    let height = 40;
+    let markers = coordinates.map(function (marker, index) {
+        marker.iconPath = iconPath;
+        marker.width = width;
+        marker.height = height;
+        marker.title = marker.name;
+        marker.callout = callout;
+        marker.callout.content = marker.name;
+        delete marker.name;
+        return marker;
+    })
+    return markers;
+}
+function getMapCenter(markers) {
+    let center_latitude = 0;
+    let center_longitude = 0;
+    let num_point = markers.length;
+    markers.forEach(function (points, index) {
+        center_latitude += points.latitude / num_point;
+        center_longitude += points.longitude / num_point;
+    })
+    let markers_center = {
+        center_latitude,
+        center_longitude
+    }
+    return markers_center;
+}

@@ -5,6 +5,21 @@ map {
     height: 300px;
 }
 
+.map-warp {
+    position: relative;
+}
+
+.map-button {
+    position: absolute;
+    height: 50rpx;
+    width: 50rpx;
+    border-radius: 4px;
+    background-color: #fff;
+    right: 20px;
+    bottom:20px;
+    border: 1rpx solid #d9d9d9;
+}
+
 /*----------------------------------icon-----------------------------------------------*/
 
 .icon-wrap {

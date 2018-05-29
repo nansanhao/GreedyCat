@@ -1,8 +1,9 @@
 <!-- pages/mapDetail/mapDetail.wxml -->
 <view class="page-body">
-    <view>
-        <map id='myMap' latitude="{{latitude}}" longitude="{{longitude}}" markers="{{markers}}" polyline='{{polyline}}' controls="{{controls}}" bindcontroltap='bindcontroltap' show-location>
+    <view class='map-warp'>
+        <map id='myMap' latitude="{{latitude}}" longitude="{{longitude}}" markers="{{markers}}"  show-location>
         </map>
+        <image bindtap='lockLocation' class='map-button' src='../../icons/ui/location.png'></image>
     </view>
     <view class="icon-wrap">
         <view wx:for="{{icons}}" wx:for-item="icon" class="icon" wx:key='name'>

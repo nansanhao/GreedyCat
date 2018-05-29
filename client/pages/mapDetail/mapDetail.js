@@ -9,29 +9,29 @@ Page({
      */
     data: {
         icons: [{
-                name: "liked",
-                num: 0,
-                activeImageUrl: "../../icons/like.png",
-                inactiveImageUrl: "../../icons/likeNot.png",
-                isActive: false
-            },
-            {
-                name: "disliked",
-                num: 0,
-                activeImageUrl: "../../icons/disLike.png",
-                inactiveImageUrl: "../../icons/disLikeNot.png",
-                isActive: false
-            },
-            {
-                name: "collected",
-                num: 0,
-                activeImageUrl: "../../icons/collect.png",
-                inactiveImageUrl: "../../icons/collectNot.png",
-                isActive: false
-            }],
-        latitude: 83.111120,
-        longitude: 22.111111,
-        mapid:"",
+            name: "liked",
+            num: 0,
+            activeImageUrl: "../../icons/like.png",
+            inactiveImageUrl: "../../icons/likeNot.png",
+            isActive: false
+        },
+        {
+            name: "disliked",
+            num: 0,
+            activeImageUrl: "../../icons/dislike.png",
+            inactiveImageUrl: "../../icons/dislikeNot.png",
+            isActive: false
+        },
+        {
+            name: "collected",
+            num: 0,
+            activeImageUrl: "../../icons/collect.png",
+            inactiveImageUrl: "../../icons/collectNot.png",
+            isActive: false
+        }],
+        latitude: 0,
+        longitude: 0,
+        mapid: "",
         map_name: "",
         description: "这是一段示例文字",
         province: "",
@@ -42,48 +42,7 @@ Page({
         author_id: "",
         main_image_url: "",
         author: {},
-        markers: [{
-            latitude: 40.006822,
-            longitude: 116.481451,
-            title: 'T.I.T 创意园',
-            iconPath: "../../icons/location.png",
-            width: 40,
-            height: 40,
-            callout: {
-                content: '我是这个气泡',
-                display: "ALWAYS",
-                fontSize: 12,
-                color: '#ffffff',
-                bgColor: '#000000',
-                padding: 8,
-                borderRadius: 4,
-            }
-        }],
-        polyline: [{
-            points: [{
-                longitude: '116.481451',
-                latitude: '40.006822'
-            }, {
-                longitude: '116.487847',
-                latitude: '40.002607'
-            }, {
-                longitude: '116.496507',
-                latitude: '40.006103'
-            }],
-            color: "#228B22",
-            width: 3
-        }],
-        controls: [{
-            id: 1,
-            iconPath: '../../icons/icon.png',
-            position: {
-                left: 350,
-                top: 270,
-                width: 20,
-                height: 20
-            },
-            clickable: true
-        }],
+        markers: [],
     },
     //icon点击事件
     iconTap: function (e) {
@@ -95,51 +54,58 @@ Page({
         this.setData({
             icons: icons
         })
-        let data={
+        let data = {
             open_id: app.data.userInfo.openId,
-	        mapid: this.options.mapid,
+            mapid: this.options.mapid,
             liked: icons[0].isActive,
             disliked: icons[1].isActive,
             collected: icons[2].isActive
         }
         //返回给数据库
         wx.request({
-            url: config.service.host +"/user/admiration",
-            method:"POST",
-            data:data,
+            url: config.service.host + "/user/admiration",
+            method: "POST",
+            data: data,
             success: function (res) {
                 console.log("icons功能回调")
             }
         })
     },
     //控件点击事件
-    bindcontroltap: function (e) {
+    lockLocation: function (e) {
+        console.log(e)
         this.mapCtx.moveToLocation()
     },
-    //返回首页
-    returnTap: function (e) {
-        wx.switchTab({
-            url: '/pages/index/index'
-        })
-    },
     //新建评论
-    newComment:function(e){
+    newComment: function (e) {
         wx.navigateTo({
-            url: '/pages/comment/comment?mapid='+this.options.mapid
+            url: '/pages/comment/comment?mapid=' + this.options.mapid
         })
     },
 
+    onShow: function () {
+        let mapid = this.options.mapid
+        let that = this
+        wx.request({
+            url: config.service.host + '/map/comments',
+            data: {
+                mapid
+            },
+            success(res) {
+                that.setData({ comments: res.data.data.comments })
+            }
+        })
+        
 
+    },
 
-    /**
-     * 生命周期函数--监听页面加载
-     */
     onLoad: function (options) {
+        this.mapCtx = wx.createMapContext('myMap') //地图组件设置
         let that = this;
         let mapid = options.mapid;
         wx.showLoading({
             title: '加载中',
-            mask:true
+            mask: true
         })
         wx.showNavigationBarLoading()
         wx.request({
@@ -157,26 +123,16 @@ Page({
                 that.setData(data)
                 wx.hideLoading()
                 wx.hideNavigationBarLoading()
+                if (that.data.markers[0]) {
+                    that.setData({
+                        longitude: that.data.markers[0].longitude,
+                        latitude: that.data.markers[0].latitude,
+                    })
+                } else {
+                    that.mapCtx.moveToLocation()
+                }
             }
         })
-        //设置地图控件位置
-        wx.getSystemInfo({
-            success: function (res) {
-                console.log(res)
-                let width = res.screenWidth;
-                let controls = that.data.controls;
-                controls[0].position.left = width - controls[0].position.width * 2;
-                that.setData({
-                    controls: controls
-                })
-            },
-
-        })
-
-    },
-    onReady: function () {
-        // 使用 wx.createMapContext 获取 map 上下文
-        this.mapCtx = wx.createMapContext('myMap')
     },
     onShareAppMessage(res) {
         let that = this;
@@ -200,9 +156,9 @@ Page({
     },
 
     _processData(rawData) {
-       console.log(rawData)
+        console.log(rawData)
         let data = {
-            mapid : rawData.mapid,
+            mapid: rawData.mapid,
             map_name: rawData.map_name,
             description: rawData.description,
             province: rawData.province,
@@ -212,20 +168,18 @@ Page({
             category: rawData.category,
             author_id: rawData.author_id,
             author: rawData.author,
-            comments: rawData.comments,
-
         }
         let icons = this.data.icons
-        for (let i=0;i<3;i++) {
-            icons[i].num = rawData['num_'+icons[i].name]
-            if(rawData.admiration[0]) {
-                icons[i].isActive = !!rawData.admiration[0][icons[i].name] 
+        for (let i = 0; i < 3; i++) {
+            icons[i].num = rawData['num_' + icons[i].name]
+            if (rawData.admiration[0]) {
+                icons[i].isActive = !!rawData.admiration[0][icons[i].name]
             }
         }
         data.icons = icons
 
-        let markers= changeToMaker(rawData.coordinates);
-        let map_center=getMapCenter(markers);
+        let markers = changeToMaker(rawData.coordinates);
+        let map_center = getMapCenter(markers);
         data.markers = markers;
         data.longitude = map_center.center_longitude
         data.latitude = map_center.center_latitude

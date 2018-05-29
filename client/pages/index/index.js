@@ -57,6 +57,10 @@ Page({
     onShow() {
         if (app.data.city) {
             this.setData({ city: app.data.city })
+            this._refreshMapList()
+            this._loadList('like')
+            this._loadList('time')
+            this._loadList('hot')
         } 
         if(this.data.keyword!='') {
             this._refreshSearchBar()
@@ -72,6 +76,7 @@ Page({
                 that.confirmLocation()
             } else {
                 util.showModel('提示', '您关闭了定位信息，部分功能将受到限制，若要重新授权请按如下步骤\n右上角"···"->"关于"->右上角"···"->设置')
+                that._refreshMapList()
                 that._loadList('like')
                 that._loadList('time')
                 that._loadList('hot')
@@ -131,6 +136,7 @@ Page({
                     city
                 })
                 app.data.city = city
+                that._refreshMapList()
                 that._loadList('like')
                 that._loadList('time')
                 that._loadList('hot')
