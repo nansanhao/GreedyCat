@@ -90,11 +90,26 @@ Page({
         let index = e.currentTarget.dataset.index;
         let icons = this.data.icons;
         icons[index].isActive = !icons[index].isActive;
-
         let change = icons[index].isActive ? 1 : -1;
         icons[index].num = icons[index].num + change;
         this.setData({
             icons: icons
+        })
+        let data={
+            open_id: app.data.userInfo.openId,
+	        mapid: this.options.mapid,
+            liked: icons[0].isActive,
+            disliked: icons[1].isActive,
+            collected: icons[2].isActive
+        }
+        //返回给数据库
+        wx.request({
+            url: config.service.host +"/user/admiration",
+            method:"POST",
+            data:data,
+            success: function (res) {
+                console.log("icons功能回调")
+            }
         })
     },
     //控件点击事件

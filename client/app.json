@@ -10,7 +10,10 @@
         "pages/resultList/resultList",
         "pages/chooseCity/chooseCity",
         "pages/myComments/myComments",
-        "pages/comment/comment"
+        "pages/comment/comment",
+        "pages/ feedback/ feedback",
+        "pages/help/help",
+        "pages/newCoordinate/newCoordinate"
     ],
     "window": {
         "backgroundColor": "#EB6159",
