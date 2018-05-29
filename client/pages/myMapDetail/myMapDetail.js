@@ -150,7 +150,7 @@ Page({
     },
     //控件点击事件
     bindcontroltap:function(e){
-
+        this.mapCtx.moveToLocation()
     },
 
     /**
@@ -201,7 +201,8 @@ Page({
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
-
+        // 使用 wx.createMapContext 获取 map 上下文
+        this.mapCtx = wx.createMapContext('myMap')
     },
 
     /**

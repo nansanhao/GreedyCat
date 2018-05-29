@@ -1,7 +1,7 @@
 <!--pages/myMapDetail/myMapDetail.wxml-->
 <view class="page-body">
     <view>
-        <map latitude="{{latitude}}" longitude="{{longitude}}" markers="{{markers}}" polyline='{{polyline}}' controls="{{controls}}" bindcontroltap='bindcontroltap'>
+        <map id='myMap' latitude="{{latitude}}" longitude="{{longitude}}" markers="{{markers}}" polyline='{{polyline}}' controls="{{controls}}" bindcontroltap='bindcontroltap' show-location>
         </map>
     </view>
     <view class='section'>
