@@ -30,25 +30,19 @@ Page({
                 inactiveImageUrl: "../../icons/collectNot.png",
                 isActive: false
             }],
-        menuItems: [{
-            name: "新建坐标",
-            style:"top:-240rpx",
-            linkUrl:"#"
-        },
-        {
-            name: "切换地图",
-            style: "top:-160rpx",
-            linkUrl: "#"
-            }, 
-            {
-                name: "新建地图",
-                style: "top:-80rpx",
-                linkUrl: "#"
-            }],
-        description: "这是一段示例文字",
-        userName: "小明",
         latitude: 40.006822,
         longitude: 116.481451,
+        mapid:"",
+        map_name: "",
+        description: "这是一段示例文字",
+        province:"",
+        city:"",
+        locality:"",
+        create_time:"",
+        category:"",
+        author_id:"",
+        main_image_url:"",
+        author:{},
         markers: [{
             latitude: 40.006822,
             longitude: 116.481451,
@@ -100,20 +94,35 @@ Page({
 
         let change = icons[index].isActive ? 1 : -1;
         icons[index].num = icons[index].num + change;
-
         this.setData({
             icons: icons
         })
     },
-    
+    //控件点击事件
+    bindcontroltap: function (e) {
+        console.log(this.data)
+    },
+    //返回首页
+    returnTap: function (e) {
+        console.log(e)
+        console.log("kds")
+        wx.switchTab({
+            url: '/pages/index/index'
+        })
+    },
+    //分享
+    shareTap: function (e) {
+        console.log(this.options)
+    },
+
 
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        let that=this;
-        let mapid=options.mapid;
+        let that = this;
+        let mapid = options.mapid;
         wx.request({
             url: config.service.host + "/map/mapDetail",
             data: {
@@ -121,22 +130,47 @@ Page({
                 openId: app.data.userInfo.openId
             },
             success(res) {
-                let map=res.data.data.map;
-                let icons=that.data.icons;
+                let map = res.data.data.map;
+                let icons = that.data.icons;
                 icons[0].num = map.num_liked;
-                icons[1].num=map.num_disliked;
+                icons[1].num = map.num_disliked;
                 icons[2].num = map.num_collected;
                 console.log(map);
-                
+
+                //设置标题栏title
+                wx.setNavigationBarTitle({
+                    title: map.map_name
+                })
+
                 that.setData({
-                    description:map.description,
+                    map_name: map.map_name,
+                    description: map.description,
+                    province: map.province,
+                    city: map.city,
+                    locality: map.locality,
+                    create_time: map.create_time,
+                    category: map.category,
+                    author_id: map.author_id,
+                    author: map.author,
                     comments: map.comments,
-                    userName:map.author.nickName,
                     icons
-                    
                 })
             }
         })
+        //设置地图控件位置
+        wx.getSystemInfo({
+            success: function (res) {
+                console.log(res)
+                let width = res.screenWidth;
+                let controls = that.data.controls;
+                controls[0].position.left = width - controls[0].position.width * 2;
+                that.setData({
+                    controls: controls
+                })
+            },
+
+        })
+
     },
 
     /**
@@ -184,15 +218,24 @@ Page({
     /**
      * 用户点击右上角分享
      */
-    onShareAppMessage: function () {
+    onShareAppMessage: function (res) {
+        let that = this;
+        if (res.from === 'button') {
+            // 来自页面内转发按钮
+            console.log(res.target)
+        }
+        return {
+            title: that.data.map_name,
+            path: '/page/mapDetail/mapDetail?mapid=' + that.options.mapid
+        }
 
     },
     /**
      * 页面滚动响应
      */
-    onPageScroll:function(){
+    onPageScroll: function () {
         this.setData({
-            isMenuActive:false
+            isMenuActive: false
         })
     }
 })

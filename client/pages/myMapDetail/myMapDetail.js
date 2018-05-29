@@ -109,7 +109,7 @@ Page({
             id: 1,
             iconPath: '../../icons/icon.png',
             position: {
-                left: 350,
+                left: 3,
                 top: 270,
                 width: 20,
                 height: 20
@@ -135,13 +135,66 @@ Page({
         this.setData({
             isMenuActive: !this.data.isMenuActive
         })
+        let that=this;
+        wx.getSystemInfo({
+            success: function (res) {
+                console.log(res)
+                let width = res.screenWidth;
+                let controls = that.data.controls;
+                controls[0].position.left = width - controls[0].position.width * 2;
+                that.setData({
+                    controls: controls
+                })
+            },
+        })
+    },
+    //控件点击事件
+    bindcontroltap:function(e){
+
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        let that = this;
+        let mapid = options.mapid;
+        wx.request({
+            url: config.service.host + "/map/mapDetail",
+            data: {
+                mapid,
+                openId: app.data.userInfo.openId
+            },
+            success(res) {
+                let map = res.data.data.map;
+                let icons = that.data.icons;
+                icons[0].num = map.num_liked;
+                icons[1].num = map.num_disliked;
+                icons[2].num = map.num_collected;
+                console.log(map);
 
+                that.setData({
+                    description: map.description,
+                    comments: map.comments,
+                    userName: map.author.nickName,
+                    icons
+                })
+            }
+        })
+
+        //设置地图控件位置
+        wx.getSystemInfo({
+            success: function (res) {
+                console.log(res)
+                let width = res.screenWidth;
+                let controls = that.data.controls;
+                controls[0].position.left = width - controls[0].position.width * 2;
+                that.setData({
+                    controls: controls
+                })
+            },
+            
+        })
     },
 
     /**
