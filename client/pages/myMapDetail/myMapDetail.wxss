@@ -99,6 +99,11 @@ map {
     color:#888;
 }
 
+.marker-item{
+    border-top:1rpx solid #d9d9d9;
+}
+
+
 /*----------------------------------menu-----------------------------------------------*/
 .menu-wrap {
     position: fixed;

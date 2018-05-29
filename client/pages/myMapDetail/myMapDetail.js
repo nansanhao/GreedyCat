@@ -63,20 +63,20 @@ Page({
         //         borderRadius: 4,
         //     },
         // }],
-        polyline: [{
-            points: [{
-                longitude: '116.481451',
-                latitude: '40.006822'
-            }, {
-                longitude: '116.487847',
-                latitude: '40.002607'
-            }, {
-                longitude: '116.496507',
-                latitude: '40.006103'
-            }],
-            color: "#228B22",
-            width: 3
-        }],
+        // polyline: [{
+        //     points: [{
+        //         longitude: '116.481451',
+        //         latitude: '40.006822'
+        //     }, {
+        //         longitude: '116.487847',
+        //         latitude: '40.002607'
+        //     }, {
+        //         longitude: '116.496507',
+        //         latitude: '40.006103'
+        //     }],
+        //     color: "#228B22",
+        //     width: 3
+        // }],
         controls: [{
             id: 1,
             iconPath: '../../icons/icon.png',
@@ -104,6 +104,7 @@ Page({
     onLoad: function (options) {
         if (app.data.mainMapId != null) {
             let that = this
+            wx.showNavigationBarLoading()
             wx.request({
                 url: config.service.host + '/map/mapDetail',
                 data: {
@@ -112,6 +113,10 @@ Page({
                 success(res) {
                     let data = that._dataProcess(res.data.data.map)
                     that.setData(data)
+                    wx.hideNavigationBarLoading()
+                    wx.setNavigationBarTitle({
+                        title: res.data.data.map.map_name,
+                    })
                     console.log(res)
                 }
             })

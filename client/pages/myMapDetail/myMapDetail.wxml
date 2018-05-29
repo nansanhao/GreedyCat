@@ -23,11 +23,11 @@
     <view class='ui-title-box'>
         <view class='ui-title-text'>我的觅食处</view>
     </view>
-    <view wx:if='{{markers.length}}'>
+    <view wx:if='{{coordinates.length}}'>
         <view class='ui-cells'>
             <delete-list config-list="{{configList}}" bind:deleteItem="onDeleteItem">
-                <view wx:for='{{markers}}' wx:key='id' slot='{{item.id}}'>
-                    <view class='ui-cell' bindtap='navigateToWithAuthory' hover-class='none' data-url='{{link.linkUrl}}'>
+                <view wx:for='{{coordinates}}' wx:key='id' slot='{{item.id}}' >
+                    <view class='ui-cell marker-item' bindtap='navigateToWithAuthory' hover-class='none' data-url='{{link.linkUrl}}'>
                         <view class='ui-cell-head'>
                             <image src='../../icons/marker.png'></image>
                         </view>
