@@ -1,4 +1,4 @@
-<!--Components/map-item/map-item.wxml-->
+<!--Components/map-item/comment-item.wxml-->
  <view class="coordinate-item-box">
   <image class="coordinate-item-image" src="{{itemDetail.main_image_url||'../../icons/lost.png'}}"></image>
   <view class="coordinate-item-right-part">

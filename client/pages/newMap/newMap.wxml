@@ -27,7 +27,7 @@
     <view class='section'>
         <view class="ui-cells-title">分类（多选）</view>
         <view class='tags'>
-            <view wx:for="{{tags}}" wx:for-item="tag" class="tag {{tag.isChoosed?'tag-isChoosed':''}}" bindtap="toggleTagState" id="{{index}}" >
+            <view wx:for="{{tags}}" wx:for-item="tag" class="tag {{tag.isChoosed?'tag-isChoosed':''}}" bindtap="toggleTagState" id="{{index}}" wx:key='tagName'>
                 {{tag.tagName}}
             </view>
         </view>
@@ -36,7 +36,7 @@
     <view class='section'>
         <view class="ui-cells-title">简介</view>
         <view class="textarea-wrp">
-        <textarea name="description" placeholder='多行输入' auto-focus="true" style="height: 300rpx"  maxlength="{{textareaMaxLen}}"  bindinput="bindTextAreaChange" adjust-position="true"/>
+        <textarea name="description" placeholder='多行输入' auto-focus="true" style="height: 300rpx"  maxlength="{{textareaMaxLen}}"  bindinput="bindTextAreaChange"  maxlength='50' adjust-position="true"/>
       </view>
         <view class='textarea-len'>{{textareaLen}}/{{textareaMaxLen}}</view>
     </view>

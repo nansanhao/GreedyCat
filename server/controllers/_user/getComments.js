@@ -11,7 +11,7 @@ module.exports = async (ctx, next) => {
     try {
         let res = await mysql('comment').where({
             open_id
-        }).select()
+        }).select('comment.id','comment.content','comment.is_public','map.map_name','map.main_image_url','map.city','map.locality').innerJoin('map', 'map.mapid', 'comment.mapid')
 
         ctx.state.data = {
             comments: res

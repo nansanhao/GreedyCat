@@ -7,28 +7,34 @@
 </view>
 
 <view class='icon-wrap'>
-    <view wx:for="{{icons}}" wx:for-item="icon" class='icon' wx:key='name'> 
+    <view wx:for="{{icons}}" wx:for-item="icon" class='icon' wx:key='name'>
         <image src="{{icon.imageUrl}} " class="icon-image"></image>
         <text class='icon-num'>{{icon.num}}</text>
     </view>
 </view>
 
 <view class='ui-cells hr'>
-    <view wx:for="{{linksList}}" wx:for-item="link" class='ui-cell' wx:key='name' bindtap='navigateToWithAuthory' hover-class='ui-active' data-url='{{link.linkUrl}}' >
+    <view wx:for="{{linksList}}" wx:for-item="link" class='ui-cell' wx:key='name' bindtap='navigateToWithAuthory' hover-class='ui-active' data-url='{{link.linkUrl}}'>
+        <view class='ui-cell-head'>
+            <image src='{{link.iconSrc}}'></image>
+        </view>
         <view class='ui-cell-body'>{{link.name}}</view>
         <view class='ui-cell-foot-in-access'></view>
     </view>
 </view>
 
 <view class='ui-cells hr'>
-    <view wx:for="{{otherList}}" wx:for-item="link" class='ui-cell' wx:key='name' bindtap='navigateTo' hover-class='ui-active' data-url='{{link.linkUrl}}' >
+    <view wx:for="{{otherList}}" wx:for-item="link" class='ui-cell' wx:key='name' bindtap='navigateTo' hover-class='ui-active' data-url='{{link.linkUrl}}'>
+        <view class='ui-cell-head'>
+            <image src='{{link.iconSrc}}'></image>
+        </view>
         <view class='ui-cell-body'>{{link.name}}</view>
         <view class='ui-cell-foot-in-access'></view>
     </view>
 </view>
 
 
-<modal modal-hidden="{{modalHidden}}"  animation="true" costume="true" width='400'>
+<modal modal-hidden="{{modalHidden}}" animation="true" costume="true" width='400'>
     <view class="modal-inner">
         <icon class="inner-close" type='cancel' color='#eb6159' size='20' bindtap='onClose'></icon>
         <image class='inner-image' src='../../icons/lost.png'></image>

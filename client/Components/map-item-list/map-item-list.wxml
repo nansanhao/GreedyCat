@@ -1,3 +1,4 @@
+
 <view wx:for="{{mapList}}" wx:key="map id" class='map-list'>
     <view class='item' data-index="{{index}}" style="{{item.txtStyle}}" bindtouchstart='bindtouchstart' bindtouchmove='bindtouchmove' bindtouchend='bindtouchend' >
         <view class='item-delete'>
@@ -6,6 +7,5 @@
         <view bindtap='bindtap' data-url='{{"../myMapDetail/myMapDetail?mapid="+item.mapid}}'>
             <map-item item-detail="{{item}}" />
         </view>
-        
     </view>
 </view>

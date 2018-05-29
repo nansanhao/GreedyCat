@@ -5,10 +5,12 @@ map {
     height: 300px;
 }
 
+/*----------------------------------icon-----------------------------------------------*/
+
 .icon-wrap {
     display: flex;
     justify-content: space-around;
-    background-color: whitesmoke;
+    margin-bottom: 30rpx;
 }
 
 .icon-image {
@@ -26,93 +28,122 @@ map {
     text-align: center;
 }
 
-.userName {
+/*----------------------------------description--------------------------------------------*/
+
+.authorName {
     text-align: right;
 }
 
 .description-wrap {
-    padding: 20rpx 30rpx;
+    padding: 10px 15px;
     background-color: white;
+    margin-bottom: 10px;
 }
+
+.description-locality {
+    color: #eb6159;
+    font-size: 14px;
+    text-align: right;
+    padding: 0 15px 10px 0;
+}
+
+/*----------------------------------comment-----------------------------------------------*/
 
 .comment-title-image {
-    height: 70rpx;
-    width: 70rpx;
     position: absolute;
-    right: 0;
+    top: 10px;
+    right: -30rpx;
+    height: 50rpx;
+    width: 50rpx;
 }
 
-.comment-title {
-    text-align: center;
+
+.comment-btn {
+    position: absolute;
+    right: 15px;
+    width: 50rpx;
+    height: 50rpx;
+}
+
+.comment-item {
+    padding: 10px 15px;
+    background-color: white;
     display: flex;
-    padding: 20rpx 30rpx;
+    flex-direction: column;
+    border-top: 1rpx solid #d9d9d9;
+}
+
+.comment-head {
+    display: flex;
     align-items: center;
-    justify-content: center;
-    background-color: white;
-    margin: 40rpx 0 20rpx 0;
 }
 
-.comment-title-content {
-    color: #eb6159;
+.comment-userName {
+    font-size: 14px;
 }
 
-.comment-image {
-    height: 120rpx;
-    width: 120rpx;
+.comment-avatar {
+    height: 50rpx;
+    width: 50rpx;
+    border-radius: 50%;
+    margin-right: 10px;
 }
 
-.comment-wrap {
-    margin-bottom: 200rpx;
+.comment-body {
+    margin-top: 20rpx;
+    line-height: 20px;
 }
 
-.comment-body-item {
-    padding: 20rpx 30rpx;
-    background-color: white;
-    display: flex;
-    margin: 10rpx 0;
-}
-
-.comment-body-wrap {
-    flex: 1;
-    margin-left: 20rpx;
-}
+/*----------------------------------footbar-----------------------------------------------*/
 
 .footbar {
     position: fixed;
     bottom: 0;
     display: flex;
     width: 100%;
-    background-color: #eb6159;
+    background-color: #fff;
     color: white;
-    padding: 20rpx 0;
-    opacity: 0.9;
+    opacity: 0.8;
 }
 
-.return-img, .share-img {
-    width: 70rpx;
-    height: 70rpx;
-    margin-right: 20rpx;
+.footbar-image {
+    width: 25px;
+    height: 25px;
+    margin-right: 40rpx;
 }
 
-.return, .share {
+.footbar-item {
     display: flex;
     align-items: center;
     justify-content: center;
     flex: 1;
     font-size: 18px;
+    box-sizing: border-box;
+    position: relative;
 }
 
-.share-btn {
+
+
+.footbar-item:last-child:before {
+    content: " ";
+    position: absolute;
+    height: 80%;
+    left: 0;
+    top:10%;
+    border-left: 4rpx solid #eb6159;
+}
+
+.footbar-btn {
     margin: 0;
-    background-color: #eb6159;
+    padding: 10px 20px;
+    text-align: center;
+    background-color: #fff;
     border: none;
-    color: white;
+    color: #eb6159;
+    line-height: 20px;
 }
 
-.share-btn::after {
-    border: none;
+.footbar-btn::after , .footbar-btn::before {
+    display: none;
 }
 
-.return {
-    border-right: 2rpx whitesmoke solid;
-}
