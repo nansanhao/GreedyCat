@@ -89,6 +89,7 @@ map{
     background-color: #EB6159;
     border: none;
     color: white;
+    position: initial;
 }
 .return{
     border-right: 2rpx whitesmoke solid;
