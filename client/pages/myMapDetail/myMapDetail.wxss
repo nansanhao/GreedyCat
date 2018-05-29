@@ -36,6 +36,13 @@ map {
 .description-wrap {
     padding: 10px 15px;
     background-color: white;
+} 
+
+.description-locality {
+    color:#eb6159;
+    font-size:14px;
+    text-align: right;
+    padding: 0 15px 10px 0;
 }
 
 /*----------------------------------comment-----------------------------------------------*/

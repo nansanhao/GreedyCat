@@ -16,6 +16,10 @@ page {
   font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
 }
 
+.page-body {
+  padding-bottom:100px;
+}
+
 
 /* --------------------------------------globalUI----------------------------------------- */
 

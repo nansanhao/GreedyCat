@@ -46,6 +46,7 @@ Page({
         comments: [],
         markers: [],
         mapid: null,
+        author:null,
         // markers: [
         //     {
         //     id: 0,
@@ -122,6 +123,10 @@ Page({
         if (app.data.mainMapId != null) {
             let that = this
             wx.showNavigationBarLoading()
+            wx.showLoading({
+                title: '加载中',
+                mask:true
+            })
             wx.request({
                 url: config.service.host + '/map/mapDetail',
                 data: {
@@ -131,6 +136,7 @@ Page({
                     let data = that._dataProcess(res.data.data.map)
                     that.setData(data)
                     wx.hideNavigationBarLoading()
+                    wx.hideLoading()
                     wx.setNavigationBarTitle({
                         title: res.data.data.map.map_name,
                     })
@@ -165,17 +171,31 @@ Page({
         })
     },
     _dataProcess(rawData) {
-        let data = {};
-        data.comments = rawData.comments;
-        data.icons = this.data.icons
+        console.log(rawData)
+        let data = {
+            mapid : rawData.mapid,
+            map_name: rawData.map_name,
+            description: rawData.description,
+            province: rawData.province,
+            city: rawData.city,
+            locality: rawData.locality,
+            create_time: rawData.create_time,
+            category: rawData.category,
+            author_id: rawData.author_id,
+            author: rawData.author,
+            comments: rawData.comments,
+            coordinates:rawData.coordinates
+        };
+
+        let icons = this.data.icons
         for (let i = 0; i < 3; i++) {
-            data.icons[i].num = rawData['num_' + data.icons[i].name]
+            icons[i].num = rawData['num_' + icons[i].name]
         }
-        data.description = rawData.description
-        data.authorName = rawData.author.nickName
-        data.coordinates = rawData.coordinates
+        data.icons = icons
+
         // this.data.menuItems[2].linkUrl += '?mapid=' + this.options.mapid
-        data.menuItems
+        // data.menuItems
+
         let length = data.coordinates.length
         data.configList = Array.from({
             length
