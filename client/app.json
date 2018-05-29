@@ -10,7 +10,6 @@
         "pages/resultList/resultList",
         "pages/chooseCity/chooseCity",
         "pages/myComments/myComments"
-
     ],
     "window": {
         "backgroundColor": "#EB6159",

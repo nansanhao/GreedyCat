@@ -3,8 +3,7 @@ const config = require('../../config')
 const app = getApp();
 Page({
     data: {
-        icons: [
-            {
+        icons: [{
                 name: "liked",
                 num: 0,
                 imageUrl: "../../icons/like.png",
@@ -17,34 +16,36 @@ Page({
             {
                 name: "collected",
                 num: 0,
-               imageUrl: "../../icons/collect.png",
-            }],
+                imageUrl: "../../icons/collect.png",
+            }
+        ],
         menuItems: [{
-            name: "新的觅食处",
-            style: "top:-320rpx",
-            linkUrl: "#"
-        },
-        {
-            name: "切换地图",
-            style: "top:-240rpx",
-            linkUrl: "#"
-        },
-        {
-            name: "编辑地图",
-            style: "top:-160rpx",
-            linkUrl: "/pages/newMap/newMap?mapid=" + app.data.mainMapId
-        },
-        {
-            name: "新建地图",
-            style: "top:-80rpx",
-            linkUrl: "/pages/newMap/newMap"
-        }],
+                name: "新的觅食处",
+                style: "top:-320rpx",
+                linkUrl: "#"
+            },
+            {
+                name: "切换地图",
+                style: "top:-240rpx",
+                linkUrl: "#"
+            },
+            {
+                name: "编辑地图",
+                style: "top:-160rpx",
+                linkUrl: "/pages/newMap/newMap?mapid=" + app.data.mainMapId
+            },
+            {
+                name: "新建地图",
+                style: "top:-80rpx",
+                linkUrl: "/pages/newMap/newMap"
+            }
+        ],
         isMenuActive: false,
         description: "",
         userName: "",
         comments: [],
-        markers:[],
-        mapid : null,
+        markers: [],
+        mapid: null,
         // markers: [
         //     {
         //     id: 0,
@@ -81,7 +82,7 @@ Page({
             id: 1,
             iconPath: '../../icons/icon.png',
             position: {
-                left: 350,
+                left: 3,
                 top: 270,
                 width: 20,
                 height: 20
@@ -96,12 +97,28 @@ Page({
         this.setData({
             isMenuActive: !this.data.isMenuActive
         })
+        let that = this;
+        wx.getSystemInfo({
+            success: function (res) {
+                console.log(res)
+                let width = res.screenWidth;
+                let controls = that.data.controls;
+                controls[0].position.left = width - controls[0].position.width * 2;
+                that.setData({
+                    controls: controls
+                })
+            },
+        })
+    },
+    //控件点击事件
+    bindcontroltap: function (e) {
+
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function (options) {
+    onShow(options) {
         if (app.data.mainMapId != null) {
             let that = this
             wx.showNavigationBarLoading()
@@ -121,8 +138,25 @@ Page({
                 }
             })
         }
-
     },
+    
+    onLoad(){
+        let that = this
+        wx.getSystemInfo({ //设置地图控件位置
+            success: function (res) {
+                console.log(res)
+                let width = res.screenWidth;
+                let controls = that.data.controls;
+                controls[0].position.left = width - controls[0].position.width * 2;
+                that.setData({
+                    controls: controls
+                })
+            },
+
+        })
+    },
+        
+
 
 
     onPageScroll() {
@@ -141,9 +175,14 @@ Page({
         data.authorName = rawData.author.nickName
         data.coordinates = rawData.coordinates
         // this.data.menuItems[2].linkUrl += '?mapid=' + this.options.mapid
-        data.menuItems 
+        data.menuItems
         let length = data.coordinates.length
-        data.configList = Array.from({ length }, (v, i) => ({ leftDistance: 0, itemId: data.coordinates[i].id }))
+        data.configList = Array.from({
+            length
+        }, (v, i) => ({
+            leftDistance: 0,
+            itemId: data.coordinates[i].id
+        }))
         return data
     }
 })

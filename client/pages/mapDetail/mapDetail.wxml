@@ -18,7 +18,7 @@
             <text>{{description}}</text>
         </view>
         <view class='userName'>
-            <text>--{{userName}}</text>
+            <text>--{{author.nickName}}</text>
         </view>
     </view>
     <view class='comment-wrap'>
@@ -51,7 +51,7 @@
         </view>
         <view class='share'>
             <image class='share-img' src='../../icons/icon.png'></image>
-            <text>分享</text>
+            <button class='share-btn' open-type='share'>分享</button>
         </view>
     </view>
 </view>
