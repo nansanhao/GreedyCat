@@ -9,7 +9,8 @@
         "pages/homePage/homePage",
         "pages/resultList/resultList",
         "pages/chooseCity/chooseCity",
-        "pages/myComments/myComments"
+        "pages/myComments/myComments",
+        "pages/comment/comment"
     ],
     "window": {
         "backgroundColor": "#EB6159",

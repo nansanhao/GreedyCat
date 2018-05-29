@@ -32,7 +32,7 @@ map {
 .authorName {
     text-align: right;
 }
-
+ 
 .description-wrap {
     padding: 10px 15px;
     background-color: white;

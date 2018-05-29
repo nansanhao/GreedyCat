@@ -28,11 +28,10 @@ Page({
                 activeImageUrl: "../../icons/collect.png",
                 inactiveImageUrl: "../../icons/collectNot.png",
                 isActive: false
-            }
-        ],
-        latitude: 40.006822,
-        longitude: 116.481451,
-        mapid: "",
+            }],
+        latitude: 83.111120,
+        longitude: 22.111111,
+        mapid:"",
         map_name: "",
         description: "这是一段示例文字",
         province: "",
@@ -100,19 +99,19 @@ Page({
     },
     //控件点击事件
     bindcontroltap: function (e) {
-        console.log(this.data)
+        this.mapCtx.moveToLocation()
     },
     //返回首页
     returnTap: function (e) {
-        console.log(e)
-        console.log("kds")
         wx.switchTab({
             url: '/pages/index/index'
         })
     },
-    //分享
-    shareTap: function (e) {
-        console.log(this.options)
+    //新建评论
+    newComment:function(e){
+        wx.navigateTo({
+            url: '/pages/comment/comment?mapid='+this.options.mapid
+        })
     },
 
 
@@ -160,6 +159,10 @@ Page({
         })
 
     },
+    onReady: function () {
+        // 使用 wx.createMapContext 获取 map 上下文
+        this.mapCtx = wx.createMapContext('myMap')
+    },
     onShareAppMessage(res) {
         let that = this;
         if (res.from === 'button') {
@@ -195,7 +198,7 @@ Page({
             author_id: rawData.author_id,
             author: rawData.author,
             comments: rawData.comments,
-            coordinates:rawData.coordinates
+
         }
         let icons = this.data.icons
         for (let i=0;i<3;i++) {
@@ -205,6 +208,54 @@ Page({
             }
         }
         data.icons = icons
+
+        let markers= changeToMaker(rawData.coordinates);
+        let map_center=getMapCenter(markers);
+        data.markers = markers;
+        data.longitude = map_center.center_longitude
+        data.latitude = map_center.center_latitude
+
         return data;
     }
 })
+
+function changeToMaker(coordinates) {
+    let callout = {
+        content: '我是这个气泡',
+        display: "ALWAYS",
+        fontSize: 12,
+        color: '#ffffff',
+        bgColor: '#000000',
+        padding: 8,
+        borderRadius: 4,
+    };
+    let iconPath = "../../icons/location.png";
+    let width = 40;
+    let height = 40;
+    let markers = coordinates.map(function (marker, index) {
+        marker.iconPath = iconPath;
+        marker.width = width;
+        marker.height = height;
+        marker.title = marker.name;
+        marker.callout = callout;
+        marker.callout.content = marker.name;
+        delete marker.name;
+        return marker;
+    })
+    return markers;
+}
+function getMapCenter(markers) {
+    let center_latitude = 0;
+    let center_longitude = 0;
+    let num_point = markers.length;
+    markers.forEach(function (points, index) {
+        center_latitude += points.latitude / num_point;
+        center_longitude += points.longitude / num_point;
+    })
+    let markers_center = {
+        center_latitude,
+        center_longitude
+    }
+    return markers_center;
+}
+

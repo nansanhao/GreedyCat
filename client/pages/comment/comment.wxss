@@ -1,0 +1,17 @@
+/* pages/comment/comment.wxss */
+.textarea-wrap {
+    padding:20rpx 30rpx;
+    background-color:#fff;
+}
+.textarea-len{
+    background-color: white;
+    padding: 20rpx 30rpx;
+    text-align: right;
+    color: #999;
+}
+.ui-btn-area{
+    margin: 1.17647059em 15px 1em;
+}
+.ui-btn{
+    background-color: #EB6159 !important;
+}

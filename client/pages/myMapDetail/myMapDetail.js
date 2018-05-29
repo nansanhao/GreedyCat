@@ -112,8 +112,8 @@ Page({
         })
     },
     //控件点击事件
-    bindcontroltap: function (e) {
-
+    bindcontroltap:function(e){
+        this.mapCtx.moveToLocation()
     },
 
     /**
@@ -158,6 +158,11 @@ Page({
                 that.setData({
                     controls: controls
                 })
+            },
+
+            onReady: function () {
+                // 使用 wx.createMapContext 获取 map 上下文
+                this.mapCtx = wx.createMapContext('myMap')
             },
 
         })
