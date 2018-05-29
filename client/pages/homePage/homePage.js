@@ -1,5 +1,6 @@
 // pages/homePage/homePage.js
 const app = getApp()
+const iconPath = '../../icons/ui/'
 
 Page({
     data: {
@@ -10,13 +11,13 @@ Page({
             { name: "dislikes", num: 0, imageUrl: "../../icons/dislike.png" },
             { name: "collections", num: 0, imageUrl: "../../icons/collect.png" }],
         linksList: [
-            { name: "我的地图", linkUrl: "/pages/myMaps/myMaps" },
-            { name: "我的评论", linkUrl: "#" },
-            { name: "收藏地图", linkUrl: "#" },
+            { name: "我的地图", linkUrl: "/pages/myMaps/myMaps?choice=0",iconSrc:iconPath+'map.png' },
+            { name: "我的评论", linkUrl: "/pages/myComments/myComments", iconSrc: iconPath + 'comment.png' },
+            { name: "收藏地图", linkUrl: "/pages/myMaps/myMaps?choice=1", iconSrc: iconPath + 'collect.png' },
         ],
         otherList:[
-            { name: "帮助", linkUrl: "#" },
-            { name: "反馈", linkUrl: "#" },
+            { name: "帮助", linkUrl: "#", iconSrc: iconPath + 'help.png'},
+            { name: "反馈", linkUrl: "#", iconSrc: iconPath + 'feedback.png'},
         ],
         modalHidden: true
     },

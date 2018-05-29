@@ -2,109 +2,83 @@
 const config = require('../../config')
 const app = getApp();
 Page({
-
-    /**
-     * 页面的初始数据nickname
-    avaterUrl:(用户头像的url)
-     */
     data: {
-        icons: [
-            {
-                name: "likes",
-                num: 5255,
-                activeImageUrl: "../../icons/like.png",
-                inactiveImageUrl: "../../icons/likeNot.png",
-                isActive: false
+        icons: [{
+                name: "liked",
+                num: 0,
+                imageUrl: "../../icons/like.png",
             },
             {
-                name: "dislikes",
-                num: 125,
-                activeImageUrl: "../../icons/disLike.png",
-                inactiveImageUrl: "../../icons/disLikeNot.png",
-                isActive: false
+                name: "disliked",
+                num: 0,
+                imageUrl: "../../icons/dislike.png",
             },
             {
-                name: "collection",
-                num: 35,
-                activeImageUrl: "../../icons/collect.png",
-                inactiveImageUrl: "../../icons/collectNot.png",
-                isActive: false
-            }],
-        menuItems: [{
-            name: "新建坐标",
-            style: "top:-240rpx",
-            linkUrl: "#"
-        },
-        {
-            name: "切换地图",
-            style: "top:-160rpx",
-            linkUrl: "#"
-        },
-        {
-            name: "新建地图",
-            style: "top:-80rpx",
-            linkUrl: "#"
-        }],
-        isMenuActive: false,
-        description: "这是一段示例文字",
-        userName: "小明",
-        comments: [
-            { userName: "小红", avaterUrl: "../../icons/icon.png", content: "这是一段评论。" },
-            { userName: "小红", avaterUrl: "../../icons/icon.png", content: "这是一段评论。" },
-            { userName: "小红", avaterUrl: "../../icons/icon.png", content: "这是一段评论。" },
-            { userName: "小红", avaterUrl: "../../icons/icon.png", content: "这是一段评论。" },
-            { userName: "小红", avaterUrl: "../../icons/icon.png", content: "这是一段评论。" }
+                name: "collected",
+                num: 0,
+                imageUrl: "../../icons/collect.png",
+            }
         ],
-        latitude: 40.006822,
-        longitude: 116.481451,
-        markers: [{
-            latitude: 40.006822,
-            longitude: 116.481451,
-            title: 'T.I.T 创意园',
-            iconPath: "../../icons/location.png",
-            width: 40,
-            height: 40,
-            callout: {
-                content: '我是这个气泡',
-                display: "ALWAYS",
-                fontSize: 12,
-                color: '#ffffff',
-                bgColor: '#000000',
-                padding: 8,
-                borderRadius: 4,
-            }, 
-        },
+        menuItems: [{
+                name: "新的觅食处",
+                style: "top:-320rpx",
+                linkUrl: "#"
+            },
             {
-                latitude: 40.006822,
-                longitude: 116.481451,
-                title: 'T.I.T 创意园',
-                iconPath: "../../icons/location.png",
-                width: 40,
-                height: 40,
-                callout: {
-                    content: '我是这个气泡',
-                    display: "ALWAYS",
-                    fontSize: 12,
-                    color: '#ffffff',
-                    bgColor: '#000000',
-                    padding: 8,
-                    borderRadius: 4,
-                },
-            }],
-        polyline: [{
-            points: [{
-                longitude: '116.481451',
-                latitude: '40.006822'
-            }, {
-                longitude: '116.487847',
-                latitude: '40.002607'
-            }, {
-                longitude: '116.496507',
-                latitude: '40.006103'
-            }],
-            color: "#228B22",
-            width: 3
-        }],
+                name: "切换地图",
+                style: "top:-240rpx",
+                linkUrl: "#"
+            },
+            {
+                name: "编辑地图",
+                style: "top:-160rpx",
+                linkUrl: "/pages/newMap/newMap?mapid=" + app.data.mainMapId
+            },
+            {
+                name: "新建地图",
+                style: "top:-80rpx",
+                linkUrl: "/pages/newMap/newMap"
+            }
+        ],
+        isMenuActive: false,
+        description: "",
+        userName: "",
+        comments: [],
+        markers: [],
+        mapid: null,
+        author:null,
+        // markers: [
+        //     {
+        //     id: 0,
+        //     latitude: 40.006822,
+        //     longitude: 116.481451,
+        //     title: 'T.I.T 创意园',
+        //     width: 40,
+        //     height: 40,
+        //     callout: {
+        //         content: '我是这个气泡',
+        //         display: "ALWAYS",
+        //         fontSize: 12,
+        //         color: '#ffffff',
+        //         bgColor: '#000000',
+        //         padding: 8,
+        //         borderRadius: 4,
+        //     },
+        // }],
+        // polyline: [{
+        //     points: [{
+        //         longitude: '116.481451',
+        //         latitude: '40.006822'
+        //     }, {
+        //         longitude: '116.487847',
+        //         latitude: '40.002607'
+        //     }, {
+        //         longitude: '116.496507',
+        //         latitude: '40.006103'
+        //     }],
+        //     color: "#228B22",
+        //     width: 3
+        // }],
         controls: [{
             id: 1,
             iconPath: '../../icons/icon.png',
@@ -116,26 +90,15 @@ Page({
             },
             clickable: true
         }],
-    },
-    //icon点击事件
-    iconTap: function (e) {
-        let index = e.currentTarget.dataset.index;
-        let icons = this.data.icons;
-        icons[index].isActive = !icons[index].isActive;
-
-        let change = icons[index].isActive ? 1 : -1;
-        icons[index].num = icons[index].num + change;
-
-        this.setData({
-            icons: icons
-        })
+        longitude: '116.487847',
+        latitude: '40.002607'
     },
     //菜单点击事件
     menuTap: function (e) {
         this.setData({
             isMenuActive: !this.data.isMenuActive
         })
-        let that=this;
+        let that = this;
         wx.getSystemInfo({
             success: function (res) {
                 console.log(res)
@@ -156,34 +119,37 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function (options) {
-        let that = this;
-        let mapid = options.mapid;
-        wx.request({
-            url: config.service.host + "/map/mapDetail",
-            data: {
-                mapid,
-                openId: app.data.userInfo.openId
-            },
-            success(res) {
-                let map = res.data.data.map;
-                let icons = that.data.icons;
-                icons[0].num = map.num_liked;
-                icons[1].num = map.num_disliked;
-                icons[2].num = map.num_collected;
-                console.log(map);
-
-                that.setData({
-                    description: map.description,
-                    comments: map.comments,
-                    userName: map.author.nickName,
-                    icons
-                })
-            }
-        })
-
-        //设置地图控件位置
-        wx.getSystemInfo({
+    onShow(options) {
+        this.setData({mapid:app.data.mainMapId})
+        if (app.data.mainMapId != null) {
+            let that = this
+            wx.showNavigationBarLoading()
+            wx.showLoading({
+                title: '加载中',
+                mask:true
+            })
+            wx.request({
+                url: config.service.host + '/map/mapDetail',
+                data: {
+                    mapid: app.data.mainMapId
+                },
+                success(res) {
+                    let data = that._dataProcess(res.data.data.map)
+                    that.setData(data)
+                    wx.hideNavigationBarLoading()
+                    wx.hideLoading()
+                    wx.setNavigationBarTitle({
+                        title: res.data.data.map.map_name,
+                    })
+                    console.log(res)
+                }
+            })
+        }
+    },
+    
+    onLoad(){
+        let that = this
+        wx.getSystemInfo({ //设置地图控件位置
             success: function (res) {
                 console.log(res)
                 let width = res.screenWidth;
@@ -193,65 +159,56 @@ Page({
                     controls: controls
                 })
             },
-            
+
+            onReady: function () {
+                // 使用 wx.createMapContext 获取 map 上下文
+                this.mapCtx = wx.createMapContext('myMap')
+            },
+
         })
     },
+        
 
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function () {
-        // 使用 wx.createMapContext 获取 map 上下文
-        this.mapCtx = wx.createMapContext('myMap')
-    },
 
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function () {
 
-    },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-
-    },
-    /**
-     * 页面滚动响应
-     */
-    onPageScroll: function () {
+    onPageScroll() {
         this.setData({
             isMenuActive: false
         })
+    },
+    _dataProcess(rawData) {
+        console.log(rawData)
+        let data = {
+            mapid : rawData.mapid,
+            map_name: rawData.map_name,
+            description: rawData.description,
+            province: rawData.province,
+            city: rawData.city,
+            locality: rawData.locality,
+            create_time: rawData.create_time,
+            category: rawData.category,
+            author_id: rawData.author_id,
+            author: rawData.author,
+            comments: rawData.comments,
+            coordinates:rawData.coordinates
+        };
+
+        let icons = this.data.icons
+        for (let i = 0; i < 3; i++) {
+            icons[i].num = rawData['num_' + icons[i].name]
+        }
+        data.icons = icons
+
+        // this.data.menuItems[2].linkUrl += '?mapid=' + this.options.mapid
+        // data.menuItems
+
+        let length = data.coordinates.length
+        data.configList = Array.from({
+            length
+        }, (v, i) => ({
+            leftDistance: 0,
+            itemId: data.coordinates[i].id
+        }))
+        return data
     }
 })

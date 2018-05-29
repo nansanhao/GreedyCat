@@ -1,57 +1,45 @@
-<!--pages/mapDetail/mapDetail.wxml-->
+<!-- pages/mapDetail/mapDetail.wxml -->
 <view class="page-body">
     <view>
         <map id='myMap' latitude="{{latitude}}" longitude="{{longitude}}" markers="{{markers}}" polyline='{{polyline}}' controls="{{controls}}" bindcontroltap='bindcontroltap' show-location>
         </map>
     </view>
-    <view class='section'>
-        <view class='icon-wrap'>
-            <view wx:for="{{icons}}" wx:for-item="icon" class='icon'>
-                <image src="{{icon.isActive?icon.activeImageUrl:icon.inactiveImageUrl}} " class="icon-image" data-index='{{index}}' bindtap='iconTap'></image>
-                <text class='icon-num'>{{icon.num}}</text>
-            </view>
-
+    <view class="icon-wrap">
+        <view wx:for="{{icons}}" wx:for-item="icon" class="icon" wx:key='name'>
+            <image src="{{icon.isActive?icon.activeImageUrl:icon.inactiveImageUrl}} " class="icon-image" data-index="{{index}}" bindtap="iconTap"></image>
+            <view class="icon-num">{{icon.num}}</view>
         </view>
     </view>
-    <view class='description-wrap'>
-        <view class='description'>
+    <view class="description-wrap">
+        <view class="description-locality">{{city+' '+locality}}</view>
+        <view class="description">
             <text>{{description}}</text>
         </view>
-        <view class='userName'>
-            <text>--{{author.nickName}}</text>
+        <view class="authorName">
+            <text>-- {{author.nickName}}</text>
         </view>
     </view>
-    <view class='comment-wrap'>
-        <view class='comment-title'>
-            <text class='comment-title-content'>用户评论</text>
-            <image class='comment-title-image' src='../../icons/comment.png' aspectFit bindtap='newComment'></image>
+    <view class="comment-wrap">
+        <view class="ui-title-box">
+            <view class="ui-title-text">用户评论</view>
+            <image class='comment-btn' src='../../icons/ui/write.png' bindtap='newComment'></image>
         </view>
-
-        <view class='comment-body'>
-            <view class='comment-body-item' wx:for="{{comments}}" wx:for-item="comment">
-                <view>
-                    <image src='{{comment.simple_user_info.avatarUrl}}' class='comment-image'></image>
-                </view>
-                <view class='comment-body-wrap'>
-                    <view class='comment-body-userName'>
-                        {{comment.simple_user_info.nickName}}
-                    </view>
-                    <view class='comment-body-content'>
-                        {{comment.content}}
-                    </view>
-
-                </view>
+        <view class="comment-item" wx:for="{{comments}}" wx:for-item="comment" wx:key="id">
+            <view class="comment-head">
+                <image src="{{comment.simple_user_info.avatarUrl}}" class="comment-avatar"></image>
+                <view class="comment-userName">{{comment.simple_user_info.nickName}}</view>
             </view>
+            <view class="comment-body">{{comment.content}}</view>
         </view>
     </view>
-    <view class='footbar'>
-        <view class='return' bindtap='returnTap'>
-            <image class='return-img' src='../../icons/icon.png'></image>
-            <text>首页</text>
+    <view class="footbar">
+        <view class="footbar-item">
+            <image class="footbar-image" src="../../icons/ui/index.png"></image>
+            <navigator class="footbar-btn" open-type='navigateTo' url='/pages/index/index'>首页</navigator>
         </view>
-        <view class='share'>
-            <image class='share-img' src='../../icons/icon.png'></image>
-            <button class='share-btn' open-type='share'>分享</button>
+        <view class="footbar-item">
+            <image class="footbar-image" src="../../icons/ui/share.png"></image>
+            <button class="footbar-btn" open-type="share">分享</button>
         </view>
     </view>
 </view>

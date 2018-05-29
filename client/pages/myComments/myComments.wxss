@@ -1,4 +1,5 @@
-/* pages/myMaps/myMaps.wxss */
+/* pages/myComments/myComments.wxss */
+
 .tip {
     font-size: 14px;
     color: #888;

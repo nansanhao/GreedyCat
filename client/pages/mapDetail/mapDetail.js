@@ -8,24 +8,23 @@ Page({
     avaterUrl:(用户头像的url)
      */
     data: {
-        icons: [
-            {
-                name: "likes",
-                num: 5255,
+        icons: [{
+                name: "liked",
+                num: 0,
                 activeImageUrl: "../../icons/like.png",
                 inactiveImageUrl: "../../icons/likeNot.png",
                 isActive: false
             },
             {
-                name: "dislikes",
-                num: 125,
+                name: "disliked",
+                num: 0,
                 activeImageUrl: "../../icons/disLike.png",
                 inactiveImageUrl: "../../icons/disLikeNot.png",
                 isActive: false
             },
             {
-                name: "collection",
-                num: 35,
+                name: "collected",
+                num: 0,
                 activeImageUrl: "../../icons/collect.png",
                 inactiveImageUrl: "../../icons/collectNot.png",
                 isActive: false
@@ -35,14 +34,14 @@ Page({
         mapid:"",
         map_name: "",
         description: "这是一段示例文字",
-        province:"",
-        city:"",
-        locality:"",
-        create_time:"",
-        category:"",
-        author_id:"",
-        main_image_url:"",
-        author:{},
+        province: "",
+        city: "",
+        locality: "",
+        create_time: "",
+        category: "",
+        author_id: "",
+        main_image_url: "",
+        author: {},
         markers: [{
             latitude: 40.006822,
             longitude: 116.481451,
@@ -123,6 +122,11 @@ Page({
     onLoad: function (options) {
         let that = this;
         let mapid = options.mapid;
+        wx.showLoading({
+            title: '加载中',
+            mask:true
+        })
+        wx.showNavigationBarLoading()
         wx.request({
             url: config.service.host + "/map/mapDetail",
             data: {
@@ -130,34 +134,14 @@ Page({
                 openId: app.data.userInfo.openId
             },
             success(res) {
-                let map = res.data.data.map;
-                let icons = that.data.icons;
-                icons[0].num = map.num_liked;
-                icons[1].num = map.num_disliked;
-                icons[2].num = map.num_collected;
-                let markers= changeToMaker(map.coordinates);
-                let map_center=getMapCenter(markers);
+                let data = that._processData(res.data.data.map)
                 //设置标题栏title
                 wx.setNavigationBarTitle({
-                    title: map.map_name
+                    title: data.map_name
                 })
-
-                that.setData({
-                    map_name: map.map_name,
-                    description: map.description,
-                    province: map.province,
-                    city: map.city,
-                    locality: map.locality,
-                    create_time: map.create_time,
-                    category: map.category,
-                    author_id: map.author_id,
-                    author: map.author,
-                    comments: map.comments,
-                    longitude:map_center.center_longitude,
-                    latitude:map_center.center_latitude,
-                    icons,
-                    markers
-                })
+                that.setData(data)
+                wx.hideLoading()
+                wx.hideNavigationBarLoading()
             }
         })
         //设置地图控件位置
@@ -175,54 +159,11 @@ Page({
         })
 
     },
-
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
     onReady: function () {
         // 使用 wx.createMapContext 获取 map 上下文
         this.mapCtx = wx.createMapContext('myMap')
     },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function (res) {
+    onShareAppMessage(res) {
         let that = this;
         if (res.from === 'button') {
             // 来自页面内转发按钮
@@ -237,10 +178,44 @@ Page({
     /**
      * 页面滚动响应
      */
-    onPageScroll: function () {
+    onPageScroll() {
         this.setData({
             isMenuActive: false
         })
+    },
+
+    _processData(rawData) {
+       console.log(rawData)
+        let data = {
+            mapid : rawData.mapid,
+            map_name: rawData.map_name,
+            description: rawData.description,
+            province: rawData.province,
+            city: rawData.city,
+            locality: rawData.locality,
+            create_time: rawData.create_time,
+            category: rawData.category,
+            author_id: rawData.author_id,
+            author: rawData.author,
+            comments: rawData.comments,
+
+        }
+        let icons = this.data.icons
+        for (let i=0;i<3;i++) {
+            icons[i].num = rawData['num_'+icons[i].name]
+            if(rawData.admiration[0]) {
+                icons[i].isActive = !!rawData.admiration[0][icons[i].name] 
+            }
+        }
+        data.icons = icons
+
+        let markers= changeToMaker(rawData.coordinates);
+        let map_center=getMapCenter(markers);
+        data.markers = markers;
+        data.longitude = map_center.center_longitude
+        data.latitude = map_center.center_latitude
+
+        return data;
     }
 })
 
