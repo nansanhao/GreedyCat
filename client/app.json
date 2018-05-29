@@ -8,8 +8,8 @@
         "pages/newMap/newMap",
         "pages/homePage/homePage",
         "pages/resultList/resultList",
-        "pages/chooseCity/chooseCity"
-        
+        "pages/chooseCity/chooseCity",
+        "pages/comment/comment"
     ],
     "window": {
         "backgroundColor": "#EB6159",

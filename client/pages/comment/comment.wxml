@@ -1,0 +1,23 @@
+<!--pages/comment/comment.wxml-->
+<form bindsubmit='formSubmit'>
+    <view class='section'>
+        <view class="ui-cells-title">评论</view>
+        <view class="textarea-wrap">
+            <textarea name="comment" placeholder='多行输入' auto-focus="true" style="height: 300rpx" maxlength="{{textareaMaxLen}}" bindinput="bindTextAreaChange" adjust-position="true" />
+        </view>
+        <view class='textarea-len'>{{textareaLen}}/{{textareaMaxLen}}</view>
+    </view>
+    <view class='section'>
+        <view class="ui-cells switch-wrap">
+            <view class="ui-cell ui-cell-switch">
+                <view class="ui-cell-body">是否匿名</view>
+                <view class="ui-cell-ft">
+                    <switch name="isPublic" />
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class='section ui-btn-area'>
+        <button type="primary" formType="submit" class='ui-btn'>发布</button>
+    </view>
+</form>

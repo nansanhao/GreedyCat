@@ -1,7 +1,7 @@
 <!--pages/mapDetail/mapDetail.wxml-->
 <view class="page-body">
     <view>
-        <map latitude="{{latitude}}" longitude="{{longitude}}" markers="{{markers}}" polyline='{{polyline}}' controls="{{controls}}">
+        <map id='myMap' latitude="{{latitude}}" longitude="{{longitude}}" markers="{{markers}}" polyline='{{polyline}}' controls="{{controls}}" bindcontroltap='bindcontroltap' show-location>
         </map>
     </view>
     <view class='section'>
@@ -24,7 +24,7 @@
     <view class='comment-wrap'>
         <view class='comment-title'>
             <text class='comment-title-content'>用户评论</text>
-            <image class='comment-title-image' src='../../icons/comment.png' aspectFit></image>
+            <image class='comment-title-image' src='../../icons/comment.png' aspectFit bindtap='newComment'></image>
         </view>
 
         <view class='comment-body'>
@@ -45,7 +45,7 @@
         </view>
     </view>
     <view class='footbar'>
-        <view class='return'>
+        <view class='return' bindtap='returnTap'>
             <image class='return-img' src='../../icons/icon.png'></image>
             <text>首页</text>
         </view>

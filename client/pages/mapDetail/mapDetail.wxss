@@ -1,96 +1,118 @@
 /* pages/mapDetail/mapDetail.wxss */
-map{
-    width: 100%; height: 300px;
+
+map {
+    width: 100%;
+    height: 300px;
 }
-.icon-wrap{
+
+.icon-wrap {
     display: flex;
     justify-content: space-around;
     background-color: whitesmoke;
 }
-.icon-image{
+
+.icon-image {
     height: 120rpx;
     width: 120rpx;
-    margin:16rpx 0 0 0;
+    margin: 16rpx 0 0 0;
 }
-.icon{
+
+.icon {
     display: flex;
     flex-direction: column;
 }
-.icon-num{
+
+.icon-num {
     text-align: center;
 }
-.userName{
+
+.userName {
     text-align: right;
 }
-.description-wrap{
+
+.description-wrap {
     padding: 20rpx 30rpx;
     background-color: white;
-    
 }
-.comment-title-image{
+
+.comment-title-image {
     height: 70rpx;
     width: 70rpx;
+    position: absolute;
+    right: 0;
 }
-.comment-title{
+
+.comment-title {
     text-align: center;
     display: flex;
-    padding: 4rpx;
+    padding: 20rpx 30rpx;
     align-items: center;
-    justify-content: center; 
+    justify-content: center;
     background-color: white;
-    margin: 40rpx  0 20rpx 0;
+    margin: 40rpx 0 20rpx 0;
+}
 
+.comment-title-content {
+    color: #eb6159;
 }
-.comment-title-content{
-    color: #EB6159;
-}
-.comment-image{
+
+.comment-image {
     height: 120rpx;
     width: 120rpx;
 }
-.comment-wrap{
-    margin-bottom: 200rpx
+
+.comment-wrap {
+    margin-bottom: 200rpx;
 }
-.comment-body-item{
+
+.comment-body-item {
     padding: 20rpx 30rpx;
     background-color: white;
     display: flex;
-    margin:10rpx 0;
+    margin: 10rpx 0;
 }
-.comment-body-wrap{
+
+.comment-body-wrap {
     flex: 1;
     margin-left: 20rpx;
 }
-.footbar{
+
+.footbar {
     position: fixed;
     bottom: 0;
     display: flex;
     width: 100%;
-    background-color: #EB6159;
+    background-color: #eb6159;
     color: white;
     padding: 20rpx 0;
     opacity: 0.9;
-    
 }
-.return-img,.share-img{
+
+.return-img, .share-img {
     width: 70rpx;
-    height:70rpx;
+    height: 70rpx;
     margin-right: 20rpx;
 }
-.return,.share{
+
+.return, .share {
     display: flex;
     align-items: center;
     justify-content: center;
     flex: 1;
     font-size: 18px;
 }
-.share-btn{
+
+.share-btn {
     margin: 0;
-    background-color: #EB6159;
+    background-color: #eb6159;
     border: none;
     color: white;
-    position: initial;
 }
-.return{
+
+.share-btn::after {
+    border: none;
+}
+
+.return {
     border-right: 2rpx whitesmoke solid;
 }
