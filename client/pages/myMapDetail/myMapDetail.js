@@ -109,7 +109,7 @@ Page({
             id: 1,
             iconPath: '../../icons/icon.png',
             position: {
-                left: 350,
+                left: 3,
                 top: 270,
                 width: 20,
                 height: 20
@@ -135,6 +135,22 @@ Page({
         this.setData({
             isMenuActive: !this.data.isMenuActive
         })
+        let that=this;
+        wx.getSystemInfo({
+            success: function (res) {
+                console.log(res)
+                let width = res.screenWidth;
+                let controls = that.data.controls;
+                controls[0].position.left = width - controls[0].position.width * 2;
+                that.setData({
+                    controls: controls
+                })
+            },
+        })
+    },
+    //控件点击事件
+    bindcontroltap:function(e){
+
     },
 
     /**
@@ -162,9 +178,22 @@ Page({
                     comments: map.comments,
                     userName: map.author.nickName,
                     icons
-
                 })
             }
+        })
+
+        //设置地图控件位置
+        wx.getSystemInfo({
+            success: function (res) {
+                console.log(res)
+                let width = res.screenWidth;
+                let controls = that.data.controls;
+                controls[0].position.left = width - controls[0].position.width * 2;
+                that.setData({
+                    controls: controls
+                })
+            },
+            
         })
     },
 

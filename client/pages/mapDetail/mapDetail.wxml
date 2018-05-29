@@ -1,7 +1,7 @@
 <!--pages/mapDetail/mapDetail.wxml-->
 <view class="page-body">
     <view>
-        <map latitude="{{latitude}}" longitude="{{longitude}}" markers="{{markers}}" polyline='{{polyline}}' controls="{{controls}}">
+        <map latitude="{{latitude}}" longitude="{{longitude}}" markers="{{markers}}" polyline='{{polyline}}' controls="{{controls}}" bindcontroltap='bindcontroltap'>
         </map>
     </view>
     <view class='section'>
@@ -18,7 +18,7 @@
             <text>{{description}}</text>
         </view>
         <view class='userName'>
-            <text>--{{userName}}</text>
+            <text>--{{author.nickName}}</text>
         </view>
     </view>
     <view class='comment-wrap'>
@@ -45,13 +45,13 @@
         </view>
     </view>
     <view class='footbar'>
-        <view class='return'>
+        <view class='return' bindtap='returnTap'>
             <image class='return-img' src='../../icons/icon.png'></image>
             <text>首页</text>
         </view>
-        <view class='share'>
+        <view class='share' bindtap='shareTap'>
             <image class='share-img' src='../../icons/icon.png'></image>
-            <text>分享</text>
+            <button open-type='share' class='share-btn'>分享</button>
         </view>
     </view>
 </view>

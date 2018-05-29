@@ -84,6 +84,12 @@ map{
     flex: 1;
     font-size: 18px;
 }
+.share-btn{
+    margin: 0;
+    background-color: #EB6159;
+    border: none;
+    color: white;
+}
 .return{
     border-right: 2rpx whitesmoke solid;
 }
