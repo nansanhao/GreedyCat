@@ -35,7 +35,7 @@
     <view class="footbar">
         <view class="footbar-item">
             <image class="footbar-image" src="../../icons/ui/index.png"></image>
-            <navigator class="footbar-btn" open-type='navigateTo' url='/pages/index/index'>首页</navigator>
+            <navigator class="footbar-btn" open-type='switchTab' url='/pages/index/index'>首页</navigator>
         </view>
         <view class="footbar-item">
             <image class="footbar-image" src="../../icons/ui/share.png"></image>
