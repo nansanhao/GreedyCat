@@ -133,6 +133,7 @@ Page({
                 }
             }
         })
+
     },
     onShareAppMessage(res) {
         let that = this;

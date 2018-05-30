@@ -49,7 +49,7 @@ Page({
         author:null,
         markers:[],
         longitude: 0,
-        latitude: 0
+        latitude: 0,
     },
     //菜单点击事件
     menuTap: function (e) {
@@ -62,7 +62,7 @@ Page({
                 console.log(res)
                 let width = res.screenWidth;
                 let controls = that.data.controls;
-                controls[0].position.left = width - controls[0].position.width * 2;
+                controls[0].position.left = width - controls[0].position.width;
                 that.setData({
                     controls: controls
                 })
@@ -116,6 +116,7 @@ Page({
     onLoad(){
         let that = this
         this.mapCtx = wx.createMapContext('myMap')
+
     },
         
 
