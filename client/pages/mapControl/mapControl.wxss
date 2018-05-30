@@ -1,0 +1,15 @@
+/* pages/mapControl/mapControl.wxss */
+
+.delete-button {
+    margin: 15px 15px 0 15px;
+}
+
+.coordinate-item{
+    border-top:1rpx solid #d9d9d9;
+}
+
+.coordinate-item::before{
+    display: none;
+}
+
+

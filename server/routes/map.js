@@ -24,6 +24,8 @@ router.delete('/coordinate',controllers._map.deleteCoordinate)
 //修改坐标信息
 router.put('/coordinate',controllers._map.updateCoordinate)
 
+router.get('/coordinates',controllers._map.getMapCoordinates)
+
 
 //获取地图列表
 router.get('/mapList',controllers._map.getMapList)

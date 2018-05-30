@@ -29,7 +29,7 @@ module.exports = async (ctx, next) => {
                 this.where('province', 'like', locality)
                     .orWhere('city', 'like', locality).orWhere('locality', 'like', locality)
             })
-            .orderBy(order, order == 'create_time' ? 'asc' : 'desc').limit(limit).offset(offset)
+            .orderBy(order,'desc').limit(limit).offset(offset)
 
 
 

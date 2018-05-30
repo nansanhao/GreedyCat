@@ -30,9 +30,9 @@ Page({
                 linkUrl: "/pages/myMaps/myMaps?lockDelete=1&choice=0"
             },
             {
-                name: "编辑地图",
+                name: "管理地图",
                 style: "top:-160rpx",
-                linkUrl: "/pages/newMap/newMap?mapid=" + app.data.mainMapId
+                linkUrl: "/pages/mapControl/mapControl?mapid=" + app.data.mainMapId
             },
             {
                 name: "新建地图",
@@ -111,7 +111,18 @@ Page({
     },
         
 
-
+    onDeleteItem(e){
+        wx.showModal({
+            title: '提示',
+            content: '确定删除吗',
+            success(){
+                wx.request({
+                    url: config.service.host+'/map/coordinate',
+                    coordinate_id: e.detail.itemId
+                })
+            }
+        })
+    },
 
     onPageScroll() {
         this.setData({

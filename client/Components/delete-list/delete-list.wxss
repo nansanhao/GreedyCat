@@ -5,7 +5,7 @@
 
 .item{
     position: relative;
-    transition:left .5s ;
+    transition:left .7s ;
 }
 .btn-delete{
     position: absolute;

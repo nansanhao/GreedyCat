@@ -34,31 +34,40 @@ Page({
      * 页面提交事件
      */
     formSubmit: function (e) {
-        console.log('form发生了submit事件，携带数据为：', e.detail.value)
         let newMap = e.detail.value
         let openId=getApp().data.userInfo.openId
-        let data={
-            open_id:openId,
-            map:{
-                map_name:newMap.mapName,
-                description: newMap.description,
-                province:this.data.location[0],
-                city: this.data.location[1],
-                locality: this.data.location[2],
-                is_public: newMap.isPublic
-            }
-        };
-        console.log(data)
-        //向后台发送数据
-        wx.request({
-            url: config.service.host+"/map/myMap",
-            method:"POST",
-            data,
-            success:function (res){
-                console.log(res)
-            }
-            
-        })
+        if(newMap.mapName=='') {
+            wx.showModal({
+                title: '提示',
+                content: '地图名不能为空',
+                showCancel:false,
+                confirmColor:'#EB6159'
+            })
+        } else {
+            let data = {
+                open_id: openId,
+                map: {
+                    map_name: newMap.mapName,
+                    description: newMap.description,
+                    province: this.data.location[0],
+                    city: this.data.location[1],
+                    locality: this.data.location[2],
+                    is_public: newMap.isPublic
+                }
+            };
+            console.log(data)
+            //向后台发送数据
+            wx.request({
+                url: config.service.host + "/map/myMap",
+                method: "POST",
+                data,
+                success: function (res) {
+                    console.log(res)
+                }
+
+            })
+        }
+        
     },
     /**
      * picker发生改变

@@ -5,7 +5,7 @@
 </view>
 <view wx:else>
     <view class='tip'>左滑可删除</view>
-    <delete-list config-list="{{list}}" bind:deleteItem="onDeleteItem" bind:tapItem="onTapItem">
+    <delete-list config-list="{{list}}" bind:deleteItem="onDeleteItem" >
         <view wx:for='{{mapList}}' wx:key='mapid' slot='{{item.mapid}}'>
             <map-item item-detail="{{item}}" bindtap='onTap' data-id='{{item.mapid}}' />
         </view>
