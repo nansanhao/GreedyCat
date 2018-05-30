@@ -53,13 +53,15 @@ Page({
         })
     },
     onTap(e) {
-        let choice = this.options.choice
-        if (choice == 0) {
-            wx.switchTab({
-                url: '../myMapDetail/myMapDetail',
-            })
-        }
-
+        let choices = ['/mapControl','/mapDetail']
+        let choice = choices[this.options.choice]
+        let url = '/pages'
+        url += choice
+        url += choice
+        url +='?mapid='+e.target.dataset.id
+        wx.navigateTo({
+            url
+        })
     },
     _setConfigList(length, list) {
         let configList = Array.from({ length }, (v, i) => ({ leftDistance: 0, itemId: list[i].mapid }))
