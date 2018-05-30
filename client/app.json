@@ -1,6 +1,7 @@
 {
     "pages": [
         "pages/index/index",
+        "pages/newCoordinate/newCoordinate",
         "pages/myMapDetail/myMapDetail",
         "pages/myMaps/myMaps",
         "pages/mapDetail/mapDetail",
@@ -12,8 +13,7 @@
         "pages/myComments/myComments",
         "pages/comment/comment",
         "pages/ feedback/ feedback",
-        "pages/help/help",
-        "pages/newCoordinate/newCoordinate"
+        "pages/help/help"
     ],
     "window": {
         "backgroundColor": "#EB6159",

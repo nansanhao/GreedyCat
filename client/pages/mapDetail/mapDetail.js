@@ -75,12 +75,12 @@ Page({
         }],
         controls: [{
             id: 1,
-            iconPath: '../../icons/icon.png',
+            iconPath: '../../icons/ui/location.png',
             position: {
                 left: 350,
                 top: 270,
-                width: 20,
-                height: 20
+                width: 40,
+                height: 40
             },
             clickable: true
         }],
@@ -165,6 +165,7 @@ Page({
                 console.log(res)
                 let width = res.screenWidth;
                 let controls = that.data.controls;
+                controls[0].position.top = 300 - controls[0].position.height;
                 controls[0].position.left = width - controls[0].position.width * 2;
                 that.setData({
                     controls: controls
