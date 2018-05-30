@@ -47,8 +47,8 @@ Component({
                     configList[index].leftDistance = -buttonWidth;
                     activeIndex = index;
                     setTimeout(() => {
-                        configList[activeIndex].leftDistance = 0; 
-                        activeIndex = null; 
+                        configList[activeIndex].leftDistance = 0;
+                        activeIndex = null;
                         that.setData({
                             configList,
                             activeIndex
@@ -69,18 +69,28 @@ Component({
             let configList = this.data.configList;
             let index = e.currentTarget.dataset.index;
             let { itemId } = configList[index]
-            configList.splice(index, 1);
-
-            this.setData({
-                configList
-            });
+            let that = this
             let eventOption = {
                 composed: true,
                 bubbles: true
             }
-            this.triggerEvent('deleteItem', { itemId }, eventOption)
-        }
-    },
+            wx.showModal({
+                title: '提示',
+                content: '确定删除吗？',
+                confirmColor: '#EB6159',
+                success(res) {
+                    if (res.confirm) {
+                        that.triggerEvent('deleteItem', { itemId }, eventOption)
+                        configList.splice(index, 1);
 
+                        that.setData({
+                            configList
+                        });
+                    }
 
+                }
+            })
+        },
+
+    }
 })

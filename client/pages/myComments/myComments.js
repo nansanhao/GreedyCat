@@ -34,18 +34,11 @@ Page({
     },
 
     onDeleteItem(e) {
-        wx.showModal({
-            title: '提示',
-            content: '确定删除吗？',
-            confirmColor: '#EB6159',
-            success() {
-                wx.request({
-                    url: config.service.host + "/user/comment",
-                    method: 'DELETE',
-                    data: {
-                        comment_id: e.detail.itemId
-                    }
-                })
+        wx.request({
+            url: config.service.host + "/user/comment",
+            method: 'DELETE',
+            data: {
+                comment_id: e.detail.itemId
             }
         })
     },

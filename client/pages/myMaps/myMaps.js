@@ -4,34 +4,30 @@ const app = getApp()
 Page({
 
     data: {
-        choice:null,
-        mapList: []
+        choice: null,
+        mapList: [],
+        lockDelete:false
     },
     //主页面处理删除事件的数据同步
     onDeleteItem(e) {
         let choices = ['/map/myMap', '/user/collectedMap']
         let choice = choices[this.options.choice]
-        wx.showModal({
-            title: '提示',
-            content: '确定删除吗？',
-            confirmColor: '#EB6159',
-            success() {
-                wx.request({
-                    url: config.service.host + choice,
-                    method: 'DELETE',
-                    data: {
-                        open_id: app.data.userInfo.openId,
-                        mapid: e.detail.itemId
-                    }
-                })
+
+        wx.request({
+            url: config.service.host + choice,
+            method: 'DELETE',
+            data: {
+                open_id: app.data.userInfo.openId,
+                mapid: e.detail.itemId
             }
         })
+
 
     },
 
     onLoad: function (options) {
-        let choice = this.options.choice
-        this.setData({choice})
+        let {choice,lockDelete} = this.options
+        this.setData({ choice ,lockDelete:!!lockDelete})
         let that = this
         let choices = ['mapList', 'collectedMapList']
         choice = choices[this.options.choice]
@@ -69,6 +65,20 @@ Page({
         let configList = Array.from({ length }, (v, i) => ({ leftDistance: 0, itemId: list[i].mapid }))
         this.setData({
             list: configList
+        })
+    },
+    chooseCity(e) {
+        wx.request({
+            url: config.service.host +'/user/setMainMap',
+            method:'POST',
+            data:{
+                open_id: app.data.userInfo.openId,
+                main_mapid: e.target.dataset.id
+            },
+            success(){
+                wx.navigateBack({})
+                app.data.mainMapId = e.target.dataset.id
+            }
         })
     }
 })
