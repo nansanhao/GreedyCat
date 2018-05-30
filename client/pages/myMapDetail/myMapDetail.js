@@ -29,7 +29,9 @@ Page({
         author: null,
         markers: [],
         city: '',
-        locality: ''
+        locality: '',
+        latitude:0,
+        longitude:0
     },
     //菜单点击事件
     menuTap: function (e) {
@@ -40,6 +42,16 @@ Page({
     //控件点击事件
     lockLocation: function (e) {
         this.mapCtx.moveToLocation()
+    },
+
+    onDeleteItem(e) {
+        wx.request({
+            url: config.service.host +'/map/coordinate',
+            method:'DELETE',
+            data:{
+                coordinate_id: e.detail.itemId
+            }
+        })
     },
 
     /**
@@ -62,11 +74,15 @@ Page({
                 success(res) {
                     let data = that._dataProcess(res.data.data.map)
                     that.setData(data)
-                    wx.hideNavigationBarLoading()
-                    wx.hideLoading()
+                    if (!data.latitude&&!data.longitude) {
+                        that.mapCtx.moveToLocation()
+                    }
+                    
                     wx.setNavigationBarTitle({
                         title: res.data.data.map.map_name,
                     })
+                    wx.hideNavigationBarLoading()
+                    wx.hideLoading()
                     console.log(res)
                 }
             })
@@ -75,7 +91,7 @@ Page({
 
     onLoad() {
         let menuItems = _getMenuItems()
-        this.setData({menuItems})
+        this.setData({ menuItems })
         this.mapCtx = wx.createMapContext('myMap')
     },
 

@@ -38,7 +38,7 @@
                     </view>
                 </delete-list>
             </view>
-            <view class='marker-tip'>左滑删除</view>
+            <view class='marker-tip' hidden='{{!markers.length}}'>左滑删除</view>
 
         </view>
 
