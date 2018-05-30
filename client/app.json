@@ -13,8 +13,8 @@
         "pages/chooseCity/chooseCity",
         "pages/myComments/myComments",
         "pages/comment/comment",
-        "pages/ feedback/ feedback",
-        "pages/help/help"
+        "pages/help/help",
+        "pages/mapControl/mapControl"
     ],
     "window": {
         "backgroundColor": "#EB6159",

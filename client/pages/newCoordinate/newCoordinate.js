@@ -5,12 +5,13 @@ Page({
      * 页面的初始数据
      */
     data: {
+        imagePath:'',
         //textarea数据
         textareaLen: 0,
         textareaMaxLen: 50,
         //map数据
-        latitude: 40.006822,
-        longitude: 116.481451,
+        latitude: 0,
+        longitude: 0,
         mapid: "",
         map_name: "",
         description: "这是一段示例文字",
@@ -39,21 +40,11 @@ Page({
                 borderRadius: 4,
             }
         }],
-        controls: [{
-            id: 1,
-            iconPath: '../../icons/ui/location.png',
-            position: {
-                left: 330,
-                top: 270,
-                width: 40,
-                height: 40
-            },
-            clickable: true
-        }],
+        
 
     },
     //控件点击事件
-    bindcontroltap: function (e) {
+    lockLocation: function (e) {
         this.mapCtx.moveToLocation()
     },
     /**
@@ -78,21 +69,8 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        let that = this;
-        //设置地图控件位置
-        wx.getSystemInfo({
-            success: function (res) {
-                console.log(res)
-                let width = res.screenWidth;
-                let controls = that.data.controls;
-                controls[0].position.top = 300 - controls[0].position.height;
-                controls[0].position.left = width - controls[0].position.width;
-                that.setData({
-                    controls: controls
-                })
-            },
-
-        })
+        this.mapCtx = wx.createMapContext('myMap')
+        this.mapCtx.moveToLocation()
     },
     /**
      * textarea实时更新字数
@@ -103,53 +81,18 @@ Page({
         that.setData({ textareaLen: len })
     },
 
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function () {
-        // 使用 wx.createMapContext 获取 map 上下文
-        this.mapCtx = wx.createMapContext('myMap')
+    chooseImage: function (e) {
+        var that = this;
+        wx.chooseImage({
+            count: 1,
+            success: function (res) {
+                that.setData({
+                    imagePath: res.tempFilePaths[0]
+                });
+            }
+        })
     },
 
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function () {
 
-    },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-
-    }
+   
 })

@@ -1,27 +1,48 @@
 <!--pages/newCoordinate/newCoordinate.wxml-->
 <view>
-    <map id='myMap' latitude="{{latitude}}" longitude="{{longitude}}" markers="{{markers}}" polyline='{{polyline}}' controls="{{controls}}" bindcontroltap='bindcontroltap' show-location>
-    </map>
+    <view class='map-warp'>
+        <map id='myMap' latitude="{{latitude}}" longitude="{{longitude}}" markers="{{markers}}" polyline='{{polyline}}' show-location>
+        </map>
+        <image bindtap='lockLocation' class='map-button' src='../../icons/ui/location.png'></image>
+    </view>
 </view>
 <form bindsubmit='formSubmit'>
-    <view class="section">
-        <view class="ui-cells-title">地点名</view>
-        <view class="ui-cells ">
-            <view class="ui-cell ui-cell-input">
-                <input name="coordinateName" class="ui-input" maxlength="10" placeholder="最大输入长度为10" />
+
+    <view class="ui-cells-title">地点名</view>
+    <view class="ui-cells ">
+        <view class="ui-cell ui-cell-input">
+            <input name="coordinateName" class="ui-input" maxlength="10" placeholder="最大输入长度为10" />
+        </view>
+    </view>
+
+
+    <view class="ui-cells-title">简介</view>
+    <view class='ui-cells'>
+        <view class='ui-cell'>
+            <view class="ui-cell-body">
+                <textarea name="description" placeholder='写下你的描述' auto-focus="true" style="height: 200rpx" maxlength="{{textareaMaxLen}}" bindinput="bindTextAreaChange" maxlength='{{textareaMaxLen}}' adjust-position="true" class='ui-textarea' />
+                <view class='ui-textarea-counter'>{{textareaLen}}/{{textareaMaxLen}}</view>
             </view>
         </view>
     </view>
-    <view class='section'>
-        <view class="ui-cells-title">简介</view>
-        <view class="textarea-wrp">
-            <textarea name="description" placeholder='多行输入' auto-focus="true" style="height: 300rpx" maxlength="{{textareaMaxLen}}" bindinput="bindTextAreaChange" maxlength='50' adjust-position="true" />
+
+
+    <view class='ui-cells-title'>图片上传 {{imagePath?1:0}}/1</view>
+    <view class='ui-cells'>
+        <view class='ui-cell'>
+            <view class='ui-cell-body'>
+                <view class="ui-uploader-img-wrap" bindtap="chooseImage" hidden='{{!imagePath}}'>
+                    <image class="ui-uploader-img" src="{{imagePath}}" mode="aspectFit" />
+                </view>
+                <view class='ui-uploader-input-box' bindtap="chooseImage" hidden='{{imagePath}}'>
+                    <view class='ui-uploader-input'></view>
+                </view>
+            </view>
         </view>
-        <view class='textarea-len'>{{textareaLen}}/{{textareaMaxLen}}</view>
     </view>
-    <view class='section '>
-        <view class='ui-btn-area'>
-            <button type="primary" formType="submit" class='ui-btn'>添加</button>
-        </view>
+
+    <view class='ui-btn-area'>
+        <button type="primary" formType="submit" class='ui-btn'>添加</button>
     </view>
+
 </form>

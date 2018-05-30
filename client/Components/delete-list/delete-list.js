@@ -21,10 +21,11 @@ Component({
 
     methods: {
         ontouchStart(e) {
+            console.log('删除左滑')
             if (e.touches.length == 1) {
                 let currentIndex = e.currentTarget.dataset.index;
                 let { configList, activeIndex } = this.data;
-                if(activeIndex!=null){
+                if (activeIndex != null) {
                     configList[activeIndex].leftDistance = 0;
                 }
                 this.setData({
@@ -41,9 +42,18 @@ Component({
                 let distance = this.data.startX - moveX;
                 let index = e.currentTarget.dataset.index;
                 let { buttonWidth, configList, activeIndex } = this.data
+                let that = this
                 if (distance > buttonWidth / 2) {
                     configList[index].leftDistance = -buttonWidth;
                     activeIndex = index;
+                    setTimeout(() => {
+                        configList[activeIndex].leftDistance = 0;
+                        activeIndex = null;
+                        that.setData({
+                            configList,
+                            activeIndex
+                        })
+                    }, 1000 * 6)
                 } else {
                     configList[index].leftDistance = 0
                     activeIndex = null;
@@ -59,18 +69,28 @@ Component({
             let configList = this.data.configList;
             let index = e.currentTarget.dataset.index;
             let { itemId } = configList[index]
-            configList.splice(index, 1);
-
-            this.setData({
-                configList
-            });
+            let that = this
             let eventOption = {
                 composed: true,
                 bubbles: true
             }
-            this.triggerEvent('deleteItem', { itemId }, eventOption)
-        }
-    },
+            wx.showModal({
+                title: '提示',
+                content: '确定删除吗？',
+                confirmColor: '#EB6159',
+                success(res) {
+                    if (res.confirm) {
+                        that.triggerEvent('deleteItem', { itemId }, eventOption)
+                        configList.splice(index, 1);
 
+                        that.setData({
+                            configList
+                        });
+                    }
 
+                }
+            })
+        },
+
+    }
 })

@@ -1,0 +1,33 @@
+<view class='ui-cells-title'>管理我的觅食处，左滑可删除</view>
+<view class='ui-cells'>
+    <delete-list config-list="{{configList}}" bind:deleteItem="onDeleteItem" wx:if='{{coordinates.length}}'>
+        <view wx:for='{{coordinates}}' wx:key='id' slot='{{item.id}}'>
+            <view class='ui-cell coordinate-item' bindtap='navigateToWithAuthory' hover-class='none' data-id='{{item.id}}'>
+                <view class='ui-cell-head'>
+                    <image src='../../icons/marker.png'></image>
+                </view>
+                <view class='ui-cell-body'>{{item.name}}</view>
+                <view class='ui-cell-foot-in-access'></view>
+            </view>
+        </view>
+    </delete-list>
+    <view class='ui-cell coordinate-item' hover-class='ui-active'>
+        <view class='ui-cell-body'>新的觅食处</view>
+        <view class='ui-cell-foot-in-access'></view>
+    </view>
+</view>
+
+<view class='ui-cells-title'>地图</view>
+
+<view class='ui-cells-title'>总体设置</view>
+<view class='ui-cells'>
+    <view class='ui-cell' hover-class='ui-active'>
+        <view class='ui-cell-body'>信息管理</view>
+        <view class='ui-cell-foot-in-access'></view>
+    </view>
+    <view class='ui-cell' hover-class='ui-active'>
+        <view class='ui-cell-body'>使用当前地图</view>
+        <view class='ui-cell-foot-in-access'></view>
+    </view>
+</view>
+<button class='delete-button' type="warn">删除本地图</button>
