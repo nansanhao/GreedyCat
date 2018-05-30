@@ -1,2 +1,27 @@
 <!--pages/newCoordinate/newCoordinate.wxml-->
-<text>pages/newCoordinate/newCoordinate.wxml</text>
+<view>
+    <map id='myMap' latitude="{{latitude}}" longitude="{{longitude}}" markers="{{markers}}" polyline='{{polyline}}' controls="{{controls}}" bindcontroltap='bindcontroltap' show-location>
+    </map>
+</view>
+<form bindsubmit='formSubmit'>
+    <view class="section">
+        <view class="ui-cells-title">地点名</view>
+        <view class="ui-cells ">
+            <view class="ui-cell ui-cell-input">
+                <input name="coordinateName" class="ui-input" maxlength="10" placeholder="最大输入长度为10" />
+            </view>
+        </view>
+    </view>
+    <view class='section'>
+        <view class="ui-cells-title">简介</view>
+        <view class="textarea-wrp">
+            <textarea name="description" placeholder='多行输入' auto-focus="true" style="height: 300rpx" maxlength="{{textareaMaxLen}}" bindinput="bindTextAreaChange" maxlength='50' adjust-position="true" />
+        </view>
+        <view class='textarea-len'>{{textareaLen}}/{{textareaMaxLen}}</view>
+    </view>
+    <view class='section '>
+        <view class='ui-btn-area'>
+            <button type="primary" formType="submit" class='ui-btn'>添加</button>
+        </view>
+    </view>
+</form>
