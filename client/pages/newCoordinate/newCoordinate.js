@@ -5,12 +5,13 @@ Page({
      * 页面的初始数据
      */
     data: {
+        imagePath:'',
         //textarea数据
         textareaLen: 0,
         textareaMaxLen: 50,
         //map数据
-        latitude: 40.006822,
-        longitude: 116.481451,
+        latitude: 0,
+        longitude: 0,
         mapid: "",
         map_name: "",
         description: "这是一段示例文字",
@@ -69,6 +70,7 @@ Page({
      */
     onLoad: function (options) {
         this.mapCtx = wx.createMapContext('myMap')
+        this.mapCtx.moveToLocation()
     },
     /**
      * textarea实时更新字数
@@ -79,7 +81,17 @@ Page({
         that.setData({ textareaLen: len })
     },
 
-
+    chooseImage: function (e) {
+        var that = this;
+        wx.chooseImage({
+            count: 1,
+            success: function (res) {
+                that.setData({
+                    imagePath: res.tempFilePaths[0]
+                });
+            }
+        })
+    },
 
 
    

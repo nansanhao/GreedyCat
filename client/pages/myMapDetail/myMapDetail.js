@@ -19,27 +19,7 @@ Page({
                 imageUrl: "../../icons/collect.png",
             }
         ],
-        menuItems: [{
-                name: "新的觅食处",
-                style: "top:-320rpx",
-                linkUrl: "/pages/newCoordinate/newCoordinate"
-            },
-            {
-                name: "切换地图",
-                style: "top:-240rpx",
-                linkUrl: "/pages/myMaps/myMaps?lockDelete=1&choice=0"
-            },
-            {
-                name: "管理地图",
-                style: "top:-160rpx",
-                linkUrl: "/pages/mapControl/mapControl?mapid=" + app.data.mainMapId
-            },
-            {
-                name: "新建地图",
-                style: "top:-80rpx",
-                linkUrl: "/pages/newMap/newMap"
-            }
-        ],
+        menuItems:[],
         isMenuActive: false,
         description: "",
         userName: "",
@@ -105,7 +85,8 @@ Page({
     },
     
     onLoad(){
-        let that = this
+        let menuItems = getMenuItems()
+        this.setData({ menuItems})
         this.mapCtx = wx.createMapContext('myMap')
 
     },
@@ -171,6 +152,11 @@ Page({
         console.log(e)
         this.mapCtx.moveToLocation()
     },
+    navigateToDetail(e) {
+        wx.navigateTo({
+            url:'/pages/shopDetail/shopDetail?id='+e.target.dataset.id
+        })
+    }
 })
 
 
@@ -212,4 +198,28 @@ function getMapCenter(markers) {
         center_longitude
     }
     return markers_center;
+}
+
+function getMenuItems() {
+    return [{
+        name: "新的觅食处",
+        style: "top:-320rpx",
+        linkUrl: "/pages/newCoordinate/newCoordinate?mapid=" + app.data.mainMapId
+    },
+    {
+        name: "切换地图",
+        style: "top:-240rpx",
+        linkUrl: "/pages/myMaps/myMaps?lockDelete=1&choice=0"
+    },
+    {
+        name: "管理地图",
+        style: "top:-160rpx",
+        linkUrl: "/pages/mapControl/mapControl?mapid=" + app.data.mainMapId
+    },
+    {
+        name: "新建地图",
+        style: "top:-80rpx",
+        linkUrl: "/pages/newMap/newMap"
+    }
+    ]
 }

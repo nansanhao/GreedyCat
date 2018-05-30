@@ -28,7 +28,7 @@
             <view class='ui-cells'>
                 <delete-list config-list="{{configList}}" bind:deleteItem="onDeleteItem">
                     <view wx:for='{{markers}}' wx:key='id' slot='{{item.id}}'>
-                        <view class='ui-cell marker-item' bindtap='navigateToWithAuthory' hover-class='none' data-id='{{item.id}}'>
+                        <view class='ui-cell marker-item' bindtap='navigateToDetail' hover-class='none' data-id='{{item.id}}'>
                             <view class='ui-cell-head'>
                                 <image src='../../icons/marker.png'></image>
                             </view>

@@ -1,6 +1,7 @@
 {
     "pages": [
         "pages/index/index",
+        "pages/shopDetail/shopDetail",
         "pages/newCoordinate/newCoordinate",
         "pages/myMapDetail/myMapDetail",
         "pages/myMaps/myMaps",

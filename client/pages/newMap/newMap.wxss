@@ -8,6 +8,16 @@
     padding-right: 30rpx
 }
 
+.textarea-wrp {
+    padding:20rpx 30rpx;
+    background-color:#fff;
+}
+.textarea-len{
+    background-color: white;
+    padding: 20rpx 30rpx;
+    text-align: right;
+    color: #999;
+}
 .ui-btn{
     background-color: #EB6159 !important;
 }

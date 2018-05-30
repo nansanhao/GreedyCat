@@ -36,7 +36,7 @@ module.exports = async (ctx, next) => {
                 .select('comment.id', 'comment.create_time', 'comment.content', 'user.simple_user_info')
                 .where({
                     mapid
-                }).innerJoin('user', 'user.open_id', 'comment.open_id').orderBy('comment.create_time', 'desc')
+                }).innerJoin('user', 'user.open_id', 'comment.open_id')
             if (comments[0]) {
                 comments.map((value, index) => {
                     value.simple_user_info = JSON.parse(value.simple_user_info)

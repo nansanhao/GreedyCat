@@ -13,8 +13,6 @@ router.put('/myMap',controllers._map.updateMapDetail)
 router.get('/mapDetail',controllers._map.getMapDetail)
 
 
-router.get('/comments',controllers._map.getComments)
-
 //新建坐标
 router.post('/coordinate',controllers._map.newCoordinate)
 //查看坐标信息
@@ -23,8 +21,6 @@ router.get('/coordinate',controllers._map.getCoordinate)
 router.delete('/coordinate',controllers._map.deleteCoordinate)
 //修改坐标信息
 router.put('/coordinate',controllers._map.updateCoordinate)
-
-router.get('/coordinates',controllers._map.getMapCoordinates)
 
 
 //获取地图列表

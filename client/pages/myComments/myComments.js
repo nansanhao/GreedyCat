@@ -36,8 +36,8 @@ Page({
     onDeleteItem(e) {
         wx.showModal({
             title: '提示',
-            content: '你确定删除吗',
-            confirmColor: "#EB6159",
+            content: '确定删除吗？',
+            confirmColor: '#EB6159',
             success() {
                 wx.request({
                     url: config.service.host + "/user/comment",
@@ -48,7 +48,6 @@ Page({
                 })
             }
         })
-
     },
 
     _setConfigList(length, list) {
