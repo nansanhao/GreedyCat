@@ -1,13 +1,13 @@
 <!--pages/myMapDetail/myMapDetail.wxml-->
 <view wx:if='{{mapid!=null}}' class="page-body">
     <view class='map-warp'>
-        <map id='myMap' latitude="{{latitude}}" longitude="{{longitude}}" markers="{{markers}}" polyline='{{polyline}}' show-location>
+        <map id='myMap' latitude="{{latitude}}" longitude="{{longitude}}" markers="{{markers}}"  show-location>
         </map>
         <image bindtap='lockLocation' class='map-button' src='../../icons/ui/location.png'></image>
     </view>
     <view class='icon-wrap'>
         <view wx:for="{{icons}}" wx:for-item="icon" class='icon' wx:key='name'>
-            <image src="{{icon.imageUrl}} " class="icon-image" data-index='{{index}}' bindtap='iconTap'></image>
+            <image src="{{icon.imageUrl}} " class="icon-image" data-index='{{index}}'></image>
             <view class='icon-num'>{{icon.num}}</view>
         </view>
     </view>

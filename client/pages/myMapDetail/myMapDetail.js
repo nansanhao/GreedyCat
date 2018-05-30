@@ -4,44 +4,41 @@ const app = getApp();
 Page({
     data: {
         icons: [{
-                name: "liked",
-                num: 0,
-                imageUrl: "../../icons/like.png",
-            },
-            {
-                name: "disliked",
-                num: 0,
-                imageUrl: "../../icons/dislike.png",
-            },
-            {
-                name: "collected",
-                num: 0,
-                imageUrl: "../../icons/collect.png",
-            }
+            name: "liked",
+            num: 0,
+            imageUrl: "../../icons/like.png",
+        },
+        {
+            name: "disliked",
+            num: 0,
+            imageUrl: "../../icons/dislike.png",
+        },
+        {
+            name: "collected",
+            num: 0,
+            imageUrl: "../../icons/collect.png",
+        }
         ],
-        menuItems:[],
+        menuItems: [],
         isMenuActive: false,
         description: "",
         userName: "",
-        city:'',
-        locality:'',
         comments: [],
         markers: [],
         mapid: null,
-        author:null,
-        markers:[],
-        longitude: 0,
-        latitude: 0,
+        author: null,
+        markers: [],
+        city: '',
+        locality: ''
     },
     //菜单点击事件
     menuTap: function (e) {
         this.setData({
             isMenuActive: !this.data.isMenuActive
         })
-        let that = this;
     },
     //控件点击事件
-    lockLocation:function(e){
+    lockLocation: function (e) {
         this.mapCtx.moveToLocation()
     },
 
@@ -49,13 +46,13 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onShow(options) {
-        this.setData({mapid:app.data.mainMapId})
+        this.setData({ mapid: app.data.mainMapId })
         if (app.data.mainMapId != null) {
             let that = this
             wx.showNavigationBarLoading()
             wx.showLoading({
                 title: '加载中',
-                mask:true
+                mask: true
             })
             wx.request({
                 url: config.service.host + '/map/mapDetail',
@@ -71,39 +68,19 @@ Page({
                         title: res.data.data.map.map_name,
                     })
                     console.log(res)
-                    if (that.data.markers[0]) {
-                        that.setData({
-                            longitude: that.data.markers[0].longitude,
-                            latitude: that.data.markers[0].latitude,
-                        })
-                    } else {
-                        that.mapCtx.moveToLocation()
-                    }
                 }
             })
         }
     },
-    
-    onLoad(){
-        let menuItems = getMenuItems()
-        this.setData({ menuItems})
+
+    onLoad() {
+        let menuItems = _getMenuItems()
+        this.setData({menuItems})
         this.mapCtx = wx.createMapContext('myMap')
-
     },
-        
 
-    onDeleteItem(e){
-        wx.showModal({
-            title: '提示',
-            content: '确定删除吗',
-            success(){
-                wx.request({
-                    url: config.service.host+'/map/coordinate',
-                    coordinate_id: e.detail.itemId
-                })
-            }
-        })
-    },
+
+
 
     onPageScroll() {
         this.setData({
@@ -113,7 +90,7 @@ Page({
     _dataProcess(rawData) {
         console.log(rawData)
         let data = {
-            mapid : rawData.mapid,
+            mapid: rawData.mapid,
             map_name: rawData.map_name,
             description: rawData.description,
             province: rawData.province,
@@ -131,6 +108,8 @@ Page({
             icons[i].num = rawData['num_' + icons[i].name]
         }
         data.icons = icons
+
+
         let length = rawData.coordinates.length
         data.configList = Array.from({
             length
@@ -146,19 +125,8 @@ Page({
         data.latitude = map_center.center_latitude
 
         return data
-    },
-    //控件点击事件
-    lockLocation: function (e) {
-        console.log(e)
-        this.mapCtx.moveToLocation()
-    },
-    navigateToDetail(e) {
-        wx.navigateTo({
-            url:'/pages/shopDetail/shopDetail?id='+e.target.dataset.id
-        })
     }
 })
-
 
 function changeToMaker(coordinates) {
     let callout = {
@@ -200,7 +168,7 @@ function getMapCenter(markers) {
     return markers_center;
 }
 
-function getMenuItems() {
+function _getMenuItems() {
     return [{
         name: "新的觅食处",
         style: "top:-320rpx",
@@ -209,7 +177,7 @@ function getMenuItems() {
     {
         name: "切换地图",
         style: "top:-240rpx",
-        linkUrl: "/pages/myMaps/myMaps?lockDelete=1&choice=0"
+        linkUrl: "/pages/myMaps/myMaps?choice=0&lockDelete=1"
     },
     {
         name: "管理地图",
