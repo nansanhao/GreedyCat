@@ -166,7 +166,7 @@ Page({
                 let width = res.screenWidth;
                 let controls = that.data.controls;
                 controls[0].position.top = 300 - controls[0].position.height;
-                controls[0].position.left = width - controls[0].position.width * 2;
+                controls[0].position.left = width - controls[0].position.width ;
                 that.setData({
                     controls: controls
                 })

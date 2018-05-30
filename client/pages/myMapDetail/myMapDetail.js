@@ -104,7 +104,7 @@ Page({
                 console.log(res)
                 let width = res.screenWidth;
                 let controls = that.data.controls;
-                controls[0].position.left = width - controls[0].position.width * 2;
+                controls[0].position.left = width - controls[0].position.width;
                 that.setData({
                     controls: controls
                 })
