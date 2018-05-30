@@ -4,12 +4,13 @@ const app = getApp()
 Page({
 
     data: {
+        choice:null,
         mapList: []
     },
     //主页面处理删除事件的数据同步
     onDeleteItem(e) {
-        let choice = ['map/myMap', 'user/collectedMap']
-        choice = choice[this.options.choice]
+        let choices = ['/map/myMap', '/user/collectedMap']
+        let choice = choices[this.options.choice]
         wx.showModal({
             title: '提示',
             content: '确定删除吗？',
@@ -29,9 +30,11 @@ Page({
     },
 
     onLoad: function (options) {
+        let choice = this.options.choice
+        this.setData({choice})
         let that = this
-        let choice = ['mapList', 'collectedMapList']
-        choice = choice[this.options.choice]
+        let choices = ['mapList', 'collectedMapList']
+        choice = choices[this.options.choice]
         wx.showLoading({
             title: '加载中',
             mask: true
