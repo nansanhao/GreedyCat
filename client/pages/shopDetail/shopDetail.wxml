@@ -1,0 +1,18 @@
+<!--pages/shopDetail/shopDetail.wxml-->
+<view class="img-wrap">
+    <image src='../../icons/icon_main-01.png' class='shop-img'></image>
+</view>
+<view class='detail-wrap'>
+    <view class="section">
+        <view class="ui-cells-title">地点名</view>
+        <view class="ui-cells text">
+            <text>{{shop_name}}</text>
+        </view>
+    </view>
+    <view class='section'>
+        <view class="ui-cells-title">简介</view>
+        <view class='ui-cells text'>
+            <text decode='true'>{{shop_detail}}</text>
+        </view>
+    </view>
+</view>
