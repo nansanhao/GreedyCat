@@ -3,7 +3,7 @@
 
     <view class="ui-cells-title">评论</view>
     <view class="textarea-wrap">
-        <textarea name="comment" placeholder='多行输入' auto-focus="true" style="height: 300rpx" maxlength="{{textareaMaxLen}}" bindinput="bindTextAreaChange" adjust-position="true" />
+        <textarea name="comment" placeholder='写下你的评论' auto-focus="true" style="height: 300rpx" maxlength="{{textareaMaxLen}}" bindinput="bindTextAreaChange" adjust-position="true" />
     </view>
     <view class='textarea-len'>{{textareaLen}}/{{textareaMaxLen}}</view>
 

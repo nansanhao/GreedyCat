@@ -1,13 +1,13 @@
 <!--pages/newMap/newMap.wxml-->
 <form bindsubmit='formSubmit'>
-    
+
     <view class="section">
-      <view class="ui-cells-title">地图名</view>
-      <view class="ui-cells ">
-        <view class="ui-cell ui-cell-input">
-          <input name="mapName" class="ui-input" maxlength="10" placeholder="最大输入长度为10" />
+        <view class="ui-cells-title">地图名</view>
+        <view class="ui-cells ">
+            <view class="ui-cell ui-cell-input">
+                <input name="mapName" class="ui-input" maxlength="10" placeholder="最大输入长度为10" />
+            </view>
         </view>
-      </view>
     </view>
     <view class="section">
         <view class="ui-cells-title">城市地区</view>
@@ -17,7 +17,7 @@
                     <view class="ui-label">当前选择</view>
                 </view>
                 <view class="ui-cell-body">
-                    <picker name="location" mode = "region" bindchange="bindPickerChange" >
+                    <picker name="location" mode="region" bindchange="bindPickerChange">
                         <view class="ui-input">{{location}}</view>
                     </picker>
                 </view>
@@ -31,21 +31,26 @@
                 {{tag.tagName}}
             </view>
         </view>
-        
+
     </view>
     <view class='section'>
         <view class="ui-cells-title">简介</view>
-        <view class="textarea-wrp">
-        <textarea name="description" placeholder='多行输入' auto-focus="true" style="height: 300rpx"  maxlength="{{textareaMaxLen}}"  bindinput="bindTextAreaChange"  maxlength='50' adjust-position="true"/>
-      </view>
-        <view class='textarea-len'>{{textareaLen}}/{{textareaMaxLen}}</view>
+        <view class='ui-cells'>
+            <view class='ui-cell'>
+                <view class="ui-cell-body">
+                    <textarea name="description" placeholder='多行输入' auto-focus="true" style="height: 200rpx" maxlength="{{textareaMaxLen}}" bindinput="bindTextAreaChange" maxlength='{{textareaMaxLen}}' adjust-position="true" class='ui-textarea' />
+                    <view class='ui-textarea-counter'>{{textareaLen}}/{{textareaMaxLen}}</view>
+                </view>
+            </view>
+        </view>
+
     </view>
     <view class='section'>
         <view class="ui-cells switch-wrap">
             <view class="ui-cell ui-cell-switch">
                 <view class="ui-cell-body">是否公开</view>
                 <view class="ui-cell-ft">
-                    <switch name="isPublic"/>
+                    <switch name="isPublic" />
                 </view>
             </view>
         </view>

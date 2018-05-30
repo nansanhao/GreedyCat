@@ -38,22 +38,22 @@ Page({
         let newMap = e.detail.value
         let openId=getApp().data.userInfo.openId
         let data={
-            openId:openId,
+            open_id:openId,
             map:{
-                mapName:newMap.mapName,
+                map_name:newMap.mapName,
                 description: newMap.description,
                 province:this.data.location[0],
                 city: this.data.location[1],
                 locality: this.data.location[2],
-                isPublic: newMap.isPublic
+                is_public: newMap.isPublic
             }
         };
         console.log(data)
         //向后台发送数据
         wx.request({
-            url: config.service.host+"/map/newMap",
+            url: config.service.host+"/map/myMap",
             method:"POST",
-            data:data,
+            data,
             success:function (res){
                 console.log(res)
             }

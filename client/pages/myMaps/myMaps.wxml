@@ -1,7 +1,13 @@
-
-<view class='tip'>左滑可删除</view>
-<delete-list config-list="{{list}}"  bind:deleteItem="onDeleteItem" bind:tapItem="onTapItem">
-    <view wx:for='{{mapList}}'  wx:key='mapid' slot='{{item.mapid}}'>
-        <map-item item-detail="{{item}}" bindtap='onTap' data-id='{{item.mapid}}'/>
+<view wx:if='{{lockDelete}}'>
+    <view wx:for='{{mapList}}' wx:key='mapid'>
+        <map-item item-detail="{{item}}" bindtap='chooseMap' data-id='{{item.mapid}}' />
     </view>
-</delete-list>
+</view>
+<view wx:else>
+    <view class='tip'>左滑可删除</view>
+    <delete-list config-list="{{list}}" bind:deleteItem="onDeleteItem" bind:tapItem="onTapItem">
+        <view wx:for='{{mapList}}' wx:key='mapid' slot='{{item.mapid}}'>
+            <map-item item-detail="{{item}}" bindtap='onTap' data-id='{{item.mapid}}' />
+        </view>
+    </delete-list>
+</view>

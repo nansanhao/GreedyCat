@@ -22,12 +22,12 @@ Page({
         menuItems: [{
                 name: "新的觅食处",
                 style: "top:-320rpx",
-                linkUrl: "#"
+                linkUrl: "/pages/newCoordinate/newCoordinate"
             },
             {
                 name: "切换地图",
                 style: "top:-240rpx",
-                linkUrl: "#"
+                linkUrl: "/pages/myMaps/myMaps?lockDelete=1&choice=0"
             },
             {
                 name: "编辑地图",
@@ -43,6 +43,8 @@ Page({
         isMenuActive: false,
         description: "",
         userName: "",
+        city:'',
+        locality:'',
         comments: [],
         markers: [],
         mapid: null,
@@ -57,17 +59,6 @@ Page({
             isMenuActive: !this.data.isMenuActive
         })
         let that = this;
-        wx.getSystemInfo({
-            success: function (res) {
-                console.log(res)
-                let width = res.screenWidth;
-                let controls = that.data.controls;
-                controls[0].position.left = width - controls[0].position.width;
-                that.setData({
-                    controls: controls
-                })
-            },
-        })
     },
     //控件点击事件
     lockLocation:function(e){

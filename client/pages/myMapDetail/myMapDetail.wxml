@@ -11,7 +11,7 @@
             <view class='icon-num'>{{icon.num}}</view>
         </view>
     </view>
-    <view class='description-wrap'>
+    <view class='description-wrap ui-cells'>
         <view class="description-locality">{{city+' '+locality}}</view>
         <view class='description'>
             <text>{{description}}</text>
@@ -75,5 +75,5 @@
 <view wx:else class='lost-wrap'>
     <image class='lost-image' src='../../icons/404.png'></image>
     <view class='lost-text'>猫咪还没有觅食地图呢..</view>
-    <navigator hover-class='none' class='lost-btn'>去我的地图里找找吧</navigator>
+    <navigator hover-class='none' class='lost-btn' url='/pages/myMaps/myMaps?lockDelete=1&choice=0'>去我的地图里找找吧</navigator>
 </view>

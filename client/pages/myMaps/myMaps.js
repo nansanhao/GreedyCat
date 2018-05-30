@@ -4,7 +4,8 @@ const app = getApp()
 Page({
 
     data : {
-        mapList:[]
+        mapList:[],
+        lockDelete:false
     },
     //主页面处理删除事件的数据同步
     onDeleteItem(e) {
@@ -22,8 +23,11 @@ Page({
 
     onLoad: function (options) {
         let that = this
+        let lockDelete = !!this.options.lockDelete
+        let choiceStorage = this.options.choice
+        this.setData({ lockDelete ,choice:choiceStorage})
         let choice = ['mapList','collectedMapList']
-        choice = choice[this.options.choice]
+        choice = choice[choiceStorage]
         wx.showLoading({
             title: '加载中',
             mask: true
@@ -58,6 +62,21 @@ Page({
         let configList = Array.from({ length }, (v, i) => ({ leftDistance: 0, itemId: list[i].mapid }))
         this.setData({
             list: configList
+        })
+    },
+    chooseMap(e) {
+        console.log('test')
+        wx.request({
+            url: config.service.host +'/user/setMainMap',
+            method:'POST',
+            data:{
+                open_id: app.data.userInfo.openId,
+                main_mapid: e.target.dataset.id
+            },
+            success(res) {
+                app.data.mainMapId = e.target.dataset.id,
+                wx.navigateBack({})
+            }
         })
     }
 })
