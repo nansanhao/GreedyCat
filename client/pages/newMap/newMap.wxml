@@ -5,7 +5,7 @@
         <view class="ui-cells-title">地图名</view>
         <view class="ui-cells ">
             <view class="ui-cell ui-cell-input">
-                <input name="mapName" class="ui-input" maxlength="10" placeholder="最大输入长度为10" />
+                <input name="mapName" class="ui-input" maxlength="10" placeholder="最大输入长度为10" value='{{mapName}}'/>
             </view>
         </view>
     </view>
@@ -17,7 +17,7 @@
                     <view class="ui-label">当前选择</view>
                 </view>
                 <view class="ui-cell-body">
-                    <picker name="location" mode="region" bindchange="bindPickerChange">
+                    <picker name="location" mode="region" bindchange="bindPickerChange" value='{{location}}'>
                         <view class="ui-input">{{location}}</view>
                     </picker>
                 </view>
@@ -38,7 +38,7 @@
         <view class='ui-cells'>
             <view class='ui-cell'>
                 <view class="ui-cell-body">
-                    <textarea name="description" placeholder='写下你的地图描述' auto-focus="true" style="height: 300rpx" maxlength="{{textareaMaxLen}}" bindinput="bindTextAreaChange" maxlength='{{textareaMaxLen}}' adjust-position="true" class='ui-textarea' />
+                    <textarea name="description" placeholder='写下你的地图描述' auto-focus="true" style="height: 300rpx" maxlength="{{textareaMaxLen}}" bindinput="bindTextAreaChange" maxlength='{{textareaMaxLen}}' adjust-position="true" class='ui-textarea' value='{{description}}'/>
                     <view class='ui-textarea-counter'>{{textareaLen}}/{{textareaMaxLen}}</view>
                 </view>
             </view>
@@ -50,7 +50,7 @@
             <view class="ui-cell ui-cell-switch">
                 <view class="ui-cell-body">是否公开</view>
                 <view class="ui-cell-ft">
-                    <switch name="isPublic" />
+                    <switch name="isPublic" checked='{{isPublic}}'/>
                 </view>
             </view>
         </view>
