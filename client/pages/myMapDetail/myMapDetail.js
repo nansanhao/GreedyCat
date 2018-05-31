@@ -52,6 +52,11 @@ Page({
                 coordinate_id: e.detail.itemId
             }
         })
+        let configList = this.data.configList  //删除组件外的list
+        let index = configList.findIndex((v,i)=>v.itemId==e.detail.itemId)
+        console.log(this.data.configList)
+        configList.splice(index, 1);
+        this.setData({configList})
     },
 
     /**
@@ -141,6 +146,11 @@ Page({
         data.latitude = map_center.center_latitude
 
         return data
+    },
+    navigateToDetail(e) {
+        wx.navigateTo({
+            url: '/pages/shopDetail/shopDetail?id='+e.target.dataset.id,
+        })
     }
 })
 
