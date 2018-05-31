@@ -19,13 +19,18 @@ Page({
             data: {
                 open_id: app.data.userInfo.openId,
                 mapid: e.detail.itemId
+            },
+            success() {
+                if (e.detail.itemId == app.data.mainMapId) {
+                    app.data.mainMapId = null
+                }
             }
         })
 
 
     },
 
-    onLoad: function (options) {
+    onShow: function (options) {
         let {choice,lockDelete} = this.options
         this.setData({ choice ,lockDelete:!!lockDelete})
         let that = this
@@ -69,7 +74,7 @@ Page({
             list: configList
         })
     },
-    chooseCity(e) {
+    chooseMap(e) {
         wx.request({
             url: config.service.host +'/user/setMainMap',
             method:'POST',

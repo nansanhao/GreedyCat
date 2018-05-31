@@ -11,7 +11,7 @@
             </view>
         </view>
     </delete-list>
-    <view class='ui-cell coordinate-item' hover-class='ui-active'>
+    <view class='ui-cell coordinate-item' hover-class='ui-active' bindtap='newCoordinate'>
         <view class='ui-cell-body'>新的觅食处</view>
         <view class='ui-cell-foot-in-access'></view>
     </view>
@@ -25,9 +25,9 @@
         <view class='ui-cell-body'>信息管理</view>
         <view class='ui-cell-foot-in-access'></view>
     </view>
-    <view class='ui-cell' hover-class='ui-active'>
+    <view class='ui-cell' hover-class='ui-active' bindtap='mapSwitch'>
         <view class='ui-cell-body'>使用当前地图</view>
         <view class='ui-cell-foot-in-access'></view>
     </view>
 </view>
-<button class='delete-button' type="warn">删除本地图</button>
+<button class='delete-button' type="warn" bindtap='deleteMap'>删除本地图</button>

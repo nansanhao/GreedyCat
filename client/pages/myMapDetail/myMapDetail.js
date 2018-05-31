@@ -22,7 +22,6 @@ Page({
         menuItems: [],
         isMenuActive: false,
         description: "",
-        userName: "",
         comments: [],
         markers: [],
         mapid: null,
@@ -30,8 +29,9 @@ Page({
         markers: [],
         city: '',
         locality: '',
-        latitude:0,
-        longitude:0
+        latitude: 0,
+        longitude: 0,
+
     },
     //菜单点击事件
     menuTap: function (e) {
@@ -46,17 +46,16 @@ Page({
 
     onDeleteItem(e) {
         wx.request({
-            url: config.service.host +'/map/coordinate',
-            method:'DELETE',
-            data:{
+            url: config.service.host + '/map/coordinate',
+            method: 'DELETE',
+            data: {
                 coordinate_id: e.detail.itemId
             }
         })
         let configList = this.data.configList  //删除组件外的list
-        let index = configList.findIndex((v,i)=>v.itemId==e.detail.itemId)
-        console.log(this.data.configList)
+        let index = configList.findIndex((v, i) => v.itemId == e.detail.itemId)
         configList.splice(index, 1);
-        this.setData({configList})
+        this.setData({ configList })
     },
 
     /**
@@ -65,6 +64,8 @@ Page({
     onShow(options) {
         this.setData({ mapid: app.data.mainMapId })
         if (app.data.mainMapId != null) {
+            let menuItems = _getMenuItems()
+            this.setData({ menuItems })
             let that = this
             wx.showNavigationBarLoading()
             wx.showLoading({
@@ -79,24 +80,22 @@ Page({
                 success(res) {
                     let data = that._dataProcess(res.data.data.map)
                     that.setData(data)
-                    if (!data.latitude&&!data.longitude) {
+                    if (!data.latitude && !data.longitude) {
                         that.mapCtx.moveToLocation()
                     }
-                    
+
                     wx.setNavigationBarTitle({
                         title: res.data.data.map.map_name,
                     })
                     wx.hideNavigationBarLoading()
                     wx.hideLoading()
-                    console.log(res)
                 }
             })
         }
     },
 
     onLoad() {
-        let menuItems = _getMenuItems()
-        this.setData({ menuItems })
+
         this.mapCtx = wx.createMapContext('myMap')
     },
 
@@ -109,7 +108,6 @@ Page({
         })
     },
     _dataProcess(rawData) {
-        console.log(rawData)
         let data = {
             mapid: rawData.mapid,
             map_name: rawData.map_name,
@@ -141,29 +139,22 @@ Page({
 
         let markers = changeToMaker(rawData.coordinates);
         let map_center = getMapCenter(markers);
+
         data.markers = markers;
         data.longitude = map_center.center_longitude
         data.latitude = map_center.center_latitude
 
         return data
+
     },
     navigateToDetail(e) {
         wx.navigateTo({
-            url: '/pages/shopDetail/shopDetail?id='+e.target.dataset.id,
+            url: '/pages/shopDetail/shopDetail?id=' + e.currentTarget.dataset.id,
         })
     }
 })
 
 function changeToMaker(coordinates) {
-    let callout = {
-        content: '我是这个气泡',
-        display: "ALWAYS",
-        fontSize: 12,
-        color: '#ffffff',
-        bgColor: '#000000',
-        padding: 8,
-        borderRadius: 4,
-    };
     let iconPath = "../../icons/location.png";
     let width = 40;
     let height = 40;
@@ -172,9 +163,17 @@ function changeToMaker(coordinates) {
         marker.width = width;
         marker.height = height;
         marker.title = marker.name;
-        marker.callout = callout;
+        marker.callout = {
+            display: "ALWAYS",
+            fontSize: 12,
+            color: '#ffffff',
+            bgColor: '#000000',
+            padding: 8,
+            borderRadius: 4,
+        };
         marker.callout.content = marker.name;
         delete marker.name;
+
         return marker;
     })
     return markers;
