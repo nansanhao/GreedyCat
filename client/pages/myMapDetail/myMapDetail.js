@@ -149,7 +149,7 @@ Page({
     },
     navigateToDetail(e) {
         wx.navigateTo({
-            url: '/pages/shopDetail/shopDetail?id=' + e.currentTarget.dataset.id,
+            url: '/pages/shopDetail/shopDetail?hiddenNavigator=1&id=' + e.currentTarget.dataset.id ,
         })
     }
 })

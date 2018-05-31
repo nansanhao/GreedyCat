@@ -4,12 +4,15 @@
         <image src='{{imageUrl?imageUrl:"../../icons/icon_main-01.png"}}' class='shop-img'></image>
     </view>
     <view class='detail-wrap'>
-        <view class="ui-cells-title">觅食地图</view>
-        <view class='ui-cells'>
-            <navigator class='ui-cell' hover-class='ui-active' url='/pages/mapDetail/mapDetail?mapid={{mapid}}'>
-                <view class='ui-cell-body'>所在地图</view>
-                <view class='ui-cell-foot-in-access'></view>
-            </navigator>
+
+        <view wx:if='{{navigatorShow}}'>
+            <view class="ui-cells-title">觅食地图</view>
+            <view class='ui-cells'>
+                <navigator class='ui-cell' hover-class='ui-active' url='/pages/mapDetail/mapDetail?mapid={{mapid}}'>
+                    <view class='ui-cell-body'>所在地图</view>
+                    <view class='ui-cell-foot-in-access'></view>
+                </navigator>
+            </view>
         </view>
 
         <view class="section">

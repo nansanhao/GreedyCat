@@ -137,6 +137,12 @@ Page({
             }
         })
 
+    },
+
+    coordinateControl(e) {
+        wx.navigateTo({
+            url: '/pages/newCoordinate/newCoordinate?id='+e.currentTarget.dataset.id,
+        })
     }
 })
 

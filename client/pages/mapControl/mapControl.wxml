@@ -2,7 +2,7 @@
 <view class='ui-cells'>
     <delete-list config-list="{{configList}}" bind:deleteItem="onDeleteItem" wx:if='{{coordinates.length}}'>
         <view wx:for='{{coordinates}}' wx:key='id' slot='{{item.id}}'>
-            <view class='ui-cell coordinate-item' bindtap='navigateToWithAuthory' hover-class='none' data-id='{{item.id}}'>
+            <view class='ui-cell coordinate-item' bindtap='coordinateControl' hover-class='none' data-id='{{item.id}}'>
                 <view class='ui-cell-head'>
                     <image src='../../icons/marker.png'></image>
                 </view>

@@ -1,4 +1,7 @@
 // pages/newCoordinate/newCoordinate.js
+
+const config = require('../../config')
+
 Page({
 
     /**
@@ -12,36 +15,11 @@ Page({
         //map数据
         latitude: 0,
         longitude: 0,
-        mapid: "",
-        map_name: "",
-        description: "这是一段示例文字",
-        province: "",
-        city: "",
-        locality: "",
-        create_time: "",
+        description: "",
+        name:"",
+        address:'',
         category: "",
-        author_id: "",
-        main_image_url: "",
-        author: {},
-        markers: [{
-            latitude: 40.006822,
-            longitude: 116.481451,
-            title: 'T.I.T 创意园',
-            iconPath: "../../icons/location.png",
-            width: 40,
-            height: 40,
-            callout: {
-                content: '我是这个气泡',
-                display: "ALWAYS",
-                fontSize: 12,
-                color: '#ffffff',
-                bgColor: '#000000',
-                padding: 8,
-                borderRadius: 4,
-            }
-        }],
-        
-
+        markers: [],
     },
     //控件点击事件
     lockLocation: function (e) {
@@ -70,7 +48,11 @@ Page({
      */
     onLoad: function (options) {
         this.mapCtx = wx.createMapContext('myMap')
-        this.mapCtx.moveToLocation()
+        if(this.options.id) {
+            this._setLoadDetail()
+        } else {
+            this.mapCtx.moveToLocation()
+        }
     },
     /**
      * textarea实时更新字数
@@ -92,6 +74,34 @@ Page({
             }
         })
     },
+    _setLoadDetail() {
+        let that = this
+        wx.request({
+            url: config.service.host+'/map/coordinate',
+            data:{
+                coordinateId:that.options.id
+            },
+            success(res) {
+                let rawData = res.data.data.coordinate
+                let data = that._dataProcess(rawData)
+                that.setData(data)
+            }
+        })
+    },
+
+
+    _dataProcess(rawData) {
+        let data = {
+            name:rawData.name,
+            address:rawData.address,
+            description:rawData.description,
+            latitude:rawData.latitude,
+            longitude:rawData.longitude,
+            imageUrl:rawData.main_image_url
+        }
+
+        return data
+    }
 
 
    
