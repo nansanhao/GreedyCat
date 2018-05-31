@@ -1,37 +1,34 @@
 <!--pages/shopDetail/shopDetail.wxml-->
-<<<<<<< HEAD
 <view class='page-body'>
     <view class="img-wrap">
-        <image src='../../icons/icon_main-01.png' class='shop-img'></image>
+        <image src='{{imageUrl?imageUrl:"../../icons/icon_main-01.png"}}' class='shop-img'></image>
     </view>
     <view class='detail-wrap'>
+        <view class="ui-cells-title">觅食地图</view>
+        <view class='ui-cells'>
+            <navigator class='ui-cell' hover-class='ui-active' url='/pages/mapDetail/mapDetail?mapid={{mapid}}'>
+                <view class='ui-cell-body'>所在地图</view>
+                <view class='ui-cell-foot-in-access'></view>
+            </navigator>
+        </view>
+
         <view class="section">
             <view class="ui-cells-title">地点名</view>
             <view class="ui-cells text">
-                <text>{{shop_name}}</text>
+                <text>{{name}}</text>
+            </view>
+        </view>
+        <view class='section'>
+            <view class="ui-cells-title">详细地址</view>
+            <view class='ui-cells text'>
+                <text decode='true'>{{address}}</text>
             </view>
         </view>
         <view class='section'>
             <view class="ui-cells-title">简介</view>
             <view class='ui-cells text'>
-                <text decode='true'>{{shop_detail}}</text>
+                <text decode='true'>{{description}}</text>
             </view>
-=======
-<view class="img-wrap">
-    <image src='../../icons/icon_main-01.png' class='shop-img'></image>
-</view>
-<view class='detail-wrap'>
-    <view class="section">
-        <view class="ui-cells-title">地点名</view>
-        <view class="ui-cells text">
-            <text>{{shop_name}}</text>
-        </view>
-    </view>
-    <view class='section'>
-        <view class="ui-cells-title">简介</view>
-        <view class='ui-cells text'>
-            <text decode='true'>{{shop_detail}}</text>
->>>>>>> master
         </view>
     </view>
 </view>

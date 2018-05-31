@@ -33,7 +33,7 @@ Page({
         longitude: 0,
         mapid: "",
         map_name: "",
-        description: "这是一段示例文字",
+        description: "",
         province: "",
         city: "",
         locality: "",

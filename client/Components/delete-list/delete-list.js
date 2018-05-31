@@ -47,12 +47,14 @@ Component({
                     configList[index].leftDistance = -buttonWidth;
                     activeIndex = index;
                     setTimeout(() => {
-                        configList[activeIndex].leftDistance = 0;
-                        activeIndex = null;
-                        that.setData({
-                            configList,
-                            activeIndex
-                        })
+                        if (configList[activeIndex]){
+                            configList[activeIndex].leftDistance = 0;
+                            activeIndex = null;
+                            that.setData({
+                                configList,
+                                activeIndex
+                            })
+                        }
                     }, 1000 * 6)
                 } else {
                     configList[index].leftDistance = 0
