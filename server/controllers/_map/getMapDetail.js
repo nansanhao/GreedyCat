@@ -23,8 +23,6 @@ module.exports = async (ctx, next) => {
             let author = JSON.parse(res[0].simple_user_info)
             map.author = author
 
-            Reflect.deleteProperty(map, 'is_public')
-
             //处理坐标数组
             let coordinates = await mysql('coordinate').select().where({
                 mapid

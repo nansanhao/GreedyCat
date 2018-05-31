@@ -12,6 +12,7 @@ router.put('/myMap',controllers._map.updateMapDetail)
 //获取地图信息
 router.get('/mapDetail',controllers._map.getMapDetail)
 
+router.get('/coordinates',controllers._map.getMapCoordinates)
 
 //新建坐标
 router.post('/coordinate',controllers._map.newCoordinate)

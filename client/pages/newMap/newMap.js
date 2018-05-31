@@ -6,7 +6,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        in: true,
+        mapid:null,
         location:["北京市","北京市","东城区"],
         textareaLen:0,
         textareaMaxLen:50,
@@ -87,4 +87,45 @@ Page({
         that.setData({ textareaLen: len })
     },
 
+    onLoad() {
+        if (this.options.mapid) { //更新坐标
+            let mapid = this.options.mapid
+            wx.setNavigationBarTitle({
+                title: '管理地图信息',
+            })
+            this.setData({ mapid })
+            this._setLoadDetail()
+        } else { //新建坐标
+            
+        }
+    },
+
+    _setLoadDetail() {
+        let that = this
+        wx.request({
+            url: config.service.host + '/map/mapDetail',
+            data: {
+                mapid: that.options.mapid
+            },
+            success(res) {
+                let rawData = res.data.data.map
+                let data = that._dataProcess(rawData)
+                that.setData(data)
+            }
+        })
+    },
+
+    _dataProcess(rawData) {
+        let categories = this.data.categories
+        let categoryIndex = categories.indexOf(rawData.category)
+
+        let data = {
+            map_name: rawData.map_name,
+            description: rawData.description,
+            categoryIndex,
+            textareaLen: rawData.description.length
+        }
+
+        return data
+    }
 })

@@ -9,10 +9,10 @@ Page({
      * 页面的初始数据
      */
     data: {
-        categories: ["日韩料理","西式简餐","川湘菜","东南亚风情","下午茶甜点","特色私房","养生早点","简约小食","其他"],
-        categoryIndex:0,
-        imagePath:null,
-        oldPath:null,
+        categories: ["日韩料理", "西式简餐", "川湘菜", "东南亚风情", "下午茶甜点", "特色私房", "养生早点", "简约小食", "其他"],
+        categoryIndex: 0,
+        imagePath: null,
+        oldPath: null,
         //textarea数据
         textareaLen: 0,
         textareaMaxLen: 50,
@@ -20,12 +20,12 @@ Page({
         latitude: 0,
         longitude: 0,
         description: "",
-        name:"",
-        address:'',
+        name: "",
+        address: '',
         category: "",
         markers: [],
-        mapid:null,
-        id:null
+        mapid: null,
+        id: null
     },
     //控件点击事件
     lockLocation: function (e) {
@@ -35,12 +35,21 @@ Page({
      * 页面提交事件
      */
     formSubmit: function (e) {
-        console.log(e.detail.value)
-        if(this.options.id){
-            this._updateRequest(e.detail.value)
+        if (e.detail.value.name == '') {
+            wx.showModal({
+                title: '提示',
+                content: '觅食处不能没有名字哦',
+                showCancel:false,
+                confirmColor:'#EB6159'
+            })
         } else {
-            this._createRequest(e.detail.value)
+            if (this.options.id) {
+                this._updateRequest(e.detail.value)
+            } else {
+                this._createRequest(e.detail.value)
+            }
         }
+
     },
 
     /**
@@ -48,13 +57,13 @@ Page({
      */
     onLoad: function (options) {
         this.mapCtx = wx.createMapContext('myMap')
-        if(this.options.id) { //更新坐标
+        if (this.options.id) { //更新坐标
             let id = this.options.id
-            this.setData({id})
+            this.setData({ id })
             this._setLoadDetail()
         } else { //新建坐标
             this.mapCtx.moveToLocation()
-            let mapid = this.options.mapid 
+            let mapid = this.options.mapid
             this.setData({ mapid })
         }
     },
@@ -87,9 +96,9 @@ Page({
     _setLoadDetail() {
         let that = this
         wx.request({
-            url: config.service.host+'/map/coordinate',
-            data:{
-                coordinateId:that.options.id
+            url: config.service.host + '/map/coordinate',
+            data: {
+                coordinateId: that.options.id
             },
             success(res) {
                 let rawData = res.data.data.coordinate
@@ -105,16 +114,16 @@ Page({
         let categoryIndex = categories.indexOf(rawData.category)
 
         let data = {
-            name:rawData.name,
-            address:rawData.address,
-            description:rawData.description,
-            latitude:rawData.latitude,
-            longitude:rawData.longitude,
-            imageUrl:rawData.main_image_url,
+            name: rawData.name,
+            address: rawData.address,
+            description: rawData.description,
+            latitude: rawData.latitude,
+            longitude: rawData.longitude,
+            imageUrl: rawData.main_image_url,
             oldPath: rawData.main_image_url,
-            mapid:rawData.mapid,
+            mapid: rawData.mapid,
             categoryIndex,
-            textareaLen:rawData.description.length
+            textareaLen: rawData.description.length
         }
 
         return data
@@ -130,10 +139,10 @@ Page({
             mapid: Number(this.data.mapid),
             longitude: this.data.longitude,
             latitude: this.data.latitude,
-            category:categories[rawData.categoryIndex]
+            category: categories[rawData.categoryIndex]
         }
         let that = this
-        if(this.data.oldPath != this.data.imagePath){
+        if (this.data.oldPath != this.data.imagePath) {
             let filePath = this.data.iamgePath
             wx.uploadFile({
                 url: config.service.uploadUrl,
@@ -142,7 +151,7 @@ Page({
 
                 success: function (res) {
                     res = JSON.parse(res.data)
-                    data.main_image_url=res.data.imgUrl
+                    data.main_image_url = res.data.imgUrl
                     that._dataRequest(data, 0)
                 },
 
@@ -157,12 +166,12 @@ Page({
 
     _updateRequest(rawData) {
         let categories = this.data.categories
-        let coordinate= {
-            name:rawData.name,
-            address:rawData.address,
-            description:rawData.description,
-            mapid:Number(this.data.mapid),
-            longitude:this.data.longitude,
+        let coordinate = {
+            name: rawData.name,
+            address: rawData.address,
+            description: rawData.description,
+            mapid: Number(this.data.mapid),
+            longitude: this.data.longitude,
             latitude: this.data.latitude,
             category: categories[rawData.categoryIndex]
         }
@@ -194,24 +203,24 @@ Page({
     },
 
 
-    _dataRequest(data,choice){
-        let choices = ['POST','PUT']
+    _dataRequest(data, choice) {
+        let choices = ['POST', 'PUT']
         let method = choices[choice]
         console.log(data)
         wx.request({
-            url: config.service.host +'/map/coordinate',
+            url: config.service.host + '/map/coordinate',
             method,
             data,
             success() {
                 wx.showToast({
-                    title: choice==0?'新建成功':'更改成功',
+                    title: choice == 0 ? '新建成功' : '更改成功',
                     icon: 'success',
                 })
                 wx.navigateBack({
-                    
+
                 })
             }
         })
     }
-   
+
 })

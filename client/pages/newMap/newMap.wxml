@@ -56,7 +56,7 @@
         </view>
     </view>
     <view class='section ui-btn-area'>
-        <button type="primary" formType="submit" class='ui-btn'>开始记录/保存</button>
+        <button type="primary" formType="submit" class='ui-btn'>{{mapid?'保存':'开始记录觅食地图'}}</button>
     </view>
 
 </form>

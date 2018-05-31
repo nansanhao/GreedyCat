@@ -143,6 +143,11 @@ Page({
         wx.navigateTo({
             url: '/pages/newCoordinate/newCoordinate?id='+e.currentTarget.dataset.id,
         })
+    },
+    informationManage(){
+        wx.navigateTo({
+            url: '/pages/newMap/newMap?mapid=' + this.options.mapid,
+        })
     }
 })
 
