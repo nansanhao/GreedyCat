@@ -11,7 +11,8 @@ Page({
         description: " ",
         address: ' ',
         imageUrl: null,
-        navigatorShow:true
+        navigatorShow:true,
+        category:''
 
     },
 
@@ -36,7 +37,8 @@ Page({
                     name: rawData.name,
                     address: rawData.address,
                     mapid: rawData.mapid,
-                    imageUrl: rawData.main_image_url
+                    imageUrl: rawData.main_image_url,
+                    category:rawData.category
                 })
             }
         })

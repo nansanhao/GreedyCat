@@ -1,6 +1,6 @@
 <!--Components/map-item/comment-item.wxml-->
  <view class="coordinate-item-box">
-  <image class="coordinate-item-image" src="{{itemDetail.main_image_url||'../../icons/lost.png'}}"></image>
+  <image class="coordinate-item-image" src="{{itemDetail.main_image_url||'../../icons/lost.png'}}" mode="aspectFit"></image>
   <view class="coordinate-item-right-part">
     <view class="coordinate-name-box">
       <view class="coordinate-name-head">{{itemDetail.name}}</view>

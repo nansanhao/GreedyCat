@@ -1,7 +1,7 @@
 <!--pages/shopDetail/shopDetail.wxml-->
 <view class='page-body'>
     <view class="img-wrap">
-        <image src='{{imageUrl?imageUrl:"../../icons/icon_main-01.png"}}' class='shop-img'></image>
+        <image src='{{imageUrl?imageUrl:"../../icons/icon_main-01.png"}}' class='shop-img' mode="aspectFit"></image>
     </view>
     <view class='detail-wrap'>
 
@@ -19,6 +19,13 @@
             <view class="ui-cells-title">地点名</view>
             <view class="ui-cells text">
                 <text>{{name}}</text>
+            </view>
+        </view>
+
+        <view class="section">
+            <view class="ui-cells-title">分类</view>
+            <view class="ui-cells text">
+                <text>{{category}}</text>
             </view>
         </view>
         <view class='section'>
